@@ -1,0 +1,16 @@
+/* Import shared responsive styles */
+@import '../../styles/themes.css';
+
+.hero {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    text-align: left;
+    padding: 3rem 1.5rem;
+  }
+}

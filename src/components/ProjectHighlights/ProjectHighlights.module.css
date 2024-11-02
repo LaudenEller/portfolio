@@ -1,0 +1,28 @@
+@import '../../styles/themes.css';
+
+.projectHighlight {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .projectHighlight {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .projectHighlight {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.project {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
