@@ -1,0 +1,26 @@
+@import '../../styles/themes.css';
+@import '../../styles/responsive.css';
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--background-color);
+  }
+  
+  .navLinks a {
+    margin-right: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  
+  .toggleButton {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+  }
+  

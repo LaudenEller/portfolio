@@ -1,3 +1,6 @@
+@import '../../styles/themes.css';
+@import '../../styles/responsive.css';
+
 /* Contact Section Wrapper */
 .contactSection {
     padding: 2rem;
