@@ -1,5 +1,6 @@
 /* Import shared responsive styles */
 @import '../../styles/themes.css';
+@import '../../styles/responsive.css';
 
 .hero {
   background-color: var(--background-color);

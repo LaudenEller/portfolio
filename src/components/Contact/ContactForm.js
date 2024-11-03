@@ -26,17 +26,25 @@ const ContactForm = () => {
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail} className={styles.contactForm}>
-      <label className={styles.label}>Name</label>
-      <input type="text" name="user_name" required className={styles.input} />
+    <form ref={form} onSubmit={sendEmail} className={`container ${styles.contactForm}`}>
+      <div className="mb-3">
+        <label className="form-label">Name</label>
+        <input type="text" name="user_name" required className="form-control" />
+      </div>
       
-      <label className={styles.label}>Email</label>
-      <input type="email" name="user_email" required className={styles.input} />
+      <div className="mb-3">
+        <label className="form-label">Email</label>
+        <input type="email" name="user_email" required className="form-control" />
+      </div>
       
-      <label className={styles.label}>Message</label>
-      <textarea name="message" required className={styles.textarea} />
+      <div className="mb-3">
+        <label className="form-label">Message</label>
+        <textarea name="message" required className="form-control" />
+      </div>
       
-      <button type="submit" className={styles.submitButton}>Send</button>
+      <button type="submit" className={`btn btn-primary ${styles.submitButton}`}>
+        Send
+      </button>
     </form>
   );
 };

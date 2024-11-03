@@ -1,11 +1,14 @@
 import React from "react";
+import Contact from "../components/Contact/Contact";
+import Hero from '../components/Hero/Hero';
+// import ProjectHighlight from '../components/ProjectHighlight/ProjectHighlight';
+// import WorkExamples from '../components/WorkExamples/WorkExamples';
 
 const Home = () => {
     return (
       <div className="home">
-        {/* Replace text with welcome message component */}
-        <h1>Welcome to My Portfolio</h1>
-        <p>This is a simple portfolio website showcasing my work.</p>
+      <Hero />
+      <Contact />
       </div>
     );
   };
