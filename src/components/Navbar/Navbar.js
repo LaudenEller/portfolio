@@ -3,17 +3,17 @@ import ThemeContext from '../../contexts/ThemeContext';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const { toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme, theme } = useContext(ThemeContext);
 
   return (
     <nav className={styles.navbar}>
       <div className={styles.navLinks}>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/projects">Projects</a>
-        <a href="/contact">Contact</a>
+        <a href="#about" className="nav-link">About</a>
+        <a href="#projects" className="nav-link">Projects</a>
+        <a href="#work" className="nav-link">Work</a>
+        <a href="#contact" className="nav-link">Contact</a>
       </div>
-      <button onClick={toggleTheme} className={styles.toggleButton}>
+      <button onClick={toggleTheme} className={`btn ${theme === 'dark' ? 'btn-light' : 'btn-dark'}`}>
         Toggle Theme
       </button>
     </nav>

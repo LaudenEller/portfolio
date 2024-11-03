@@ -1,3 +1,14 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Override Bootstrap colors */
+:root {
+  --bs-primary: var(--primary-color);
+  --bs-secondary: var(--secondary-color);
+  /* Add any other overrides here */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

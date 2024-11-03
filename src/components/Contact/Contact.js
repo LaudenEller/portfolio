@@ -5,7 +5,7 @@ import styles from './Contact.module.css';
 const Contact = () => {
   return (
    // Contact.js
-<div className="container">
+  <div className={`container ${styles.contactContainer}`}>
   <div className="row">
     <div className="col-md-6">
       <h2>Contact Us</h2>

@@ -1,16 +1,34 @@
-import React from "react";
-import Contact from "../components/Contact/Contact";
+import React from 'react';
 import Hero from '../components/Hero/Hero';
-// import ProjectHighlight from '../components/ProjectHighlight/ProjectHighlight';
-// import WorkExamples from '../components/WorkExamples/WorkExamples';
+// import About from '../components/About/About';
+// import Projects from '../components/Projects/Projects';
+// import Work from '../components/Work/Work';
+import Contact from '../components/Contact/Contact';
 
 const Home = () => {
-    return (
-      <div className="home">
-      <Hero />
-      <Contact />
-      </div>
-    );
-  };
-  
-  export default Home;
+  return (
+    <div>
+      <section id="home">
+        <Hero />
+      </section>
+      
+      {/* <section id="about">
+        <About />
+      </section>
+      
+      <section id="projects">
+        <Projects />
+      </section>
+      
+      <section id="work">
+        <Work />
+      </section> */}
+      
+      <section id="contact">
+        <Contact />
+      </section>
+    </div>
+  );
+};
+
+export default Home;
