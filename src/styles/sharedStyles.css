@@ -1,9 +1,3 @@
-/* Override Bootstrap colors */
-:root {
-    --bs-primary: var(--primary-color);
-    --bs-secondary: var(--secondary-color);
-    /* Add any other overrides here */
-  }
   /* Button Styles */
 .buttonPrimary {
     background-color: var(--primary-color);

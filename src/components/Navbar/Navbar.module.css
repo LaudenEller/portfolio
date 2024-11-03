@@ -8,13 +8,27 @@
     padding: 1rem;
     background-color: var(--background-color);
   }
-  
+
+  .navLinks {
+    display: flex;
+    gap: 1rem;
+  }
+
   .navLinks a {
     margin-right: 1rem;
     color: var(--text-color);
     text-decoration: none;
   }
   
+  .nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary-color);
+  }
+
   .toggleButton {
     background-color: var(--primary-color);
     color: #fff;
@@ -22,5 +36,4 @@
     border-radius: 4px;
     cursor: pointer;
     padding: 0.5rem 1rem;
-  }
-  
+  } 
