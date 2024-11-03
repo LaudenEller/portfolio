@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
 // import About from '../components/About/About';
-// import Projects from '../components/Projects/Projects';
+import ProjectHighlight from '../components/ProjectHighlights/ProjectHighlights';
 // import Work from '../components/Work/Work';
 import Contact from '../components/Contact/Contact';
 
@@ -14,13 +14,13 @@ const Home = () => {
       
       {/* <section id="about">
         <About />
-      </section>
+      </section> */}
       
       <section id="projects">
-        <Projects />
+        <ProjectHighlight />
       </section>
       
-      <section id="work">
+      {/* <section id="work">
         <Work />
       </section> */}
       

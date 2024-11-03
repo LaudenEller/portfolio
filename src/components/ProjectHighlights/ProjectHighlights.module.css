@@ -1,29 +1,48 @@
+/* Import shared styles for themes */
 @import '../../styles/themes.css';
-@import '../../styles/responsive.css';
 
-.projectHighlight {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-@media (min-width: 768px) {
-  .projectHighlight {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1024px) {
-  .projectHighlight {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-.project {
+/* Applies theme-specific background and text color */
+.container {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem;
+}
+
+.darkTheme .container {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
+.projectCard {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projectCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.projectImage {
+  object-fit: cover;
+  height: 200px;
+}
+
+.cardBody {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .projectCard {
+    margin-bottom: 1rem;
+  }
+
+  .cardBody {
+    padding: 1rem;
+  }
 }
