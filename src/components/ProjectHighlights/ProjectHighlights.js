@@ -6,7 +6,7 @@ const ProjectHighlight = ({ projects }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`${styles.projectHighlight} ${theme === 'dark' ? styles.darkTheme : ''}`}>
+    <div className={`${styles.projectHighlightContainer} ${theme === 'dark' ? styles.darkTheme : ''}`}>
       <div className="container">
         <h2 className="text-center mb-4">Project Highlights</h2>
         {/* <div className="row">

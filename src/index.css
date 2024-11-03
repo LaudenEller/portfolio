@@ -1,3 +1,7 @@
+@import './styles/themes.css';
+@import './styles/responsive.css';
+@import './styles/sharedStyles.css';
+
 html {
   scroll-behavior: smooth;
 }
