@@ -1,17 +1,33 @@
-import React from 'react';
-import styles from './ProjectHighlight.module.css';
+import React, { useContext } from 'react';
+import ThemeContext from '../../contexts/ThemeContext';
+import styles from './ProjectHighlights.module.css';
 
 const ProjectHighlight = ({ projects }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <section id="projects" className={styles.projectHighlight}>
-      {projects.map((project, index) => (
-        <div key={index} className={styles.project}>
-          <h2>{project.title}</h2>
-          <img src={project.image} alt={project.title} />
-          <p>{project.description}</p>
-        </div>
-      ))}
-    </section>
+    <div className={`${styles.projectHighlight} ${theme === 'dark' ? styles.darkTheme : ''}`}>
+      <div className="container">
+        <h2 className="text-center mb-4">Project Highlights</h2>
+        {/* <div className="row">
+          {projects.map((project, index) => (
+            <div key={index} className="col-md-6 col-lg-4 mb-4">
+              <div className={`${styles.projectCard} card h-100`}>
+                <img
+                  src={project.image}
+                  className={`card-img-top ${styles.projectImage}`}
+                  alt={`${project.title} screenshot`}
+                />
+                <div className={`card-body ${styles.cardBody}`}>
+                  <h5 className="card-title">{project.title}</h5>
+                  <p className="card-text">{project.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div> */}
+      </div>
+    </div>
   );
 };
 
