@@ -10,9 +10,9 @@ const Footer = () => {
       <div className={styles.footerContainer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLinks}>
-            <a href="#" className="foot-link">Instagram</a>
-            <a href="#" className="foot-link">Github</a>
-            <a href="#contact" className="foot-link">Contact</a>
+            <a href="#" className={styles.footerLink}>Instagram</a>
+            <a href="#" className={styles.footerLink}>Github</a>
+            <a href="#contact" className={styles.footerLink}>Contact</a>
           </div>
         </div>
       </div>
@@ -21,3 +21,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
