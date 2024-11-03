@@ -6,8 +6,8 @@
     --primary-color-dark: #357abd;
   }
   
-  /* Dark Theme */
-  [data-theme='dark'] {
+/* Dark Theme */
+.dark-theme {
     --background-color: #121212;
     --text-color: #eeeeee;
     --primary-color: #bb86fc;
