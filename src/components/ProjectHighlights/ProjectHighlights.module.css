@@ -1,17 +1,25 @@
-/* Import shared styles for themes */
-@import '../../styles/themes.css';
-
-/* Applies theme-specific background and text color */
-.container {
+.projectContainer {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 2rem 1rem;
 }
 
-.darkTheme .container {
+.darkTheme .projectContainer {
   background-color: var(--background-dark);
   color: var(--text-light);
 }
+
+.projectHighlightContainer {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+}
+
+.darkTheme .projectHighlightContainer {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
 
 .projectCard {
   transition: transform 0.3s ease, box-shadow 0.3s ease;

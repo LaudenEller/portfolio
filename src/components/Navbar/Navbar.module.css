@@ -1,6 +1,3 @@
-@import '../../styles/themes.css';
-@import '../../styles/responsive.css';
-
 /* Navbar styles */
 .navbar {
     display: flex;

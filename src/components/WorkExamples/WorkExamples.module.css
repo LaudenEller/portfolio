@@ -1,0 +1,51 @@
+.workExamples {
+  padding: 2rem 1rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.darkTheme .workExamples {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
+.accordion-button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* Specific layout styles */
+.textOnly {
+  padding: 1rem;
+}
+
+.imageLeft, .imageRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.imageLeft img {
+  order: -1; /* Moves the image to the left */
+  max-width: 150px;
+}
+
+.imageRight img {
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .imageLeft, .imageRight {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imageLeft img, .imageRight img {
+    max-width: 100%;
+  }
+}
