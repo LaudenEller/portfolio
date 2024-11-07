@@ -6,6 +6,8 @@ import styles from './Hero.module.css';
 const Hero = () => {
   const { theme } = useContext(ThemeContext); // Access theme for conditional styles
 
+  if (!theme) return null; // Or a loading state spinner, if desired
+
   return (
     <section 
       id="hero" 
