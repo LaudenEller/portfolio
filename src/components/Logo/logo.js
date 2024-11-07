@@ -52,6 +52,15 @@ export function Logo() {
       data="/assets/logo.svg"
       id="logo-object"
       aria-label="Logo"
+      style={{
+        width: '200px',
+        height: 'auto',
+        display: 'block',
+        visibility: 'visible',
+        opacity: 1,
+        overflowClipMargin: 'none',
+        overflow: 'visible',
+      }}
     ></object>
   );
 }
