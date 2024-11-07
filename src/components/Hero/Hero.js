@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
+import HeroImage from './HeroImage';
 import styles from './Hero.module.css';
 
-const Hero = ({ title = "Welcome to My Portfolio", introText = "Your introductory text goes here." }) => {
-  const { theme } = useContext(ThemeContext); // Access theme if needed for conditional styles
+const Hero = () => {
+  const { theme } = useContext(ThemeContext); // Access theme for conditional styles
 
   return (
     <section 
@@ -11,10 +12,7 @@ const Hero = ({ title = "Welcome to My Portfolio", introText = "Your introductor
       className={`${styles.hero} ${theme === 'dark' ? styles.heroDark : ''}`}
       aria-label="Introduction Section"
     >
-      <div className={styles.content}>
-        <h1>{title}</h1>
-        <p>{introText}</p>
-      </div>
+      <HeroImage theme={theme} /> {/* Render only the HeroImage component */}
     </section>
   );
 };

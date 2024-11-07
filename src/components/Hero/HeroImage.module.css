@@ -1,0 +1,37 @@
+/* HeroImage.module.css */
+
+.heroContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Adjust based on screen size */
+  }
+  
+  .heroImage {
+    max-width: 100%;
+    height: auto;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767px) {
+    .heroContainer {
+      padding: 10px;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .heroContainer {
+      padding: 15px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .heroContainer {
+      padding: 20px;
+    }
+  }
+  
