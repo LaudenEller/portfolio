@@ -4,9 +4,7 @@ import HeroImage from './HeroImage';
 import styles from './Hero.module.css';
 
 const Hero = () => {
-  const { theme } = useContext(ThemeContext); // Access theme for conditional styles
-
-  if (!theme) return null; // Or a loading state spinner, if desired
+  const { theme } = useContext(ThemeContext);
 
   return (
     <section 
@@ -14,7 +12,7 @@ const Hero = () => {
       className={`${styles.hero} ${theme === 'dark' ? styles.heroDark : ''}`}
       aria-label="Introduction Section"
     >
-      <HeroImage theme={theme} /> {/* Render only the HeroImage component */}
+      <HeroImage theme={theme} />
     </section>
   );
 };
