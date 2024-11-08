@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px; /* Adjust based on screen size */
+    /* padding: 20px; Adjust based on screen size */
   }
   
   .heroImage {
@@ -19,19 +19,19 @@
   /* Responsive adjustments */
   @media (max-width: 767px) {
     .heroContainer {
-      padding: 10px;
+      /* padding: 10px; */
     }
   }
   
   @media (min-width: 768px) and (max-width: 1023px) {
     .heroContainer {
-      padding: 15px;
+      /* padding: 15px; */
     }
   }
   
   @media (min-width: 1024px) {
     .heroContainer {
-      padding: 20px;
+      /* padding: 20px; */
     }
   }
   

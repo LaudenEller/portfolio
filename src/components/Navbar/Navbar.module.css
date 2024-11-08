@@ -4,8 +4,21 @@
     justify-content: space-between;
     padding: 1rem;
     background-color: var(--background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 1000; /* Keeps it above other content */
   }
 
+  /* I am using !important to override bs styles but it's not a good method
+      I need to find a better way to set up the css */
+  .navContainer {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0;
+  }
   .navLinks {
     display: flex;
     gap: 1rem;
@@ -26,11 +39,28 @@
     color: var(--primary-color);
   }
 
-  .toggleButton {
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+  .toggleContainer {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    padding: 0.5rem 1rem;
-  } 
+    /* height: fit-content; */
+  }
+  
+  .themeToggle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Light theme glow */
+  .light {
+    background-color: black;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Dark theme glow */
+  .dark {
+    background-color: white;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
+  }
