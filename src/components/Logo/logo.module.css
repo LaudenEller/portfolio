@@ -1,0 +1,19 @@
+/* #logo-object {
+    width: 10px;
+    height: auto;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    overflow-clip-margin: none !important;
+    overflow: visible !important;
+  }   */
+
+  #logo-object {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    overflow: visible !important;
+  }
+  
