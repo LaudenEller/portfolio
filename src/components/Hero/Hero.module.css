@@ -1,7 +1,7 @@
 .hero {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding: 2rem 1rem;
+  /* padding: 2rem 1rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,25 +24,10 @@
   margin: 0 auto 2rem auto;
 }
 
-@media (min-width: 768px) {
-  .hero {
-    text-align: left;
-    padding: 3rem 1.5rem;
-  }
-}
-
 .hero img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-}
-
-@media (min-width: 768px) {
-  .hero {
-    
-    text-align: left;
-    padding: 2rem 0;
-  }
+  /* border-radius: 8px; */
 }
 
 /* Component-specific responsiveness */
@@ -50,7 +35,7 @@
   .hero {
     flex-direction: row;
     text-align: left;
-    padding: 3rem 1.5rem;
+    /* padding: 3rem 1.5rem; */
   }
 
   .hero h1 {
@@ -64,7 +49,7 @@
 
 @media (min-width: 1024px) {
   .hero {
-    padding: 4rem 2rem;
+    /* padding: 4rem 2rem; */
   }
 
   .hero h1 {
