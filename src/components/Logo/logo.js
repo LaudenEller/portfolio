@@ -1,21 +1,50 @@
+// import React, { useEffect } from 'react';
 // import gsap from 'gsap';
-// import React from 'react';
 // import './logo.module.css';
 
-// <object type="image/svg+xml" data="/assets/logo.svg" id="logo-object" onLoad={() => animateLogo()} aria-label="Logo"></object>
+// export function Logo() {
+//   useEffect(() => {
+//     const animateLogo = () => {
+//       const logoObject = document.getElementById('logo-object');
+//       const svgDoc = logoObject.contentDocument;
 
-// export function animateLogo() {
-//   const logoObject = document.getElementById('logo-object');
-//   const svgDoc = logoObject.contentDocument; // Access the SVG's content
-  
-//   if (svgDoc) {
-//     const logoPath = svgDoc.querySelector("#logo-path"); // Adjust with the correct ID in your SVG
+//       if (svgDoc) {
+//         const logoPath = svgDoc.querySelector('#logo-path'); // Update to match your SVG path's ID
+//         if (logoPath) {
+//           gsap.fromTo(
+//             logoPath,
+//             { strokeDashoffset: 12965.89 },  // Ensure this matches the initial dash offset
+//             { strokeDashoffset: 0, duration: 2, ease: 'power2.out' });
+//         }
+//       }
+//     };
 
-//     gsap.fromTo(logoPath, { opacity: 0 }, { opacity: 1, duration: 2 });
-//   }
+//     const logoObject = document.getElementById('logo-object');
+//     logoObject.addEventListener('load', animateLogo);
+
+//     return () => {
+//       logoObject.removeEventListener('load', animateLogo);
+//     };
+//   }, []);
+
+//   return (
+//     <object
+//       type="image/svg+xml"
+//       data="/assets/logo.svg"
+//       id="logo-object"
+//       aria-label="Logo"
+//       style={{
+//         width: '200px',
+//         height: 'auto',
+//         display: 'block',
+//         visibility: 'visible',
+//         opacity: 1,
+//         overflowClipMargin: 'none',
+//         overflow: 'visible',
+//       }}
+//     ></object>
+//   );
 // }
-
-// export { animateLogo as logoAnimation };
 
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
@@ -25,24 +54,29 @@ export function Logo() {
   useEffect(() => {
     const animateLogo = () => {
       const logoObject = document.getElementById('logo-object');
-      const svgDoc = logoObject.contentDocument;
+      const svgDoc = logoObject?.contentDocument || logoObject.getSVGDocument();
 
       if (svgDoc) {
-        const logoPath = svgDoc.querySelector('#logo-path'); // Update to match your SVG path's ID
+        const logoPath = svgDoc.querySelector('#logo-path');
         if (logoPath) {
           gsap.fromTo(
             logoPath,
-            { strokeDashoffset: 12965.89 },  // Ensure this matches the initial dash offset
-            { strokeDashoffset: 0, duration: 2, ease: 'power2.out' });
+            { strokeDashoffset: 12965.89 },
+            { strokeDashoffset: 0, duration: 2.5, ease: 'power2.out' }
+          );
         }
       }
     };
 
     const logoObject = document.getElementById('logo-object');
-    logoObject.addEventListener('load', animateLogo);
+    if (logoObject.complete) {
+      animateLogo();
+    } else {
+      logoObject.addEventListener('load', animateLogo);
+    }
 
     return () => {
-      logoObject.removeEventListener('load', animateLogo);
+      if (logoObject) logoObject.removeEventListener('load', animateLogo);
     };
   }, []);
 
@@ -58,7 +92,6 @@ export function Logo() {
         display: 'block',
         visibility: 'visible',
         opacity: 1,
-        overflowClipMargin: 'none',
         overflow: 'visible',
       }}
     ></object>
