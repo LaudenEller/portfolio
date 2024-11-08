@@ -1,63 +1,18 @@
-// import React, { useEffect } from 'react';
-// import gsap from 'gsap';
-// import './logo.module.css';
-
-// export function Logo() {
-//   useEffect(() => {
-//     const animateLogo = () => {
-//       const logoObject = document.getElementById('logo-object');
-//       const svgDoc = logoObject.contentDocument;
-
-//       if (svgDoc) {
-//         const logoPath = svgDoc.querySelector('#logo-path'); // Update to match your SVG path's ID
-//         if (logoPath) {
-//           gsap.fromTo(
-//             logoPath,
-//             { strokeDashoffset: 12965.89 },  // Ensure this matches the initial dash offset
-//             { strokeDashoffset: 0, duration: 2, ease: 'power2.out' });
-//         }
-//       }
-//     };
-
-//     const logoObject = document.getElementById('logo-object');
-//     logoObject.addEventListener('load', animateLogo);
-
-//     return () => {
-//       logoObject.removeEventListener('load', animateLogo);
-//     };
-//   }, []);
-
-//   return (
-//     <object
-//       type="image/svg+xml"
-//       data="/assets/logo.svg"
-//       id="logo-object"
-//       aria-label="Logo"
-//       style={{
-//         width: '200px',
-//         height: 'auto',
-//         display: 'block',
-//         visibility: 'visible',
-//         opacity: 1,
-//         overflowClipMargin: 'none',
-//         overflow: 'visible',
-//       }}
-//     ></object>
-//   );
-// }
-
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import './logo.module.css';
 
 export function Logo() {
+  // this useEffect is getting the logo object and logo svg
+    // once they're found, it submits them to GSAP
+    // and tells GSAP how to animate the logo
   useEffect(() => {
     const animateLogo = () => {
       const logoObject = document.getElementById('logo-object');
       const svgDoc = logoObject?.contentDocument || logoObject.getSVGDocument();
 
       if (svgDoc) {
-        const logoPath = svgDoc.querySelector('#logo-path');
+        const logoPath = svgDoc.querySelector('#mask-path');
         if (logoPath) {
           gsap.fromTo(
             logoPath,
@@ -68,6 +23,8 @@ export function Logo() {
       }
     };
 
+    // This checks to see if the svg has been loaded and executes the useEffect that animates it
+      // then dismounts the event listener if the animation has been executed
     const logoObject = document.getElementById('logo-object');
     if (logoObject.complete) {
       animateLogo();
@@ -80,6 +37,7 @@ export function Logo() {
     };
   }, []);
 
+  // This creates the logo object to be animated by gsap
   return (
     <object
       type="image/svg+xml"

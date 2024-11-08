@@ -5,6 +5,8 @@ import TextOnlyExample from './TextOnlyExample';
 import ImageLeftExample from './ImageLeftExample';
 import ImageRightExample from './ImageRightExample';
 
+// This sources different components for each work example and then displays them in a bootstrap style accordion
+  // I should change out the inline css for imported properties from WorkExamples.module.css
 const WorkExamples = () => {
   const { theme } = useContext(ThemeContext);
 

@@ -8,12 +8,14 @@ const ContactForm = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // Hides email details as env secrets
     emailjs.sendForm(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         form.current,
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-    ).then(
+      // Handles what happens after the send email button is clicked
+      ).then(
       (result) => {
         console.log(result.text);
         alert('Message sent successfully!');
@@ -24,7 +26,7 @@ const ContactForm = () => {
       }
     );
   };
-
+  // Handles email form
   return (
     <form ref={form} onSubmit={sendEmail} className={`container ${styles.contactForm}`}>
       <div className="mb-3">

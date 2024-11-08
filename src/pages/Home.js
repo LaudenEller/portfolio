@@ -5,6 +5,7 @@ import ProjectHighlight from '../components/ProjectHighlights/ProjectHighlights'
 import WorkExamples from '../components/WorkExamples/WorkExamples';
 import Contact from '../components/Contact/Contact';
 
+// This is where the different sections are loaded onto the home page in the right order
 const Home = () => {
   return (
     <div>

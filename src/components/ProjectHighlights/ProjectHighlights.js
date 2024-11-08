@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './ProjectHighlights.module.css';
 
+// This module accepts projects as children and maps over them
+  // But this method will not work for the layout that I want to build
+    // My plan is to mimic how work examples is loading a different component for each example
 const ProjectHighlight = ({ projects }) => {
   const { theme } = useContext(ThemeContext);
 
