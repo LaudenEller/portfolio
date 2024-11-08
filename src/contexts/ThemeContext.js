@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
+// ThemeProvider wraps entire app in chosen theme by accepting "themedApp" as children in app.js
 export const ThemeProvider = ({ children }) => {
   
   // Initialize theme from localStorage or default to 'light'

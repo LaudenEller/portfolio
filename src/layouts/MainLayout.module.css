@@ -1,0 +1,20 @@
+/* Layout Container */
+.layoutContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .layoutContainer {
+      padding: 0 0.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .layoutContainer {
+      padding: 0 0.25rem;
+    }
+  }  

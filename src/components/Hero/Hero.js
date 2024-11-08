@@ -9,6 +9,7 @@ const Hero = () => {
   return (
     <section 
       id="hero" 
+      // Applies different css rules to hero section based on theme choice
       className={`${styles.hero} ${theme === 'dark' ? styles.heroDark : ''}`}
       aria-label="Introduction Section"
     >
