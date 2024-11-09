@@ -1,4 +1,14 @@
 /* Contact Section Wrapper */
+.customContainer {
+  max-width: 100% !important; /* Override Bootstrap's default max-width */
+  margin: 0 auto; /* Center-align the content */
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Contact Section Wrapper */
 .contactContainer {
     padding: 2rem;
     background-color: var(--background-color);
@@ -52,3 +62,10 @@
   .submitButton:hover {
     background-color: var(--primary-color-dark);
   }  
+
+  /* Adjust padding for larger screens if needed */
+@media (min-width: 992px) {
+  .customContainer {
+    padding: 3rem; /* Increase or adjust as needed */
+  }
+}

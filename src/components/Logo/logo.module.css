@@ -7,13 +7,35 @@
     overflow-clip-margin: none !important;
     overflow: visible !important;
   }   */
-
-  #logo-object {
-    /* width: 100px; Adjust size as needed */
-    height: auto;
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    overflow: visible !important;
-  }
   
+/* .logo { */
+  /* width: 100%; */
+  /* max-width: 150px; Control maximum width here */
+  /* height: auto; Maintains aspect ratio */
+  /* display: block; */
+  /* visibility: visible; */
+  /* opacity: 1; */
+  /* overflow: visible; */
+  /* position: relative; Ensures the object aligns properly */
+  /* max-height: 50px !important; Adjust as needed */
+  /* background: transparent; Ensures no background color is added */
+/* } */
+
+/* logo.module.css */
+.logo {
+  display: block;
+  max-width: 150px; /* Sets a max width */
+  height: auto; /* Maintains aspect ratio */
+}
+
+#logo-object {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Control parent div sizing to avoid overflow */
+.navbar_logo {
+  max-width: 150px; /* or an appropriate size */
+  margin-right: auto;
+}

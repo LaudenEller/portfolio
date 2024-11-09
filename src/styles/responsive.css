@@ -11,6 +11,13 @@
   }
 }
 
+/* logo width */
+@media (max-width: 768px) {
+  .navbar_logo {
+    max-width: 100px; /* Adjust for mobile */
+  }
+}
+
 /* Utility classes */
 .text-center {
   text-align: center;
