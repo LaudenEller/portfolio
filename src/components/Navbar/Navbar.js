@@ -12,27 +12,26 @@ const Navbar = () => {
       className={`${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
       fixed="top"
     >
-      <Container
-      className={`${styles.navContainer}`}>
+      <Container className={styles.navContainer}>
         {/* Logo */}
-        <BootstrapNavbar.Brand href="#">
-          <div className={styles.logo}>
+        <BootstrapNavbar.Brand href="#" className={`${styles.navbar_brand}`}>
+          <div className={styles.navbar_logo}>
             <Logo />
           </div>
         </BootstrapNavbar.Brand>
 
         {/* Navbar Links */}
-          <Nav className="me-auto">
-            <Nav.Link href="#about" className="nav-link">About</Nav.Link>
-            <Nav.Link href="#projects" className="nav-link">Projects</Nav.Link>
-            <Nav.Link href="#work" className="nav-link">Work</Nav.Link>
-            <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
-          </Nav>
+        <Nav className={styles.navLinks}>
+          <Nav.Link href="#about" className={styles.navLink}>About</Nav.Link>
+          <Nav.Link href="#projects" className={styles.navLink}>Projects</Nav.Link>
+          <Nav.Link href="#work" className={styles.navLink}>Work</Nav.Link>
+          <Nav.Link href="#contact" className={styles.navLink}>Contact</Nav.Link>
+        </Nav>
 
         {/* Theme Toggle Button */}
-          <div className={styles.toggleContainer} onClick={toggleTheme}>
-        <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
-      </div>
+        <div className={`${styles.toggleContainer} ms-auto`} onClick={toggleTheme}>
+          <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
+        </div>
       </Container>
     </BootstrapNavbar>
   );
