@@ -6,6 +6,10 @@
     /* padding: 0 1rem; */
   }
   
+  /* .navbar_spacer {
+    height: 60px;
+  } */
+
   /* Responsive Layout */
   @media (max-width: 768px) {
     .layoutContainer {

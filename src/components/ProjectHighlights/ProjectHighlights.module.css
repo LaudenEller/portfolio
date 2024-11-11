@@ -1,4 +1,47 @@
-.projectContainer {
+.projectHighlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.leftSide {
+  width: 50%;
+  position: sticky;
+  top: 20px; /* Adjust based on desired anchoring */
+}
+
+.introText {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.scrollBox {
+  width: 50%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-left: 1rem;
+}
+
+.scrollContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonsContainer {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* .projectContainer {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 2rem 1rem;
@@ -40,7 +83,6 @@
   color: var(--text-color);
 }
 
-/* Mobile-specific adjustments */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -53,4 +95,4 @@
   .cardBody {
     padding: 1rem;
   }
-}
+} */

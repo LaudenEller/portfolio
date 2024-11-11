@@ -8,6 +8,7 @@ const MainLayout = ({ children }) => {
   return (
     <div className={styles.layoutContainer}>
       <Navbar />
+      <div class={styles.navbar_spacer}></div>
       <main>{children}</main>
       <Footer />
     </div>
