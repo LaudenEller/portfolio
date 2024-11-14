@@ -2,14 +2,25 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  /* how does padding effect scrollTriggers? */
   padding: 2rem;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  /* What does position: relative do? */
+  position: relative;
+  /* What does this do? */
+  translate: none;
+  /* rotate: none; */
+  /* scale: none; */
+  /* inset: 0px auto auto 0px; */
+  /* What does this do? */
+  transform: none !important;
 }
+
 
 .leftSide {
   width: 50%;
   position: sticky;
-  top: 20px; /* Adjust based on desired anchoring */
+  top: 50px;
 }
 
 .introText {
@@ -25,7 +36,9 @@
 
 .scrollBox {
   width: 50%;
-  max-height: 80vh;
+  /* height: 40px !important; */
+  max-height: 100vh !important;
+  /* how does this effect scrollTrigger? */
   overflow-y: auto;
   padding-left: 1rem;
 }
