@@ -8,12 +8,12 @@
   /* What does position: relative do? */
   position: relative;
   /* What does this do? */
-  translate: none;
+  /* translate: none; */
   /* rotate: none; */
   /* scale: none; */
   /* inset: 0px auto auto 0px; */
   /* What does this do? */
-  transform: none !important;
+  /* transform: none !important; */
 }
 
 
@@ -37,7 +37,7 @@
 .scrollBox {
   width: 50%;
   /* height: 40px !important; */
-  max-height: 100vh !important;
+  max-height: 90vh !important;
   /* how does this effect scrollTrigger? */
   overflow-y: auto;
   padding-left: 1rem;
