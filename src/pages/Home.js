@@ -17,7 +17,7 @@ const Home = () => {
         <About />
       </section> */}
       
-      <section id="projects">
+      <section id="projectContainer">
         <ProjectHighlight />
       </section>
       

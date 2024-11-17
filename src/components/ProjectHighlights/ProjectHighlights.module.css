@@ -2,25 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  /* how does padding effect scrollTriggers? */
-  padding: 2rem;
-  /* min-height: 100vh; */
-  /* What does position: relative do? */
   position: relative;
-  /* What does this do? */
-  /* translate: none; */
-  /* rotate: none; */
-  /* scale: none; */
-  /* inset: 0px auto auto 0px; */
-  /* What does this do? */
-  /* transform: none !important; */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
 }
 
+#projectContainer {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+}
+
+.darkTheme #projectContainer {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
+.darkTheme .projectHighlight {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
 
 .leftSide {
   width: 50%;
   position: sticky;
-  top: 50px;
 }
 
 .introText {
@@ -36,9 +42,7 @@
 
 .scrollBox {
   width: 50%;
-  /* height: 40px !important; */
   max-height: 90vh !important;
-  /* how does this effect scrollTrigger? */
   overflow-y: auto;
   padding-left: 1rem;
 }
@@ -54,48 +58,6 @@
   gap: 0.5rem;
 }
 
-/* .projectContainer {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  padding: 2rem 1rem;
-}
-
-.darkTheme .projectContainer {
-  background-color: var(--background-dark);
-  color: var(--text-light);
-}
-
-.projectHighlightContainer {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  padding: 2rem 1rem;
-}
-
-.darkTheme .projectHighlightContainer {
-  background-color: var(--background-dark);
-  color: var(--text-light);
-}
-
-
-.projectCard {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.projectCard:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.projectImage {
-  object-fit: cover;
-  height: 200px;
-}
-
-.cardBody {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -108,4 +70,4 @@
   .cardBody {
     padding: 1rem;
   }
-} */
+}
