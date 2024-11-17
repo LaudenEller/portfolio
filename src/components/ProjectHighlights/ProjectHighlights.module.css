@@ -1,46 +1,63 @@
-.projectContainer {
+.projectHighlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 2rem 1rem;
 }
 
-.darkTheme .projectContainer {
-  background-color: var(--background-dark);
-  color: var(--text-light);
-}
-
-.projectHighlightContainer {
+#projectContainer {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 2rem 1rem;
 }
 
-.darkTheme .projectHighlightContainer {
+.darkTheme #projectContainer {
   background-color: var(--background-dark);
   color: var(--text-light);
 }
 
-
-.projectCard {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.darkTheme .projectHighlight {
+  background-color: var(--background-dark);
+  color: var(--text-light);
 }
 
-.projectCard:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.leftSide {
+  width: 50%;
+  position: sticky;
 }
 
-.projectImage {
-  object-fit: cover;
-  height: 200px;
+.introText {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.cardBody {
-  background-color: var(--background-color);
-  color: var(--text-color);
+.imageContainer {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1rem;
 }
 
-/* Mobile-specific adjustments */
+.scrollBox {
+  width: 50%;
+  max-height: 90vh !important;
+  overflow-y: auto;
+  padding-left: 1rem;
+}
+
+.scrollContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonsContainer {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;

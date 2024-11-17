@@ -9,7 +9,7 @@ import Contact from '../components/Contact/Contact';
 const Home = () => {
   return (
     <div>
-      <section id="home">
+      <section id="hero">
         <Hero />
       </section>
       
@@ -17,7 +17,7 @@ const Home = () => {
         <About />
       </section> */}
       
-      <section id="projects">
+      <section id="projectContainer">
         <ProjectHighlight />
       </section>
       
