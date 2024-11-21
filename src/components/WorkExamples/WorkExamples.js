@@ -80,6 +80,80 @@ const WorkExamples = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const gallery = document.querySelector(`.${styles.gallery}`);
+  
+  //   // Function to clone multiple items
+  //   const setupClones = () => {
+  //     const items = Array.from(gallery.children);
+  //     const cloneCount = 2; // Number of items to clone from the start and end
+  //     const clones = [];
+
+  //     // Clone the first `cloneCount` items and last `cloneCount` items
+  //     for (let i = 0; i < cloneCount; i++) {
+  //       const firstClone = items[i].cloneNode(true);
+  //       const lastClone = items[items.length - 1 - i].cloneNode(true);
+  //       clones.push({ firstClone, lastClone });
+  //     }
+
+  //     // Append clones to the gallery
+  //     clones.forEach(({ firstClone, lastClone }) => {
+  //       gallery.appendChild(firstClone);
+  //       gallery.insertBefore(lastClone, gallery.firstChild);
+  //     });
+
+  //     // Set initial scroll position to start after the cloned last items
+  //     gallery.scrollLeft = cloneCount * items[0].offsetWidth;
+  //   };
+
+  //   // Dynamic mouse-driven scrolling
+  //   const handleMouseMove = (event) => {
+  //       const { left, width } = gallery.getBoundingClientRect();
+  //       const mouseX = event.clientX - left;
+  //       const threshold = 100;
+  //       const speedFactor = 0.2;
+  //       let scrollSpeed = 0;
+  
+  //       if (mouseX < threshold) {
+  //         scrollSpeed = -speedFactor * (threshold - mouseX);
+  //       } else if (mouseX > width - threshold) {
+  //         scrollSpeed = speedFactor * (mouseX - (width - threshold));
+  //       }
+  
+  //       gallery.scrollLeft += scrollSpeed;
+  //     };
+  
+  //   // Function to handle seamless looping
+  //   const updateGallery = () => {
+  //     const items = Array.from(gallery.children);
+  //     const cloneCount = 2; // Same number of clones as in `setupClones`
+  //     const firstRealItem = items[cloneCount];
+  //     const lastRealItem = items[items.length - 1 - cloneCount];
+  //     const scrollLeft = gallery.scrollLeft;
+  //     const galleryWidth = gallery.scrollWidth - gallery.offsetWidth;
+  
+  //     if (scrollLeft <= 0) {
+  //       // Jump to the equivalent position for the original last items
+  //       gallery.scrollLeft = galleryWidth - lastRealItem.offsetWidth * cloneCount;
+  //     } else if (scrollLeft >= galleryWidth - cloneCount * firstRealItem.offsetWidth) {
+  //       // Jump to the equivalent position for the original first items
+  //       gallery.scrollLeft = cloneCount * firstRealItem.offsetWidth;
+  //     }
+  //   };
+  
+  //   // Setup clones and event listeners
+  //   setupClones();
+  //   gallery.addEventListener('mousemove', handleMouseMove);
+  //   gallery.addEventListener('scroll', updateGallery);
+  
+  //   return () => {
+  //     // Cleanup event listeners
+  //     gallery.removeEventListener('scroll', updateGallery);
+  //     gallery.removeEventListener('mousemove', handleMouseMove);
+  //   };
+  // }, []);
+
+
   const handleGalleryItemClick = (index) => {
     if (activeIndex === index) {
       closeAccordion(index);
