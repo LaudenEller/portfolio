@@ -16,6 +16,7 @@ const WorkExamples = () => {
   useEffect(() => {
     const gallery = document.querySelector(`.${styles.gallery}`);
   
+    // This code currently makes clones that don't open accordion sections when clicked
     // Function to clone first and last items
     const setupClones = () => {
       const items = Array.from(gallery.children);
@@ -80,6 +81,9 @@ const WorkExamples = () => {
     };
   }, []);
 
+  // This useEffect is for cloning more than one gallery element at a time, 
+    // it currently breaks the module but might work if further adapted
+    
   // useEffect(() => {
   //   const gallery = document.querySelector(`.${styles.gallery}`);
   
