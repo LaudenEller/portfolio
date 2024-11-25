@@ -11,9 +11,12 @@
 .navContainer {
   background-color: var(--background-color);
   width: 100%;
-  max-width: 1200px !important; /* Optional: Adjust max-width as desired */
-  padding-left: 0 !important; /* Remove default Bootstrap padding */
-  padding-right: calc(var(--bs-gutter-x)* 1) !important; /* Remove default Bootstrap padding */
+  /* Optional: Adjust max-width as desired */
+  max-width: 1200px !important; 
+  /* Remove default Bootstrap padding */
+  padding-left: 0 !important; 
+  /* Remove default Bootstrap padding */
+  padding-right: calc(var(--bs-gutter-x)* 1) !important; 
 }
 
 /* Flexbox for nav links */
@@ -78,7 +81,8 @@
 /* This controls the logo size and scales it to fit */
 .logo {
   width: 100%; /* Ensures full width within navbar_logo container */
-  height: auto; /* Keeps aspect ratio */
+  /* Keeps aspect ratio */
+  /* height: auto;  */
   max-width: 150px; /* Controls max width of logo */
   display: block;
   visibility: visible;

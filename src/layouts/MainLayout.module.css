@@ -2,16 +2,24 @@
 .layoutContainer {
     width: 100%;
     max-width: 1200px;
-    /* margin: 0 auto; */
+    margin: 0 auto;
+    position:  relative;
+    display: flex; /* Or block, depending on your layout */
+    flex-direction: column; /*Stack children vertically*/
+    padding: 0;
     /* padding: 0 1rem; */
   }
   
+  main {
+    position: relative; /* Ensure main content is in the flow */
+  }
+  
   /* .navbar_spacer {
-    height: 60px;
+    height: 30px;
   } */
 
   /* Responsive Layout */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .layoutContainer {
       padding: 0 0.5rem;
     }
@@ -21,4 +29,4 @@
     .layoutContainer {
       padding: 0 0.25rem;
     }
-  }  
+  }   */

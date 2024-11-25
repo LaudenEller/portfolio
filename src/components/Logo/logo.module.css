@@ -25,7 +25,8 @@
 .logo {
   display: block;
   max-width: 150px; /* Sets a max width */
-  height: auto; /* Maintains aspect ratio */
+  /* Maintains aspect ratio */
+  height: auto; 
 }
 
 #logo-object {

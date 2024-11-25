@@ -17,6 +17,7 @@ const WorkExamples = () => {
     const gallery = document.querySelector(`.${styles.gallery}`);
   
     // This code currently makes clones that don't open accordion sections when clicked
+    
     // Function to clone first and last items
     const setupClones = () => {
       const items = Array.from(gallery.children);

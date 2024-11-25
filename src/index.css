@@ -26,3 +26,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  border: 2px solid blue; /* Navbar */
+}
+
+.navbar_spacer {
+  border: 2px solid red; /* Spacer */
+}
+
+.layoutContainer {
+  border: 2px solid green; /* Layout */
+}
+
+* {
+  box-sizing: border-box; /* Standardize dimensions */
+}
+
+.navbar, .navbar_spacer, .layoutContainer {
+  margin: 0;
+  padding: 0;
+}
+
