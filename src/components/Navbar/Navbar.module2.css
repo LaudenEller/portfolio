@@ -1,0 +1,95 @@
+  /* Improved css set up */
+.navbar {
+  /* Bootstrap handles positioning with fixed="top" */
+  background-color: var(--background-color);
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  --bs-navbar-padding-y: 0rem !important;
+}
+
+/* Container adjustments for responsive width */
+.navContainer {
+  background-color: var(--background-color);
+  width: 100%;
+  /* Optional: Adjust max-width as desired */
+  max-width: 1200px !important; 
+  /* Remove default Bootstrap padding */
+  padding-left: 0 !important; 
+  /* Remove default Bootstrap padding */
+  padding-right: calc(var(--bs-gutter-x)* 1) !important; 
+}
+
+/* Flexbox for nav links */
+.navLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Link Styles */
+.nav-link {
+  color: var(--text-color) !important; /* Set color, using !important for specificity over Bootstrap */
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Toggle Button Container */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Toggle Light/Dark Themes */
+.themeToggle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Light theme glow */
+.light {
+  background-color: black;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme glow */
+.dark {
+  background-color: white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Navbar.module.css */
+.navbar_brand {
+  display: flex;
+  align-items: center;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+
+.navbar_logo {
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+  width: 200px;
+}
+
+/* This controls the logo size and scales it to fit */
+.logo {
+  width: 100%; /* Ensures full width within navbar_logo container */
+  /* Keeps aspect ratio */
+  /* height: auto;  */
+  max-width: 150px; /* Controls max width of logo */
+  display: block;
+  visibility: visible;
+}
+
+@media (min-width: 992px) {
+  .navContainer {
+    max-width: 1200px !important;
+  }
+}

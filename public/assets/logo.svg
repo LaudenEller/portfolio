@@ -7,7 +7,8 @@
    preserveAspectRatio="xMidYMid meet"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
-   style="background: none;"> <!-- Ensures no background is applied -->
+   style="background: none;"
+   >
   <defs id="defs1">
     <mask id="mask1" maskUnits="userSpaceOnUse">
       <path

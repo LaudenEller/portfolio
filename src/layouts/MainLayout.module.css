@@ -2,16 +2,27 @@
 .layoutContainer {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     position:  relative;
-    display: flex; /* Or block, depending on your layout */
-    flex-direction: column; /*Stack children vertically*/
-    padding: 0;
+    /* display: flex; Or block, depending on your layout */
+    /* flex-direction: column; Stack children vertically */
+    /* padding: 0; */
     /* padding: 0 1rem; */
+    /* display: flex; */
+    display: block;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures it takes up the full viewport height */
   }
   
   main {
-    position: relative; /* Ensure main content is in the flow */
+    flex-grow: 1; /* Allows the main content to grow and fill available space */
+    /* padding: 1rem; Optional padding for content */
+    background-color: var(--main-background);
+    z-index: 1; /* Ensures it's below the navbar */
+    position: relative;
+    /* display: flex; */
+    /* padding-top: 55px; */
+    /* margin-top: 55px; */
   }
   
   /* .navbar_spacer {

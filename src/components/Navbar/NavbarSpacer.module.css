@@ -3,8 +3,9 @@
     display: block;
     background: red;
     height: 100px;
-    position: relative !important;
+    position: relative;
     margin: 0;
     padding: 0;
-    z-index: 0; /* Ensure it's beneath content */
+    z-index: 0;/* Ensure it's beneath content*/
   }
+  

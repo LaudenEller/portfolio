@@ -28,19 +28,20 @@ code {
 }
 
 .navbar {
-  border: 2px solid blue; /* Navbar */
+  border: 2px solid blue;
+  background-color: blueviolet !important;
 }
 
 .navbar_spacer {
-  border: 2px solid red; /* Spacer */
+  border: 2px solid red;
 }
 
 .layoutContainer {
-  border: 2px solid green; /* Layout */
+  border: 2px solid green;
 }
 
 * {
-  box-sizing: border-box; /* Standardize dimensions */
+  box-sizing: border-box; 
 }
 
 .navbar, .navbar_spacer, .layoutContainer {
