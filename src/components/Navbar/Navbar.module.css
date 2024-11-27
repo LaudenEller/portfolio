@@ -1,5 +1,5 @@
 .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -7,7 +7,7 @@
     background-color: var(--background-color);
     padding: 0.5rem 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 50px; /* Define the fixed height of the navbar */
+    height: 47px; /* Define the fixed height of the navbar */
     }
   
   
@@ -24,15 +24,24 @@
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+  }
+
+  .navSpacer1 {
+    width: 10px;
+    height: 1px;
   }
   
+  .navSpacer2 {
+    width: 125px;
+    height: 1px;
+  }
+
   .navbar_brand {
+    padding: 0;
     display: flex;
     align-items: center;
     text-decoration: none;
-    width: 100%;
+    width: auto;
     height: 100%;
   }
   
@@ -45,7 +54,7 @@
   
   .navLinks {
     display: flex;
-    gap: 1rem;
+    gap: 5rem;
   }
   
   .navLink {
@@ -69,6 +78,7 @@
     height: 16px;
     border-radius: 50%;
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-right: 0.5rem;
   }
   
   .themeToggle.light {
@@ -92,3 +102,12 @@
     }
   }
   
+  @media (min-width: 576px) {
+    .navContainer {
+      max-width: 100% !important;
+    }
+  
+    .navbar:hover .navLinks {
+      display: flex;
+    }
+  }

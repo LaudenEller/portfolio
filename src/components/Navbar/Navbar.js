@@ -1,90 +1,48 @@
-// import React, { useContext, forwardRef } from 'react';
-// import ThemeContext from '../../contexts/ThemeContext';
-// import { Logo } from '../Logo/logo';
-// import styles from './Navbar.module.css';
-// import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
-
-// const Navbar = forwardRef((props, ref) => {
-//   const { toggleTheme, theme } = useContext(ThemeContext);
-
-//   return (
-//     <BootstrapNavbar
-//       className={` ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
-//       // className={`${styles.pt-5} ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
-//       // fixed="top"
-//       sticky='top'
-//       ref={ref}
-//     >
-//       <Container className={styles.navContainer}>
-//         {/* Logo */}
-//         <BootstrapNavbar.Brand href="#" className={`${styles.navbar_brand}`}>
-//           <div className={styles.navbar_logo}>
-//             <Logo />
-//           </div>
-//         </BootstrapNavbar.Brand>
-
-//         {/* Navbar Links */}
-//         <Nav className={styles.navLinks}>
-//           <Nav.Link href="#about" className={styles.navLink}>About</Nav.Link>
-//           <Nav.Link href="#projects" className={styles.navLink}>Projects</Nav.Link>
-//           <Nav.Link href="#work" className={styles.navLink}>Work</Nav.Link>
-//           <Nav.Link href="#contact" className={styles.navLink}>Contact</Nav.Link>
-//         </Nav>
-
-//         {/* Theme Toggle Button */}
-//         <div className={`${styles.toggleContainer} ms-auto`} onClick={toggleTheme}>
-//           <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
-//         </div>
-//       </Container>
-//     </BootstrapNavbar>
-//   );
-// });
-
-// export default Navbar;
-
 import React, { useContext, forwardRef } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import { Logo } from '../Logo/logo';
 import styles from './Navbar.module.css';
+import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 const Navbar = forwardRef((props, ref) => {
   const { toggleTheme, theme } = useContext(ThemeContext);
-  console.log('navbar ref', ref.current)
+
   return (
-    <nav
-      className={`${styles.navbar} ${theme === 'dark' ? styles.dark : styles.light}`}
+    <BootstrapNavbar
+      className={` ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
+      // className={`${styles.pt-5} ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
+      fixed="top"
+      // sticky='top'
       ref={ref}
     >
-      <div className={styles.navContainer}>
-        {/* Logo Section */}
-        <a href="#" className={styles.navbar_brand}>
+      <Container className={styles.navContainer}>
+        {/* Logo */}
+        <BootstrapNavbar.Brand href="#" className={`${styles.navbar_brand}`}>
           <div className={styles.navbar_logo}>
             <Logo />
           </div>
-        </a>
+        </BootstrapNavbar.Brand>
+
+        {/* {Navbar Spacer 1} */}
+        <div className={styles.navSpacer1}></div>
 
         {/* Navbar Links */}
-        <div className={styles.navLinks}>
-          <a href="#about" className={styles.navLink}>
-            About
-          </a>
-          <a href="#projects" className={styles.navLink}>
-            Projects
-          </a>
-          <a href="#work" className={styles.navLink}>
-            Work
-          </a>
-          <a href="#contact" className={styles.navLink}>
-            Contact
-          </a>
-        </div>
+        <Nav className={styles.navLinks}>
+          <Nav.Link href="#about" className={styles.navLink}>About</Nav.Link>
+          <Nav.Link href="#projects" className={styles.navLink}>Projects</Nav.Link>
+          <Nav.Link href="#work" className={styles.navLink}>Work</Nav.Link>
+          <Nav.Link href="#contact" className={styles.navLink}>Contact</Nav.Link>
+        </Nav>
+
+        {/* {Navbar Spacer 2} */}
+        <div className={styles.navSpacer2}></div>
 
         {/* Theme Toggle Button */}
-        <div className={styles.toggleContainer} onClick={toggleTheme}>
+        <div className={`${styles.toggleContainer}`} onClick={toggleTheme}>
           <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
         </div>
-      </div>
-    </nav>
+      </Container>
+    </BootstrapNavbar>
   );
 });
 

@@ -1,4 +1,4 @@
-/* #logo-object {
+#logo-object {
     width: 10px;
     height: auto;
     display: block;
@@ -6,34 +6,34 @@
     opacity: 1;
     overflow-clip-margin: none !important;
     overflow: visible !important;
-  }   */
+  }  
   
-/* .logo { */
-  /* width: 100%; */
-  /* max-width: 150px; Control maximum width here */
-  /* height: auto; Maintains aspect ratio */
-  /* display: block; */
-  /* visibility: visible; */
-  /* opacity: 1; */
-  /* overflow: visible; */
-  /* position: relative; Ensures the object aligns properly */
-  /* max-height: 50px !important; Adjust as needed */
-  /* background: transparent; Ensures no background color is added */
-/* } */
-
-/* logo.module.css */
 .logo {
+  width: 100%;
+  max-width: 150px; /*Control maximum width here*/
+  height: auto; /*Maintains aspect ratio*/
   display: block;
-  max-width: 150px; /* Sets a max width */
-  /* Maintains aspect ratio */
-  height: auto; 
+  visibility: visible;
+  opacity: 1;
+  overflow: visible;
+  position: relative; /*Ensures the object aligns properly*/
+  max-height: 50px !important; /*Adjust as needed*/
+  background: transparent; /*Ensures no background color is added*/
 }
 
-#logo-object {
+/* logo.module.css */
+/* .logo { */
+  /* display: block; */
+  /* max-width: 150px; Sets a max width */
+  /* Maintains aspect ratio */
+  /* height: auto;  */
+/* } */
+
+/* #logo-object {
   width: 100%;
   height: auto;
   display: block;
-}
+} */
 
 /* Control parent div sizing to avoid overflow */
 .navbar_logo {
