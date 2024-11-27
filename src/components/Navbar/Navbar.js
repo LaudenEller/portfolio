@@ -1,16 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, forwardRef } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import { Logo } from '../Logo/logo';
 import styles from './Navbar.module.css';
 import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
-const Navbar = () => {
+const Navbar = forwardRef((props, ref) => {
   const { toggleTheme, theme } = useContext(ThemeContext);
 
   return (
     <BootstrapNavbar
-      className={`${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
+      className={` ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
+      // className={`${styles.pt-5} ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
       fixed="top"
+      // sticky='top'
+      ref={ref}
     >
       <Container className={styles.navContainer}>
         {/* Logo */}
@@ -20,6 +23,9 @@ const Navbar = () => {
           </div>
         </BootstrapNavbar.Brand>
 
+        {/* {Navbar Spacer 1} */}
+        <div className={styles.navSpacer1}></div>
+
         {/* Navbar Links */}
         <Nav className={styles.navLinks}>
           <Nav.Link href="#about" className={styles.navLink}>About</Nav.Link>
@@ -28,13 +34,16 @@ const Navbar = () => {
           <Nav.Link href="#contact" className={styles.navLink}>Contact</Nav.Link>
         </Nav>
 
+        {/* {Navbar Spacer 2} */}
+        <div className={styles.navSpacer2}></div>
+
         {/* Theme Toggle Button */}
-        <div className={`${styles.toggleContainer} ms-auto`} onClick={toggleTheme}>
+        <div className={`${styles.toggleContainer}`} onClick={toggleTheme}>
           <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
         </div>
       </Container>
     </BootstrapNavbar>
   );
-};
+});
 
 export default Navbar;

@@ -2,16 +2,21 @@
 .layoutContainer {
     width: 100%;
     max-width: 1200px;
-    /* margin: 0 auto; */
-    /* padding: 0 1rem; */
+    position:  relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures it takes up the full viewport height */
   }
   
-  /* .navbar_spacer {
-    height: 60px;
-  } */
+  main {
+    flex-grow: 1; /* Allows the main content to grow and fill available space */
+    background-color: var(--main-background);
+    z-index: 1; /* Ensures it's below the navbar */
+    position: relative;
+  }
 
   /* Responsive Layout */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .layoutContainer {
       padding: 0 0.5rem;
     }
@@ -21,4 +26,4 @@
     .layoutContainer {
       padding: 0 0.25rem;
     }
-  }  
+  }   */

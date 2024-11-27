@@ -1,0 +1,17 @@
+/* DebugNavbar.module.css */
+.debugContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem;
+    font-size: 14px;
+    z-index: 1000;
+    pointer-events: none; /* Prevent interaction with the debug container */
+  }
+  
+  .debugInfo p {
+    margin: 0.5rem 0;
+  }
+  
