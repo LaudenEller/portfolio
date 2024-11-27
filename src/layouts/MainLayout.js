@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
   return (
     <div className={styles.layoutContainer}>
       <Navbar ref={navbarRef} /> {/* Pass ref to Navbar */}
-      <NavbarSpacer navbarRef={navbarRef} /> {/*Pass the same ref to NavbarSpacer*/}
+      {/* <NavbarSpacer navbarRef={navbarRef} /> Pass the same ref to NavbarSpacer */}
       <main>{children}</main>
       <Footer />
       {/* <DebugNavbarSpacer /> */}
