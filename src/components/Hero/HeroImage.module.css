@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 500;
     /* padding: 20px; Adjust based on screen size */
   }
   
@@ -14,7 +15,10 @@
     max-width: 100%;
     height: auto;
     transition: opacity 0.5s ease-in-out;
-    /* opacity: 1; */
+    opacity: 1;
+    visibility: visible;
+    position: relative; /* or fixed if required */
+    display: block;
   }
   
   /* Responsive adjustments */

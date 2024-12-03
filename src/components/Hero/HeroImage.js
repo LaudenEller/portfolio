@@ -46,7 +46,6 @@ const HeroImage = () => {
     // It checks to make sure the theme has been set by ThemeContext before loading the hero image
   useEffect(() => {
     if (!theme) return; // Ensure theme is defined before setting up observer
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -64,6 +63,37 @@ const HeroImage = () => {
     };
   }, [theme]);
 
+  // useEffect(() => {
+  //   if (!theme) return; // Ensure theme is defined before setting up observer
+    
+  //     let hasRefreshed = false; // Flag to track if ScrollTrigger.refresh() has been called
+            
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) {
+  //         setIsLoaded(true);
+
+  //       // Call ScrollTrigger.refresh() after hero stabilizes
+  //       if (!hasRefreshed) {
+  //       setTimeout(() => {
+  //       ScrollTrigger.refresh();
+  //       hasRefreshed = true; // Prevent additional refreshes
+  //       }, 100); // Small delay to ensure hero is fully rendered
+  //       }
+
+  //         observer.unobserve(entry.target);
+  //       }
+  //     },
+  //     { rootMargin: '0px 0px 50px 0px', threshold: 0.1 }
+  //   );
+
+  //   if (heroRef.current) observer.observe(heroRef.current);
+
+  //   return () => {
+  //     if (heroRef.current) observer.unobserve(heroRef.current);
+  //   };
+  // }, [theme]);
+
   const imageSrc = getImageSrc(theme, screenSize); // Use function to get correct image
 
   if (!theme) return null; // Prevent rendering until theme is set
@@ -80,6 +110,16 @@ const HeroImage = () => {
       )}
     </div>
   );
+  // return (
+  //   <div className={styles.heroContainer} ref={heroRef}>
+  //       <img
+  //         src="/assets/heroImages/light/hero-desktop.webp"
+  //         alt="Hero Banner"
+  //         className={styles.heroImage}
+  //         loading="eager"
+  //       />
+  //   </div>
+  // );
 };
 
 export default HeroImage;
