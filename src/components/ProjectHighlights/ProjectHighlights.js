@@ -15,7 +15,7 @@ const ProjectHighlight = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top top", // Start when section reaches top of viewport
+        start: "top-=45px top", // Start when section reaches top of viewport
         end: "+=200%", // Timeline duration tied to scrolling through the section
         scrub: true,
         pin: true, // Pin the entire section
@@ -43,8 +43,8 @@ const ProjectHighlight = () => {
     tl.to(scrollBoxRef.current, {
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top top", // Sync with timeline start
-        end: "+=200%", // Continue scrolling until content finishes
+        start: "top-=45px top", // Sync with timeline start
+        end: "+=180%", // Continue scrolling until content finishes
         scrub: true,
         onUpdate: (self) => {
           const scrollableHeight =
@@ -77,6 +77,7 @@ const ProjectHighlight = () => {
       {/* Right Side - Scroll Box with Text and Buttons */}
       <div ref={scrollBoxRef} className={styles.scrollBox}>
         <div className={styles.scrollContent}>
+          <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
           <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
           <p>Better Portfolios is an AI tool I created to help investors grade, organize and prioritize ESG concerns in a clear and comparable way</p>
           <p>By compiling contemporary ESG metrics AI is trained to explain which investments more likely promote the UN's SDGs and why</p>

@@ -6,8 +6,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* position: sticky; */
-
+  position: sticky;
+  min-height: 650px;
+  /* padding-bottom: 50px; */
   /* Hero-specific color accents */
   --hero-heading-color: var(--primary-color);
   --hero-accent-color: var(--secondary-color);
@@ -15,27 +16,30 @@
 
 .hero h1 {
   color: var(--hero-heading-color);
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .hero p {
   color: var(--text-color);
   font-size: 1.1rem;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
+  max-width: 500px;
+  z-index: 1000;
+  position: absolute;
+  top: 45%;
+  right: 25%;
 }
 
 .hero img {
-  max-width: 100%;
-  height: auto;
+  /* max-width: 100%; */
+  /* height: auto; */
   /* border-radius: 8px; */
 }
 
 /* Component-specific responsiveness */
 @media (min-width: 768px) {
   .hero {
-    flex-direction: row;
-    text-align: left;
+    /* flex-direction: row; */
+    /* text-align: left; */
     /* padding: 3rem 1.5rem; */
   }
 

@@ -46,7 +46,6 @@ const HeroImage = () => {
     // It checks to make sure the theme has been set by ThemeContext before loading the hero image
   useEffect(() => {
     if (!theme) return; // Ensure theme is defined before setting up observer
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
