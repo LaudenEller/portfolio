@@ -14,7 +14,7 @@ const Hero = () => {
       aria-label="Introduction Section"
     >
       <HeroImage theme={theme} />
-      <div className={`${styles.heroText}`}><h1>Hi, I'm Lauden, a software engineer committed to helping businesses be better... Have a look around!</h1></div>
+      <p className={`${styles.heroText}`}>Hi, I'm Lauden, a software engineer committed to helping businesses be better... Have a look around!</p>
     </section>
   );
 };

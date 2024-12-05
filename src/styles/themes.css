@@ -1,6 +1,9 @@
 /* Light Theme */
 :root {
-    --background-color: #f6f6f6;
+    /* --background-color: #F0F7FF; */
+    /* --background-color: #F6F6F6; */
+    /* --background-color: rgb(244,249,255); */
+    --background-color: rgb(251,253,255);
     --text-color: #0a0a0a;
     --primary-color: #4a90e2;
     --primary-color-dark: #357abd;

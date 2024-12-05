@@ -16,20 +16,17 @@
 
 .hero h1 {
   color: var(--hero-heading-color);
-  margin-bottom: 1rem;
-  z-index: 1000;
-}
-
-.heroText {
-  z-index: 1000;
+  /* margin-bottom: 1rem; */
 }
 
 .hero p {
   color: var(--text-color);
   font-size: 1.1rem;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-  z-index: 2000;
+  max-width: 500px;
+  z-index: 1000;
+  position: absolute;
+  top: 45%;
+  right: 25%;
 }
 
 .hero img {
