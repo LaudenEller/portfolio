@@ -27,7 +27,7 @@ const ProjectHighlight = () => {
     tl.fromTo(
       textRef.current,
       { opacity: 0, x: -200 },
-      { opacity: 1, x: 0, duration: 1 },
+      { opacity: 1, x: 0, duration: 0.5 },
       "0" // Start this animation immediately
     );
 
@@ -35,7 +35,7 @@ const ProjectHighlight = () => {
     tl.fromTo(
       imageRef.current,
       { opacity: 0, y: 100 },
-      { opacity: 1, y: 0, duration: 1 },
+      { opacity: 0.75, y: -100, duration: 1 },
       "0.5" // Starts slightly after text animation
     );
 
@@ -66,18 +66,20 @@ const ProjectHighlight = () => {
     <div ref={sectionRef} className={styles.projectHighlight}>
       {/* Left Side - Intro Text & Image */}
       <div className={styles.leftSide}>
-        <p ref={textRef} className={styles.introText}>
-          In 2019, the UN declared the Sustainable Development Goals which gave rise to ESG in global financial markets.
-        </p>
+        <div className={styles.introTextContainer}>
+      <p ref={textRef} className={styles.introText}>
+          Better Portfolios uses AI to calculate ESG-Alpha
+        </p></div>
         <div ref={imageRef} className={styles.imageContainer}>
-          <img src="assets/BetterPortfolioLogo.png" alt="Project Image" />
+          {/* <img src="assets/BetterPortfolioLogo.png" alt="Project Image" /> */}
+          <img src="assets/highlightImages/ESGSq.png" alt="Project Image" />
         </div>
       </div>
 
       {/* Right Side - Scroll Box with Text and Buttons */}
       <div ref={scrollBoxRef} className={styles.scrollBox}>
         <div className={styles.scrollContent}>
-          <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
+          <p>In 2019, the UN declared the Sustainable Development Goals which gave rise to ESG in global financial markets.</p>
           <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
           <p>Better Portfolios is an AI tool I created to help investors grade, organize and prioritize ESG concerns in a clear and comparable way</p>
           <p>By compiling contemporary ESG metrics AI is trained to explain which investments more likely promote the UN's SDGs and why</p>

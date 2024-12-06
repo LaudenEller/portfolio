@@ -4,6 +4,7 @@ import Hero from '../components/Hero/Hero';
 import ProjectHighlight from '../components/ProjectHighlights/ProjectHighlights';
 import WorkExamples from '../components/WorkExamples/WorkExamples';
 import Contact from '../components/Contact/Contact';
+import Highlights from '../components/ProjectHighlights/Highlights';
 
 // This is where the different sections are loaded onto the home page in the right order
 const Home = () => {
@@ -17,8 +18,12 @@ const Home = () => {
         <About />
       </section> */}
       
-      <section id="projectContainer">
+      {/* <section id="projectContainer">
         <ProjectHighlight />
+      </section> */}
+
+      <section id="projectContainer">
+        <Highlights />
       </section>
       
       <section id="work">
