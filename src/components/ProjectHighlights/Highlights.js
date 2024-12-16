@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 
+// testing updates on github
 gsap.registerPlugin(ScrollTrigger);
 
 const Highlights = () => {
