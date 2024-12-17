@@ -12,6 +12,7 @@ const Highlights = () => {
   const textRef = useRef(null);
   const imageRef = useRef(null);
   const scrollBoxRef = useRef(null);
+  const barRef = useRef(null);
 
   useGSAP(() => {
     // Intro Text Animation on Scroll
@@ -24,9 +25,21 @@ const Highlights = () => {
       },
     }).fromTo(
       textRef.current,
-      { opacity: 0, x: -200 },
-      { opacity: 1, x: 200, duration: 0.5, ease: "power1.inOut" }
+      { opacity: 0, x: -20 },
+      { opacity: 1, x: -20, duration: 0.5, ease: "power1.inOut" }
     );
+
+    // Bar Width Animation on Scroll
+    gsap.to(barRef.current, {
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top", // Animation begins when the section hits the top
+        end: "bottom top", // Ends when the section leaves the viewport
+        scrub: true,
+      },
+      width: "100%", // Expands to full width
+      ease: "none",
+    });
 
     // Section Pinning and Content Animation
     const pinTimeline = gsap.timeline({
@@ -36,15 +49,15 @@ const Highlights = () => {
         end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 0.5}`,
         pin: true,
         pinSpacing: true,
-        markers: true,
+        // markers: true,
       },
     });
 
     // Left-side image animation
     pinTimeline.fromTo(
       imageRef.current,
-      { opacity: 0, y: "100%" },
-      { opacity: 0.75, y: "-50", duration: 1, ease: "none" },
+      { opacity: 0, y: "100%", x: "50" },
+      { opacity: 100, y: "-25", x: "50", duration: 1, ease: "none" },
       "0"
     );
 
@@ -69,7 +82,7 @@ const Highlights = () => {
             scrollBoxRef.current.scrollTop =
               self.progress * scrollableHeight;
           },
-          markers: true,
+          // markers: true,
         },
         ease: "none",
       },
@@ -78,17 +91,33 @@ const Highlights = () => {
 
   return (
     <div ref={sectionRef} className={styles.projectHighlight}>
+       {/* Intro Text Container */}
+       <div className={styles.introContainer}>
+        <p ref={textRef} className={styles.introText}>
+          My Better Portfolios app uses AI to calculate ESG-Alpha
+        </p>
+        {/* Animated Bar */}
+        <div ref={barRef} className={styles.animatedBar}></div>
+      </div>
+<div className={styles.projectContent}>
+      {/* Image Container */}
+      <div className={styles.imageContainer}>
+        <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" />
+      </div>
+
       {/* Left Side - Intro Text & Image */}
-      <div className={styles.leftSide}>
+      {/* <div className={styles.leftSide}>
         <div className={styles.introTextContainer}>
           <p ref={textRef} className={styles.introText}>
             My Better Portfolios app uses AI to calculate ESG-Alpha
-          </p>
+          </p> */}
+          {/* Animated Bar */}
+          {/* <div ref={barRef} className={styles.animatedBar}></div>
         </div>
         <div ref={imageRef} className={styles.imageContainer}>
-          <img src="assets/highlightImages/ESGSq.png" alt="Project Image" />
+          <img src="assets/highlightImages/ESGsq_adobe.png" alt="Project Image" />
         </div>
-      </div>
+      </div> */}
 
       {/* Right Side - Scroll Box with Text and Buttons */}
       <div ref={scrollBoxRef} className={styles.scrollBox}>
@@ -105,6 +134,7 @@ const Highlights = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

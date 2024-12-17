@@ -1,7 +1,16 @@
+#projectContainer {
+  position: relative;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+}
+
 .projectHighlight {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
+  align-items: center;
   position: relative;
   /* top:none !important; */
   background-color: var(--background-color);
@@ -10,11 +19,18 @@
   
 }
 
-#projectContainer {
+.projectContent {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: flex-start;
+  /* align-items: center; */
   position: relative;
+  /* top:none !important; */
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 2rem 1rem;
+  
 }
 
 .darkTheme #projectContainer {
@@ -27,48 +43,86 @@
   color: var(--text-light);
 }
 
-.leftSide {
+/* Intro Text Container */
+.introContainer {
+  text-align: center;
+  margin-bottom: 1rem; /* Space between intro and image */
   width: 50%;
-  position: sticky;
-}
-
-/* .introTextContainer {
   position: relative;
-} */
+}
 
 .introText {
   position: relative;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  /* font-size: 1.5rem; */
+  /* margin-bottom: 2rem; */
+  margin-bottom: 0.5rem;
   margin-left: 2rem;
+  /* font-weight: bold; */
   z-index: 2;
 }
 
+.animatedBar {
+  width: 0; /* Starts with no width */
+  height: 4px; /* Bar height */
+  background-color: var(--primary-color, #007bff); /* Customizable color */
+  /* margin-top: 8px; */
+  margin: 0 auto;
+  transition: width 0.1s ease-out; /* Smooth transition for resizing */
+}
+
+/* Image Container */
 .imageContainer {
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 1rem;
+  /* width: 100%; */
+  width: 50%;
+  /* max-width: 400px; */
+  max-width: 800px;
+  margin: 1rem 0;
+  /* margin-top: 1rem; */
   z-index: 1;
 }
 
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Scroll Box */
 .scrollBox {
   width: 40%;
+  /* width: 100%; */
+  /* height: 300px; */
   max-height: 90vh !important;
-  overflow-y: auto;
-  padding-left: 1rem;
+  overflow-y: hidden;
+  /* overflow-y: scroll; */
+  /* padding-left: 1rem; */
+  margin-right: 2rem;
+  /* margin-top: 0.01rem; */
+  /* border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: #f9f9f9; */
 }
 
 .scrollContent {
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 20cqh;
+  gap: 1rem;
 }
 
 .buttonsContainer {
-  margin-top: 1rem;
   display: flex;
-  gap: 0.5rem;
+  justify-content: center;
+  width: auto;
+  gap: 20%;
+  margin-top: 1rem;
+}
+
+.buttonsContainer button {
+  padding: 0.5rem 1rem;
 }
 
 /* @media (max-width: 768px) {

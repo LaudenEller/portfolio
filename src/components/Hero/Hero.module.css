@@ -7,7 +7,7 @@
   align-items: center;
   text-align: center;
   position: sticky;
-  min-height: 650px;
+  min-height: 40rem;
   /* padding-bottom: 50px; */
   /* Hero-specific color accents */
   --hero-heading-color: var(--primary-color);
