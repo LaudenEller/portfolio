@@ -5,9 +5,11 @@
     visibility: visible;
     opacity: 1;
     overflow-clip-margin: none !important;
-    overflow: visible !important;
+    /* overflow: visible !important; */
+    background-size: 200px, 100xp;
   }  
   
+
 .logo {
   width: 100%;
   max-width: 150px; /*Control maximum width here*/
@@ -17,8 +19,15 @@
   opacity: 1;
   overflow: visible;
   position: relative; /*Ensures the object aligns properly*/
-  max-height: 50px !important; /*Adjust as needed*/
-  background: transparent; /*Ensures no background color is added*/
+  transition: max-width 0.3s ease, transform 0.3s ease; /* Smooth resizing */
+  /* max-height: 50px !important; Adjust as needed */
+  /* background: transparent; Ensures no background color is added */
+  /* background-size: 200px, 100xp; */
+}
+
+.logoScroll {
+  max-width: 125px; /* Smaller size for scrolled state */
+  transform: scale(0.7); /* Optional: Add slight scaling effect */
 }
 
 /* logo.module.css */
