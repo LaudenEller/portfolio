@@ -45,8 +45,8 @@ const Highlights = () => {
     const pinTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top-=5% top",
-        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 0.5}`,
+        start: "top-=2% top",
+        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 5}`,
         pin: true,
         pinSpacing: true,
         // markers: true,
@@ -57,7 +57,7 @@ const Highlights = () => {
     pinTimeline.fromTo(
       imageRef.current,
       { opacity: 0, y: "100%", x: "50" },
-      { opacity: 100, y: "-25", x: "50", duration: 1, ease: "none" },
+      { opacity: 100, y: "-50", x: "50", duration: 1, ease: "none" },
       "0"
     );
 
@@ -65,7 +65,7 @@ const Highlights = () => {
     pinTimeline.fromTo(
       scrollBoxRef.current,
       { opacity: 0, y: "100%" },
-      { opacity: 1, y: "8%", duration: 1, ease: "none" },
+      { opacity: 1, y: "-35", duration: 1, ease: "none" },
       "0"
     );
       

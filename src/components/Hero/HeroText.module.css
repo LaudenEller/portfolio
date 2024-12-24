@@ -1,0 +1,19 @@
+.heroText {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    max-width: 500px;
+    z-index: 1000;
+    position: absolute;
+    top: 65%;
+    right: 25%;
+  }
+
+  .heroText {
+    font-size: 1.5rem;
+    color: var(--text-color);
+  }
+  
+  .darkTheme .heroText {
+    color: var(--text-light);
+  }
+  
