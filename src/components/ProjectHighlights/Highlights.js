@@ -34,19 +34,20 @@ const Highlights = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top", // Animation begins when the section hits the top
-        end: "bottom top", // Ends when the section leaves the viewport
-        scrub: true,
+        // end: "bottom top", // Ends when the section leaves the viewport
+        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight}`,
+        scrub: 1,
       },
-      width: "100%", // Expands to full width
-      ease: "none",
+      width: "60%", // Expands to full width
+      ease: "power1.inOut",
     });
 
     // Section Pinning and Content Animation
     const pinTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top-=2% top",
-        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 5}`,
+        start: "top top",
+        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 1.25}`,
         pin: true,
         pinSpacing: true,
         // markers: true,
@@ -73,7 +74,7 @@ const Highlights = () => {
     pinTimeline.to(scrollBoxRef.current, {
         scrollTrigger: {
           trigger: scrollBoxRef.current,
-          start: "top-=50% top",
+          start: "top-=15% top",
           end: () => `+=${scrollBoxRef.current.scrollHeight}`, // Internal scrolling completes before pinning ends
           scrub: true,
           onUpdate: (self) => {

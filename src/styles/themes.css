@@ -3,17 +3,21 @@
     /* --background-color: #F0F7FF; */
     /* --background-color: #F6F6F6; */
     /* --background-color: rgb(244,249,255); */
-    --background-color: rgb(251,253,255);
-    --text-color: #0a0a0a;
-    --primary-color: #4a90e2;
-    --primary-color-dark: #357abd;
+    --background-color: #fbfdff;
+    /* --background-dark: rgb(246, 247, 249); */
+    --text-color: rgb(18, 18, 18);
+    --primary-color: #738a94;
+    --primary-color-dark: #374d61;
+    --primary-color-opposite: #0f0f0f;
   }
   
 /* Dark Theme */
 .dark-theme {
-    --background-color: #121212;
-    --text-color: #eeeeee;
-    --primary-color: #bb86fc;
-    --primary-color-dark: #3700b3;
+    --background-color: rgb(18, 18, 18);
+    /* --background-dark: rgb(25, 28, 31); */
+    --text-color: #fbfdff;
+    --primary-color: #5a6c77;
+    --primary-color-dark: #4f5f69;
+    --primary-color-opposite: #fbfdff;
   }
   

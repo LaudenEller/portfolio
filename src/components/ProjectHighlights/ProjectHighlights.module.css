@@ -64,8 +64,9 @@
 
 .animatedBar {
   width: 0; /* Starts with no width */
-  height: 4px; /* Bar height */
-  background-color: var(--primary-color, #007bff); /* Customizable color */
+  height: 2px; /* Bar height */
+  border-radius: 100%;
+  background-color: var(--primary-color-opposite); /* Customizable color */
   /* margin-top: 8px; */
   margin: 0 auto;
   transition: width 0.1s ease-out; /* Smooth transition for resizing */
