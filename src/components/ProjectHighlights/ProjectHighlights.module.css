@@ -85,10 +85,27 @@
 }
 
 .imageContainer img {
+  position: absolute; /* Stack the images */
+  top: 0;
+  left: 0;
   width: 100%;
   height: auto;
   object-fit: cover;
 }
+
+/* Second left side image */
+.hiddenImage {
+  position: absolute;
+  /* top: 100%; Start below the viewport */
+  top: 0; /* Align with the first image */
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  /* transition: opacity 0.3s ease; */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(50%);
+}
+
 
 /* Scroll Box */
 .scrollBox {

@@ -4,13 +4,13 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 
-// testing updates on github
 gsap.registerPlugin(ScrollTrigger);
 
 const Highlights = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const imageRef = useRef(null);
+  const secondImageRef = useRef(null);
   const scrollBoxRef = useRef(null);
   const barRef = useRef(null);
 
@@ -58,7 +58,7 @@ const Highlights = () => {
     pinTimeline.fromTo(
       imageRef.current,
       { opacity: 0, y: "100%", x: "50" },
-      { opacity: 100, y: "-50", x: "50", duration: 1, ease: "none" },
+      { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" },
       "0"
     );
 
@@ -69,6 +69,7 @@ const Highlights = () => {
       { opacity: 1, y: "-35", duration: 1, ease: "none" },
       "0"
     );
+
       
     // Internal Scrolling Animation for Right-Side Scroll Box
     pinTimeline.to(scrollBoxRef.current, {
@@ -88,6 +89,27 @@ const Highlights = () => {
         ease: "none",
       },
     );
+
+    // Left-side image animations based on scroll progress
+    ScrollTrigger.create({
+      trigger: scrollBoxRef.current,
+      start: "top top",
+      end: () => `+=${scrollBoxRef.current.scrollHeight}`,
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress; // Value between 0 (start) and 1 (end)
+        if (progress <= 0.5) {
+          // Show first image
+          gsap.to(imageRef.current, { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" });
+          gsap.to(secondImageRef.current, { opacity: 0, y: "100%", x: "50", duration: 0.2, ease: "none" });
+        } else {
+          // Show second image
+          gsap.to(imageRef.current, { opacity: 0, y: "-500", x: "50", duration: 1, ease: "none" });
+          gsap.to(secondImageRef.current, { opacity: 1, y: "-50", x: "50", duration: 0.2, ease: "none" });
+        }
+      },
+    });
+
   }, );
 
   return (
@@ -104,21 +126,8 @@ const Highlights = () => {
       {/* Image Container */}
       <div className={styles.imageContainer}>
         <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" />
+        <img ref={secondImageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.hiddenImage} />
       </div>
-
-      {/* Left Side - Intro Text & Image */}
-      {/* <div className={styles.leftSide}>
-        <div className={styles.introTextContainer}>
-          <p ref={textRef} className={styles.introText}>
-            My Better Portfolios app uses AI to calculate ESG-Alpha
-          </p> */}
-          {/* Animated Bar */}
-          {/* <div ref={barRef} className={styles.animatedBar}></div>
-        </div>
-        <div ref={imageRef} className={styles.imageContainer}>
-          <img src="assets/highlightImages/ESGsq_adobe.png" alt="Project Image" />
-        </div>
-      </div> */}
 
       {/* Right Side - Scroll Box with Text and Buttons */}
       <div ref={scrollBoxRef} className={styles.scrollBox}>
