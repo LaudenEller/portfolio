@@ -94,6 +94,7 @@ const Highlights = () => {
     ScrollTrigger.create({
       trigger: scrollBoxRef.current,
       start: "top top",
+      // start: "top-=15% top",
       end: () => `+=${scrollBoxRef.current.scrollHeight}`,
       scrub: true,
       onUpdate: (self) => {
@@ -101,11 +102,11 @@ const Highlights = () => {
         if (progress <= 0.5) {
           // Show first image
           gsap.to(imageRef.current, { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" });
-          gsap.to(secondImageRef.current, { opacity: 0, y: "100%", x: "50", duration: 0.2, ease: "none" });
+          gsap.to(secondImageRef.current, { opacity: 0, y: "100%", x: "50", duration: 0.5, ease: "none" });
         } else {
           // Show second image
           gsap.to(imageRef.current, { opacity: 0, y: "-500", x: "50", duration: 1, ease: "none" });
-          gsap.to(secondImageRef.current, { opacity: 1, y: "-50", x: "50", duration: 0.2, ease: "none" });
+          gsap.to(secondImageRef.current, { opacity: 1, y: "-50", x: "50", duration: 0.5, ease: "none" });
         }
       },
     });
@@ -125,7 +126,7 @@ const Highlights = () => {
 <div className={styles.projectContent}>
       {/* Image Container */}
       <div className={styles.imageContainer}>
-        <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" />
+        <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.firstProjectImage} />
         <img ref={secondImageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.hiddenImage} />
       </div>
 

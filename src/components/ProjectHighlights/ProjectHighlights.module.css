@@ -66,10 +66,12 @@
   width: 0; /* Starts with no width */
   height: 2px; /* Bar height */
   border-radius: 100%;
+  position: relative;
   background-color: var(--primary-color-opposite); /* Customizable color */
   /* margin-top: 8px; */
   margin: 0 auto;
   transition: width 0.1s ease-out; /* Smooth transition for resizing */
+  z-index: 2;
 }
 
 /* Image Container */
@@ -91,6 +93,7 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  z-index: 1;
 }
 
 /* Second left side image */
