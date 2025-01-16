@@ -1,7 +1,6 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
 // import About from '../components/About/About';
-import ProjectHighlight from '../components/ProjectHighlights/ProjectHighlights';
 import WorkExamples from '../components/WorkExamples/WorkExamples';
 import Contact from '../components/Contact/Contact';
 import Highlights from '../components/ProjectHighlights/Highlights';

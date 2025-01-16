@@ -1,4 +1,4 @@
-import React, { useContext, forwardRef } from 'react';
+import React, { useContext, useState, useEffect, forwardRef } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import { Logo } from '../Logo/logo';
 import styles from './Navbar.module.css';
@@ -6,10 +6,20 @@ import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 const Navbar = forwardRef((props, ref) => {
   const { toggleTheme, theme } = useContext(ThemeContext);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50); // Set threshold for resizing
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <BootstrapNavbar
-      className={` ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
+      className={` ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'} ${isScrolled ? styles.shrink : ""}`}
       // className={`${styles.pt-5} ${styles.navbar} ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`}
       fixed="top"
       // sticky='top'
@@ -19,7 +29,7 @@ const Navbar = forwardRef((props, ref) => {
         {/* Logo */}
         <BootstrapNavbar.Brand href="#" className={`${styles.navbar_brand}`}>
           <div className={styles.navbar_logo}>
-            <Logo />
+            <Logo isScrolled={isScrolled}/>
           </div>
         </BootstrapNavbar.Brand>
 

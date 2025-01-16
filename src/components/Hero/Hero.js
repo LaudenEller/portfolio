@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import HeroImage from './HeroImage';
+import HeroText from './HeroText';
 import styles from './Hero.module.css';
 
 const Hero = () => {
@@ -13,8 +14,11 @@ const Hero = () => {
       className={`${styles.hero} ${theme === 'dark' ? styles.heroDark : ''}`}
       aria-label="Introduction Section"
     >
+      <div className={`container-fluid px-0 ${styles.heroContainer}`}>
       <HeroImage theme={theme} />
-      <p className={`${styles.heroText}`}>Hi, I'm Lauden, a software engineer committed to helping business be better... Have a look around!</p>
+      <HeroText theme={theme} />
+      {/* <p className={`${styles.heroText}`}>Hi, I'm Lauden, a software engineer committed to helping business be better. Have a look around...</p> */}
+      </div>
     </section>
   );
 };

@@ -8,9 +8,13 @@
     padding: 0.5rem 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 47px; /* Define the fixed height of the navbar */
-    }
+    transition: height 0.3s ease;
+  }
   
-  
+  .navbar.shrink {
+    height: 5.5vh;
+  }
+
   .navbar.dark {
     background-color: var(--background-dark);
   }
@@ -24,6 +28,7 @@
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
+    background-color: var(--background-dark);
   }
 
   .navSpacer1 {
@@ -58,13 +63,13 @@
   }
   
   .navLink {
-    color: var(--text-color);
+    color: var(--text-color) !important;
     text-decoration: none;
     transition: color 0.3s;
   }
   
   .navLink:hover {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
   }
   
   .toggleContainer {
@@ -82,12 +87,12 @@
   }
   
   .themeToggle.light {
-    background-color: black;
+    background-color: rgb(18, 18, 18);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
   }
   
   .themeToggle.dark {
-    background-color: white;
+    background-color: #fbfdff;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
   }
   

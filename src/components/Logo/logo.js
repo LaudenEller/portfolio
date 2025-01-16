@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import styles from './logo.module.css';
 
-export function Logo() {
+export function Logo({ isScrolled }) {
   useEffect(() => {
     const animateLogo = () => {
       const logoObject = document.getElementById('logo-object');
@@ -39,7 +39,7 @@ export function Logo() {
       type="image/svg+xml"
       data="/assets/logo.svg"
       id="logo-object"
-      className={styles.logo}
+      className={`${styles.logo} ${isScrolled ? styles.logoScroll : ""}`}
       aria-label="Logo"
     ></object>
   );
