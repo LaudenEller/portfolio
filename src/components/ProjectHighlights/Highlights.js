@@ -4,6 +4,8 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
+import _gsap from 'gsap/gsap-core';
+import { getPerceivedPosition } from '../../utils/PositionUtils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +16,6 @@ const Highlights = () => {
   const secondImageRef = useRef(null);
   const scrollBoxRef = useRef(null);
   const barRef = useRef(null);
-
   const [PopUpProps, setPopUpProps] = useState({
     message: '',
     position: { top: 0, left: 0 },
@@ -24,13 +25,44 @@ const Highlights = () => {
 
   
   const handlePopUp = (e, content) => {
+
+    // This is to find the transform value of the scrollbox done by gsap
+    // const scrollBox = document.querySelector('.scrollBox');
+    // const gsapY = gsap.getProperty(scrollBox, 'y');
+    // console.log(`GSAP Transform Y: ${gsapY}`);
+
+    // This is to find how much scrollable containers there are on the page as a whole
+    // document.querySelectorAll('*').forEach((el) => {
+    //   if (el.scrollHeight > el.clientHeight) {
+    //     console.log('Scrollable container:', el);
+    //   }
+    // });
+    // console.log(`Page height: ${document.body.scrollHeight}`);
+  
+    // This is the many attempts at finding the perceived location of the button when clicked, window.scrollY 
+    // const buttonRect = e.target.getBoundingClientRect();
+    const parent = e.target.offsetParent; // Get the transformed parent
+    // const parentX = _gsap.getProperty(parent, "x") || 0; // GSAP x transform
+    const parentY = _gsap.getProperty(parent, "y") || 0; // GSAP y transform
+    // const containerScrollY = scrollBoxRef.current.scrollTop;
+    // const containerScrollY = sectionRef.current.scrollTop;
+    // const top = buttonRect.top + containerScrollY; // Adjust for scroll and parent transform
+    // const left = buttonRect.left + window.scrollX + parentX + buttonRect.width / 2; // Center the box horizontally
+    // console.log('scrollY', containerScrollY)
+    // console.log('parent', parent)
+
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
+    // const t = parentY + 135;
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
+console.log('client top', top)
+    // This utility function was supposed to get the correct perceived position of the button but it puts it very far from the actual spot becuase it accumulates all the scrollable area instead of offsetting it to find the corrrect scrollY
+    // const perceivedPosition = getPerceivedPosition(e.target);
 
     setPopUpProps({
       content,
       position: { top, left },
+      // position: perceivedPosition,
       theme: "light", // Replace with dynamic theme if needed
       visible: true,
     });
@@ -169,11 +201,11 @@ const Highlights = () => {
            <p>By compiling contemporary ESG metrics AI is trained to explain which investments more likely promote the UN's SDGs and why</p>
            <div className={styles.buttonsContainer}>
             <button className="btn btn-primary"
-             onClick={(e) => handlePopUp(e, 'Primary button clicked!')}
+             onClick={(e) => handlePopUp(e, 'ESG button clicked!')}
              >
               Button 1</button>
             <button className="btn btn-secondary"
-             onClick={(e) => handlePopUp(e, 'Secondary button clicked!')}
+             onClick={(e) => handlePopUp(e, 'A button click!')}
              >
               Button 2</button>
           </div>
