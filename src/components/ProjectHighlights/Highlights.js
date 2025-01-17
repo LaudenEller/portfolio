@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
+import PopUp from '../PopUps/PopUps';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,27 @@ const Highlights = () => {
   const secondImageRef = useRef(null);
   const scrollBoxRef = useRef(null);
   const barRef = useRef(null);
+
+  const [PopUpProps, setPopUpProps] = useState({
+    message: '',
+    position: { top: 0, left: 0 },
+    theme: "light", // Replace with dynamic theme if needed
+    visible: false,
+  });
+
+  
+  const handlePopUp = (e, content) => {
+    const buttonRect = e.target.getBoundingClientRect();
+    const top = buttonRect.top; // Adjust for scroll position
+    const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
+
+    setPopUpProps({
+      content,
+      position: { top, left },
+      theme: "light", // Replace with dynamic theme if needed
+      visible: true,
+    });
+  };
 
   useGSAP(() => {
     // Intro Text Animation on Scroll
@@ -34,7 +56,6 @@ const Highlights = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top", // Animation begins when the section hits the top
-        // end: "bottom top", // Ends when the section leaves the viewport
         end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight}`,
         scrub: 1,
       },
@@ -94,7 +115,6 @@ const Highlights = () => {
     ScrollTrigger.create({
       trigger: scrollBoxRef.current,
       start: "top top",
-      // start: "top-=15% top",
       end: () => `+=${scrollBoxRef.current.scrollHeight}`,
       scrub: true,
       onUpdate: (self) => {
@@ -115,6 +135,14 @@ const Highlights = () => {
 
   return (
     <div ref={sectionRef} className={styles.projectHighlight}>
+       <PopUp
+        content={PopUpProps.content}
+        position={PopUpProps.position}
+        theme={PopUpProps.theme}
+        visible={PopUpProps.visible}
+        onClose={() => setPopUpProps(() => ({ ...PopUpProps, visible: false }))}
+      />
+       
        {/* Intro Text Container */}
        <div className={styles.introContainer}>
         <p ref={textRef} className={styles.introText}>
@@ -140,8 +168,14 @@ const Highlights = () => {
            <p>Better Portfolios is an AI tool I created to help investors grade, organize and prioritize ESG concerns in a clear and comparable way</p>
            <p>By compiling contemporary ESG metrics AI is trained to explain which investments more likely promote the UN's SDGs and why</p>
            <div className={styles.buttonsContainer}>
-            <button className="btn btn-primary">Button 1</button>
-            <button className="btn btn-secondary">Button 2</button>
+            <button className="btn btn-primary"
+             onClick={(e) => handlePopUp(e, 'Primary button clicked!')}
+             >
+              Button 1</button>
+            <button className="btn btn-secondary"
+             onClick={(e) => handlePopUp(e, 'Secondary button clicked!')}
+             >
+              Button 2</button>
           </div>
         </div>
       </div>
