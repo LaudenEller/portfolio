@@ -5,7 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
 import _gsap from 'gsap/gsap-core';
-import { getPerceivedPosition } from '../../utils/PositionUtils';
+import { getPerceivedPositionWithGSAP } from '../../utils/PositionUtils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,19 +50,20 @@ const Highlights = () => {
     // const left = buttonRect.left + window.scrollX + parentX + buttonRect.width / 2; // Center the box horizontally
     // console.log('scrollY', containerScrollY)
     // console.log('parent', parent)
-
+    const position = getPerceivedPositionWithGSAP(e.target, scrollBoxRef.current);
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
     // const t = parentY + 135;
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
 console.log('client top', top)
+console.log('parent', parent)
     // This utility function was supposed to get the correct perceived position of the button but it puts it very far from the actual spot becuase it accumulates all the scrollable area instead of offsetting it to find the corrrect scrollY
     // const perceivedPosition = getPerceivedPosition(e.target);
 
     setPopUpProps({
       content,
-      position: { top, left },
-      // position: perceivedPosition,
+      // position: { top, left },
+      position,
       theme: "light", // Replace with dynamic theme if needed
       visible: true,
     });
@@ -115,6 +116,9 @@ console.log('client top', top)
       "0"
     );
 
+    // TODO button module is getting messed up by this because it's making the parent element y value = -35 so the transform 
+      // is messing up the window.scrollY value  and other calculations necessary to place the message box in relation
+      // to the boundingclientrect from the button that's clicked
     // Right-side scroll box entrance animation
     pinTimeline.fromTo(
       scrollBoxRef.current,
