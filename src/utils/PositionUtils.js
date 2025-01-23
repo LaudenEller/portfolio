@@ -1,16 +1,45 @@
 import gsap from 'gsap';
 
-export function getPerceivedPositionWithGSAP(element, parentRef) {
-  const buttonRect = element.getBoundingClientRect();
-  const parentTransformY = parseFloat(gsap.getProperty(parentRef, 'y')) || 0; // GSAP-applied transform
-  const globalScrollY = window.scrollY;
+// export function getPerceivedPositionWithGSAP(element, parentRef) {
+//   const buttonRect = element.getBoundingClientRect();
+//   const parentTransformY = parseFloat(gsap.getProperty(parentRef, 'y')) || 0; // GSAP-applied transform
+//   // const globalScrollY = window.scrollY;
+//   const parentTop = parentRef.scrollTop
 
+//    // Check if global scroll is needed
+//   //  const isCustomScroll = parentRef && parentRef.scrollHeight > parentRef.clientHeight;
+//   //  const globalScrollY = isCustomScroll ? 0 : window.scrollY;
+//   console.log('parentTop', parentTop)
+//   console.log('customScroll', isCustomScroll)
+//    console.log('utility window.scrollY', globalScrollY)
+//    console.log('utility parentTransformY', parentTransformY)
+
+
+//   return {
+//     top: buttonRect.top + parentTop + parentTransformY,
+//     // top: buttonRect.top + globalScrollY + parentTransformY,
+//     // top: buttonRect.top + parentTransformY,
+//     left: buttonRect.left + window.scrollX,
+//   };
+// }
+
+export function getPerceivedPositionWithGSAP(element, parentRef) {
+  const buttonRect = element.getBoundingClientRect(); // Button's rect relative to viewport
+  const parentScrollTop = parentRef.scrollTop || 0; // Scroll offset of the parent container
+  const parentTransformY = parseFloat(gsap.getProperty(parentRef, 'y')) || 0; // Transform offset
+  const globalScrollY = window.scrollY || 0; // Page scroll (if parent is not a custom container)
+
+  console.log('parentTop', parentScrollTop)
+  // console.log('customScroll', isCustomScroll)
+  //  console.log('utility window.scrollY', globalScrollY)
+   console.log('utility parentTransformY', parentTransformY)
+
+  // Add everything together to calculate the perceived position
   return {
-    top: buttonRect.top + globalScrollY + parentTransformY,
+    top: buttonRect.top - parentScrollTop + parentTransformY,
     left: buttonRect.left + window.scrollX,
   };
 }
-
 
 
 // export function getPerceivedPosition(element) {

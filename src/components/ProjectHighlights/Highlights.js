@@ -16,6 +16,7 @@ const Highlights = () => {
   const secondImageRef = useRef(null);
   const scrollBoxRef = useRef(null);
   const barRef = useRef(null);
+  const introSectionRef = useRef(null);
   const [PopUpProps, setPopUpProps] = useState({
     message: '',
     position: { top: 0, left: 0 },
@@ -51,19 +52,23 @@ const Highlights = () => {
     // console.log('scrollY', containerScrollY)
     // console.log('parent', parent)
     const position = getPerceivedPositionWithGSAP(e.target, scrollBoxRef.current);
+    // const position = getPerceivedPositionWithGSAP(e.target, sectionRef.current);
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
-    // const t = parentY + 135;
+    const t = barRef.bottom;
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
+    const l = 500;
 console.log('client top', top)
 console.log('parent', parent)
+console.log('l', l)
     // This utility function was supposed to get the correct perceived position of the button but it puts it very far from the actual spot becuase it accumulates all the scrollable area instead of offsetting it to find the corrrect scrollY
     // const perceivedPosition = getPerceivedPosition(e.target);
 
     setPopUpProps({
       content,
-      // position: { top, left },
-      position,
+      position: { top, left },
+      // position: { t, l },
+      // position,
       theme: "light", // Replace with dynamic theme if needed
       visible: true,
     });
@@ -180,7 +185,7 @@ console.log('parent', parent)
       />
        
        {/* Intro Text Container */}
-       <div className={styles.introContainer}>
+       <div ref={introSectionRef} className={styles.introContainer}>
         <p ref={textRef} className={styles.introText}>
           My Better Portfolios app uses AI to calculate ESG-Alpha
         </p>
