@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -6,6 +6,7 @@ import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
 import _gsap from 'gsap/gsap-core';
 import { getPerceivedPositionWithGSAP } from '../../utils/PositionUtils';
+import ThemeContext from '../../contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,10 +18,11 @@ const Highlights = () => {
   const scrollBoxRef = useRef(null);
   const barRef = useRef(null);
   const introSectionRef = useRef(null);
+  const { theme } = useContext(ThemeContext);
   const [PopUpProps, setPopUpProps] = useState({
     message: '',
     position: { top: 0, left: 0 },
-    theme: "light", // Replace with dynamic theme if needed
+    theme: theme,
     visible: false,
   });
 
@@ -69,7 +71,7 @@ console.log('l', l)
       position: { top, left },
       // position: { t, l },
       // position,
-      theme: "light", // Replace with dynamic theme if needed
+      theme: theme,
       visible: true,
     });
   };
