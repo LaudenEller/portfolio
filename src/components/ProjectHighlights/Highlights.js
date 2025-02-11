@@ -1,9 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
+import _gsap from 'gsap/gsap-core';
+import { getPerceivedPositionWithGSAP } from '../../utils/PositionUtils';
+import ThemeContext from '../../contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,24 +17,61 @@ const Highlights = () => {
   const secondImageRef = useRef(null);
   const scrollBoxRef = useRef(null);
   const barRef = useRef(null);
-
+  const introSectionRef = useRef(null);
+  const { theme } = useContext(ThemeContext);
   const [PopUpProps, setPopUpProps] = useState({
     message: '',
     position: { top: 0, left: 0 },
-    theme: "light", // Replace with dynamic theme if needed
+    theme: theme,
     visible: false,
   });
 
   
   const handlePopUp = (e, content) => {
+
+    // This is to find the transform value of the scrollbox done by gsap
+    // const scrollBox = document.querySelector('.scrollBox');
+    // const gsapY = gsap.getProperty(scrollBox, 'y');
+    // console.log(`GSAP Transform Y: ${gsapY}`);
+
+    // This is to find how much scrollable containers there are on the page as a whole
+    // document.querySelectorAll('*').forEach((el) => {
+    //   if (el.scrollHeight > el.clientHeight) {
+    //     console.log('Scrollable container:', el);
+    //   }
+    // });
+    // console.log(`Page height: ${document.body.scrollHeight}`);
+  
+    // This is the many attempts at finding the perceived location of the button when clicked, window.scrollY 
+    // const buttonRect = e.target.getBoundingClientRect();
+    const parent = e.target.offsetParent; // Get the transformed parent
+    // const parentX = _gsap.getProperty(parent, "x") || 0; // GSAP x transform
+    const parentY = _gsap.getProperty(parent, "y") || 0; // GSAP y transform
+    // const containerScrollY = scrollBoxRef.current.scrollTop;
+    // const containerScrollY = sectionRef.current.scrollTop;
+    // const top = buttonRect.top + containerScrollY; // Adjust for scroll and parent transform
+    // const left = buttonRect.left + window.scrollX + parentX + buttonRect.width / 2; // Center the box horizontally
+    // console.log('scrollY', containerScrollY)
+    // console.log('parent', parent)
+    const position = getPerceivedPositionWithGSAP(e.target, scrollBoxRef.current);
+    // const position = getPerceivedPositionWithGSAP(e.target, sectionRef.current);
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
+    const t = barRef.bottom;
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
+    const l = 500;
+console.log('client top', top)
+console.log('parent', parent)
+console.log('l', l)
+    // This utility function was supposed to get the correct perceived position of the button but it puts it very far from the actual spot becuase it accumulates all the scrollable area instead of offsetting it to find the corrrect scrollY
+    // const perceivedPosition = getPerceivedPosition(e.target);
 
     setPopUpProps({
       content,
       position: { top, left },
-      theme: "light", // Replace with dynamic theme if needed
+      // position: { t, l },
+      // position,
+      theme: theme,
       visible: true,
     });
   };
@@ -83,6 +123,9 @@ const Highlights = () => {
       "0"
     );
 
+    // TODO button module is getting messed up by this because it's making the parent element y value = -35 so the transform 
+      // is messing up the window.scrollY value  and other calculations necessary to place the message box in relation
+      // to the boundingclientrect from the button that's clicked
     // Right-side scroll box entrance animation
     pinTimeline.fromTo(
       scrollBoxRef.current,
@@ -144,7 +187,7 @@ const Highlights = () => {
       />
        
        {/* Intro Text Container */}
-       <div className={styles.introContainer}>
+       <div ref={introSectionRef} className={styles.introContainer}>
         <p ref={textRef} className={styles.introText}>
           My Better Portfolios app uses AI to calculate ESG-Alpha
         </p>
@@ -169,11 +212,11 @@ const Highlights = () => {
            <p>By compiling contemporary ESG metrics AI is trained to explain which investments more likely promote the UN's SDGs and why</p>
            <div className={styles.buttonsContainer}>
             <button className="btn btn-primary"
-             onClick={(e) => handlePopUp(e, 'Primary button clicked!')}
+             onClick={(e) => handlePopUp(e, 'ESG button clicked!')}
              >
               Button 1</button>
             <button className="btn btn-secondary"
-             onClick={(e) => handlePopUp(e, 'Secondary button clicked!')}
+             onClick={(e) => handlePopUp(e, 'A button click!')}
              >
               Button 2</button>
           </div>
