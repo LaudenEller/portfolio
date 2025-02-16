@@ -21,13 +21,16 @@ const Home = () => {
         <ProjectHighlight />
       </section> */}
 
-      <section id="projectContainer">
+      {/* <section id="projectContainer">
         <Highlights />
-      </section>
+      </section> */}
       
       <section id="work">
         <WorkExamples />
       </section>
+      {/* <section id="work2">
+        <WorkGallery />
+      </section> */}
       
       <section id="contact">
         <Contact />
