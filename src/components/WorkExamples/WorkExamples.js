@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useState, useEffect, useContext, useCallback } from 'react';
 import gsap from 'gsap';
 import styles from './WorkExamples.module.css';
 import ThemeContext from '../../contexts/ThemeContext';
@@ -13,28 +13,58 @@ const WorkExamples = () => {
   const galleryItemsRef = useRef([]);
   const accordionRefs = useRef([]);
 
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    const items = gsap.utils.toArray(`.${styles.galleryItem}`);
+  let currentIndex = 0;
+  let isHovering = false;
 
-    // ✅ Use GSAP wrap to enable infinite looping
-    const wrapIndex = gsap.utils.wrap(0, items.length);
-
-    let currentIndex = 0;
-    let isHovering = false;
-
-    const scrollGallery = (direction) => {
+   // ✅ Move scrollGallery outside useEffect & wrap in useCallback
+   const scrollGallery = useCallback(
+    (direction) => {
+      // Checks to see if gallery ref is rendered before proceeding
+      if (!galleryRef.current) return;
+      const gallery = galleryRef.current;
+      // Saves gallery items to a flat array
+      const items = gsap.utils.toArray(`.${styles.galleryItem}`);
+      // First parameter is the minimum number in the range of values that it wraps back to , second parameter is the array it wraps
+      const wrapIndex = gsap.utils.wrap(0, items.length);
+      // changes current index + or - 1 based on direction, and passes the index to wrapIndex. 
+        // Returns the corresponding index from the wrapped array, so that the direction past current index gets added to the assigned edge
       currentIndex = wrapIndex(currentIndex + direction);
+      console.log('currentIndex', currentIndex)
       gsap.to(gallery, {
         x: -items[currentIndex].offsetLeft,
         duration: 0.5,
         ease: 'power2.out',
       });
-    };
+    },
+    []
+  );
 
-    // ✅ Button-based navigation
-    const handlePrevClick = () => scrollGallery(-1);
-    const handleNextClick = () => scrollGallery(1);
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    const items = gsap.utils.toArray(`.${styles.galleryItem}`);
+
+    // // ✅ Use GSAP wrap to enable infinite looping
+    // const wrapIndex = gsap.utils.wrap(1, items.length);
+
+    // console.log('wrappedIndex before scrollGallery', wrapIndex)
+
+    // let currentIndex = 0;
+    // let isHovering = false;
+
+    // const scrollGallery = (direction) => {
+    //   currentIndex = wrapIndex(currentIndex + direction);
+    //   console.log('currentIndex', currentIndex)
+    //   console.log('wrappedIndex in scrollGallery', wrapIndex)
+    //   gsap.to(gallery, {
+    //     x: -items[currentIndex].offsetLeft,
+    //     duration: 0.5,
+    //     ease: 'power2.out',
+    //   });
+    // };
+
+    // // ✅ Button-based navigation
+    // const handlePrevClick = () => scrollGallery(-1);
+    // const handleNextClick = () => scrollGallery(1);
 
     // ✅ Mouse hover scrolling logic
     const handleMouseMove = (event) => {
@@ -124,6 +154,18 @@ const WorkExamples = () => {
           return <ImageLeftExample />;
         case 5:
           return <ImageRightExample />;
+        case 6:
+          return <TextOnlyExample />;
+        case 7:
+          return <ImageLeftExample />;
+        case 8:
+          return <ImageRightExample />;
+        case 9:
+          return <TextOnlyExample />;
+        case 10:
+          return <ImageLeftExample />;
+          case 11:
+          return <ImageRightExample />;
         default:
           return null;
       }
@@ -138,7 +180,7 @@ const WorkExamples = () => {
       <div className={styles.galleryWrapper}>
         <button className={styles.prevButton} onClick={() => scrollGallery(-1)}>←</button>
         <div ref={galleryRef} className={styles.gallery}>
-          {[0, 1, 2, 3, 4, 5].map((index) => (
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((index) => (
             <div
               key={index}
               ref={(el) => (galleryItemsRef.current[index] = el)}
