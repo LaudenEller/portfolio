@@ -6,8 +6,7 @@ import TextOnlyExample from './TextOnlyExample';
 import ImageLeftExample from './ImageLeftExample';
 import ImageRightExample from './ImageRightExample';
 
-// TODO: The gallery item images need to be resized and reformatted,
-//  the gallery and accordion need to be refactored through CSS
+// TODO: the gallery and accordion need to be refactored through CSS
 
 const WorkExamples = () => {
   const { theme } = useContext(ThemeContext);
@@ -18,9 +17,8 @@ const WorkExamples = () => {
 
   let currentIndex = 0;
   let isHovering = false;
-
+  
    // Wraps the gallery in an inifinite loop so that as you scroll past either edge, you return to the beginning or end respectively
-    // TODO: The esample images have to be resized to fit in the gallery item image slots
    const scrollGallery = useCallback(
     (direction) => {
       // Checks to see if gallery ref is rendered before proceeding
@@ -28,25 +26,97 @@ const WorkExamples = () => {
       const gallery = galleryRef.current;
       // Saves gallery items to a flat array
       const items = gsap.utils.toArray(`.${styles.galleryItem}`);
+
+      const itemWidth = items[0].offsetWidth; // Get width of one item
+      const totalWidth = items.length * itemWidth; // Get total width of all items
+
       // First parameter is the minimum number in the range of values that it wraps back to , second parameter is the array it wraps
       const wrapIndex = gsap.utils.wrap(0, items.length);
       // changes current index + or - 1 based on direction, and passes the index to wrapIndex. 
         // Returns the corresponding index from the wrapped array, so that the direction past current index gets added to the assigned edge
       currentIndex = wrapIndex(currentIndex + direction);
+
+      // gsap.to(items, {
+      //   duration: 0.5,
+      //   ease: "power2.out",
+      //   x: `+=${direction * items[0].offsetWidth}`,
+      //   modifiers: {
+      //     x: gsap.utils.unitize(x => parseFloat(x) % (items.length * items[0].offsetWidth))
+      //   },
+      // });
+
+
+      // gsap.to(gallery, {
+      //   x: () => -items[currentIndex].offsetLeft, // Moves to the selected item
+      //   duration: 0.5,
+      //   ease: "power2.out",
+      //   modifiers: {
+      //     x: (xValue) => {
+      //       let newX = parseFloat(xValue);
+  
+      //       // Ensure that the items loop seamlessly
+      //       if (newX <= -totalWidth) {
+      //         newX += totalWidth; // Wrap forward
+      //       } else if (newX >= 0) {
+      //         newX -= totalWidth; // Wrap backward
+      //       }
+  
+      //       return `${newX}px`; // GSAP will apply this new position
+      //     },
+      //   },
+      // });
+
+      // gsap.to(gallery, {
+      //   x: () => -items[currentIndex].offsetLeft,
+      //   duration: 0.5,
+      //   ease: 'power2.out',
+      //   modifiers: {
+      //     x: gsap.utils.wrap(-items.length * items[0].offsetWidth, 0),
+      //   },
+      // });
+
       gsap.to(gallery, {
-        x: -items[currentIndex].offsetLeft,
+        x: -items[currentIndex].offsetLeft * 0.6,
         duration: 0.5,
         ease: 'power2.out',
       });
+
     },
     []
   );
 
+  // const scrollGallery = useCallback(
+  //   (direction) => {
+  //     if (!galleryRef.current) return;
+  //     const gallery = galleryRef.current;
+  //     const items = gsap.utils.toArray(`.${styles.galleryItem}`);
+  //     const itemWidth = items[0].offsetWidth;
+  //     const totalWidth = items.length * itemWidth;
+  
+  //     gsap.to(gallery, {
+  //       duration: 0.5,
+  //       ease: "power2.out",
+  //       x: `-=${direction * itemWidth}`, // Move left or right
+  //       modifiers: {
+  //         x: gsap.utils.unitize((x) => {
+  //           let newX = parseFloat(x);
+  //           if (newX <= -totalWidth) return `${newX + totalWidth}px`; // Loop forward
+  //           if (newX >= 0) return `${newX - totalWidth}px`; // Loop backward
+  //           return `${newX}px`; // Normal movement
+  //         }),
+  //       },
+  //     });
+  //   },
+  //   []
+  // );
+  
+
+  // TODO: Rebuild mouseMove function so that if the cursor is in either side third of the screen, 
+  //        the gallery scrolls in that direction, otherwise it stops scrolling
   useEffect(() => {
     const gallery = galleryRef.current;
-
+    console.log('galleryRef in useEffect', gallery)
     // Handles mouse hovering over the gallery
-      // TODO: Correct the sizes of the gallery item images so that they're getting rendered to the DOM and test if the hovering works
     const handleMouseMove = (event) => {
       const { left, width } = gallery.getBoundingClientRect();
       const mouseX = event.clientX - left;
@@ -62,7 +132,7 @@ const WorkExamples = () => {
       if (!isHovering) {
         isHovering = true;
         gsap.to(gallery, {
-          x: `+=${scrollSpeed * 50}`, // Adjust for smooth scroll
+          x: `+=${scrollSpeed * 100}`, // Adjust for smooth scroll
           duration: 0.3,
           ease: 'power2.out',
           repeat: -1,
@@ -95,7 +165,7 @@ const WorkExamples = () => {
   const openAccordion = (index) => {
     setActiveIndex(index);
     const galleryItem = galleryItemsRef.current[index];
-    gsap.to(galleryItem, { scale: 1.5, x: 0, duration: 0.5 });
+    gsap.to(galleryItem, { scale: 1.5, x: 0, duration: 0.25 });
     galleryItemsRef.current.forEach((item, i) => {
       if (i !== index) {
         gsap.to(item, { scale: 0.8, opacity: 0.5, duration: 0.5 });
@@ -155,7 +225,7 @@ const WorkExamples = () => {
   return (
     <div
       id="work-examples"
-      className={`${styles.workExamples} ${theme === 'dark' ? styles.darkTheme : ''}`}
+      className={`${styles.workExamples}`}
     >
       <div className={styles.galleryWrapper}>
         <button className={styles.prevButton} onClick={() => scrollGallery(-1)}>←</button>

@@ -1,33 +1,21 @@
 .workExamples {
-    /* Should I remove 1rem? */
-  padding: 2rem 1rem;
+    padding: 2rem 1rem;
     background-color: var(--background-color);
     color: var(--text-color);
   }
   
-  .darkTheme {
+  .darkTheme #work-examples {
     background-color: var(--background-dark);
     color: var(--text-light);
   }
   
   .gallery {
     display: flex;
-    /* Should I remove this attribute? */
     /* overflow-x: auto; */
-    overflow: hidden;
+    overflow: visible;
     gap: 1rem;
     position: relative;
     padding: 1rem 0;
-    /* Should I remove these three attributes? */
-    /* border-bottom: 2px solid var(--border-color); */
-    /* cursor: pointer; */
-  }
-  
-  .galleryImage {
-    width: 100%;
-    height: auto;
-    object-fit: cover; /* Ensures images cover the available space */
-    margin-bottom: 0.5rem;
   }
 
   .galleryItem {
@@ -43,6 +31,7 @@
     text-align: center;
     cursor: pointer;
     overflow: hidden;
+    margin: 0.5rem;
     transition: transform 0.3s, background-color 0.3s;
   }
   
@@ -73,7 +62,6 @@
   .accordion {
     margin-top: 2rem;
     position: relative;
-    /* Should I get rid of these? */
     background-color: var(--accordion-bg);
     padding: 1rem;
   }
