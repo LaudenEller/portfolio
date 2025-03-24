@@ -9,15 +9,19 @@
     color: var(--text-light);
   }
   
+  .galleryWrapper {
+    position: relative;
+    overflow: hidden; /* Prevents overflow beyond the container */
+  }
+  
   .gallery {
     display: flex;
-    overflow-x: hidden;
-    /* overflow: visible; */
     gap: 1rem;
     position: relative;
     padding: 1rem 0;
+    transition: transform 0.5s ease; /* Smooth scrolling transition */
   }
-
+  
   .galleryItem {
     flex: 0 0 auto;
     width: 150px;
@@ -39,14 +43,13 @@
     background-color: var(--gallery-hover-bg);
     transform: scale(1.1);
   }
-
+  
   .galleryItem img {
     max-width: 100%;
     max-height: 100%;
     width: 100%;
     height: auto;
     object-fit: cover;
-    transition: transform 0.3s;
   }
   
   .galleryItem p {
@@ -54,18 +57,18 @@
     color: var(--text-color);
     margin: 0;
   }
-
+  
   .galleryItem.active {
     transform: scale(1.2);
   }
-
+  
   .accordion {
     margin-top: 2rem;
     position: relative;
     background-color: var(--accordion-bg);
     padding: 1rem;
   }
-
+  
   .accordionTab {
     cursor: pointer;
     padding: 1rem;
@@ -75,7 +78,7 @@
     height: 0;
     transition: height 0.5s ease;
   }
-
+  
   .accordionTab.active {
     height: auto;
   }
@@ -86,3 +89,4 @@
     border: 1px solid var(--accordion-border);
     border-radius: 0.5rem;
   }
+  

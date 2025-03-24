@@ -228,7 +228,7 @@ const WorkExamples = () => {
       className={`${styles.workExamples}`}
     >
       <div className={styles.galleryWrapper}>
-        <button className={styles.prevButton} onClick={() => scrollGallery(-1)}>←</button>
+        {/* <button className={styles.prevButton} onClick={() => scrollGallery(-1)}>←</button> */}
         <div ref={galleryRef} className={styles.gallery}>
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((index) => (
             <div
@@ -242,7 +242,7 @@ const WorkExamples = () => {
             </div>
           ))}
         </div>
-        <button className={styles.nextButton} onClick={() => scrollGallery(1)}>→</button>
+        {/* <button className={styles.nextButton} onClick={() => scrollGallery(1)}>→</button> */}
       </div>
 
       {/* Accordion Section */}
