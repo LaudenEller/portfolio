@@ -1,3 +1,8 @@
+body, .App {
+  cursor: url('/mouse-image/mouse.jpeg'), auto;  /* Correct path to the image in the public folder */
+}
+
+  
   /* Button Styles */
 .btn {
     background-color: var(--primary-color);

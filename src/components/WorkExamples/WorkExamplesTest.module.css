@@ -1,0 +1,110 @@
+.loopItem {
+    min-width: 200px;
+    margin-right: 20px;
+    background: #eee;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .scrollButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px; /* Adjust space from gallery */
+  }
+  
+  .scrollButtons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px; /* Optional for styling */
+  }
+  
+  .scrollButtons button:hover {
+    background-color: #ccc;
+  }
+  
+  .galleryWrapper {
+    position: relative;
+    overflow: hidden; /* Prevents overflow beyond the container */
+  }
+  
+  .gallery {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    padding: 1rem 0;
+    transition: transform 0.5s ease; /* Smooth scrolling transition */
+  }
+  
+  .galleryItem {
+    flex: 0 0 auto;
+    width: 150px;
+    height: 150px;
+    background-color: var(--gallery-bg);
+    border: 1px solid var(--gallery-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0.5rem;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .galleryItem:hover {
+    background-color: var(--gallery-hover-bg);
+    transform: scale(1.1);
+  }
+  
+  .galleryItem img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .galleryItem p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin: 0;
+  }
+  
+  .galleryItem.active {
+    transform: scale(1.2);
+  }
+  
+  .accordion {
+    margin-top: 2rem;
+    position: relative;
+    background-color: var(--accordion-bg);
+    padding: 1rem;
+  }
+  
+  .accordionTab {
+    cursor: pointer;
+    padding: 1rem;
+    background-color: var(--accordion-bg);
+    border: 1px solid var(--accordion-border);
+    border-radius: 0.5rem;
+    height: 0;
+    transition: height 0.5s ease;
+  }
+  
+  .accordionTab.active {
+    height: auto;
+  }
+  
+  .accordionContent {
+    padding: 1rem;
+    background-color: var(--accordion-bg);
+    border: 1px solid var(--accordion-border);
+    border-radius: 0.5rem;
+  }
