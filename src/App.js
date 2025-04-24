@@ -20,7 +20,7 @@ import './styles/responsive.css';
 
 function App() {
   const customCursorStyle = {
-    cursor: 'url(/mouse-image/mouse.jpeg), auto', // This path is relative to the public folder
+    cursor: 'url(/assets/mouse-image/mouse2.jpeg) 32 32, auto', // This path is relative to the public folder
   };
 
   return (
