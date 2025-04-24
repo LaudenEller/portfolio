@@ -19,6 +19,10 @@ import './styles/responsive.css';
 // import logo from './logo.svg';
 
 function App() {
+  const customCursorStyle = {
+    cursor: 'url(/mouse-image/mouse.jpeg), auto', // This path is relative to the public folder
+  };
+
   return (
     <ThemeProvider>
       <ThemedApp />
