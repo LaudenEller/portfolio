@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import MainLayout from './layouts/MainLayout';
@@ -19,9 +19,6 @@ import './styles/responsive.css';
 // import logo from './logo.svg';
 
 function App() {
-  const customCursorStyle = {
-    cursor: 'url(/assets/mouse-image/mouse2.jpeg) 32 32, auto', // This path is relative to the public folder
-  };
 
   return (
     <ThemeProvider>
@@ -32,6 +29,13 @@ function App() {
 
 // Separate component to handle theme and routing
 function ThemedApp() {
+  // Apply the cursor style globally on the body element
+  React.useEffect(() => {
+    document.body.style.cursor = 'url(/assets/mouse-image/mouse2.jpeg) 32 32, auto';
+    return () => {
+      document.body.style.cursor = 'auto'; // Reset cursor style on unmount
+    };
+  }, []);
   return (
     <Router>
         <MainLayout>
