@@ -27,7 +27,6 @@ function App() {
   );
 }
 
-// Separate component to handle theme and routing
 function ThemedApp() {
   // Apply the cursor style globally on the body element
   React.useEffect(() => {

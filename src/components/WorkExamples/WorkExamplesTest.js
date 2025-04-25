@@ -132,7 +132,7 @@ const WorkExamplesTest = () => {
         if (elements.length === 0) return;
 
          // Get the width of the gallery container
-    const galleryWidth = galleryContainerRef.current.offsetWidth;
+    // const galleryWidth = galleryContainerRef.current.offsetWidth;
     
         // Create the horizontal loop animation with GSAP
         const tl = horizontalLoop(elements, {
@@ -140,7 +140,7 @@ const WorkExamplesTest = () => {
           paused: true, // allow manual control of animation
           reversed: false,
           repeat: -1,
-          galleryWidth: galleryWidth, // Pass galleryWidth to the horizontalLoop function
+          // galleryWidth: galleryWidth, // Pass galleryWidth to the horizontalLoop function
         });
         animationRef.current = tl;
     

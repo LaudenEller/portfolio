@@ -64,27 +64,27 @@ export function horizontalLoop(items, config) {
       distanceToLoop =
         distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
       
-        gsap.set(items, {
-            xPercent: (i, el) => {
-              let w = (widths[i] = parseFloat(gsap.getProperty(el, "width", "px")));
-              xPercents[i] = snap(
-                (parseFloat(gsap.getProperty(el, "x", "px")) / w) * 100 +
-                  gsap.getProperty(el, "xPercent")
-              );
+        // gsap.set(items, {
+        //     xPercent: (i, el) => {
+        //       let w = (widths[i] = parseFloat(gsap.getProperty(el, "width", "px")));
+        //       xPercents[i] = snap(
+        //         (parseFloat(gsap.getProperty(el, "x", "px")) / w) * 100 +
+        //           gsap.getProperty(el, "xPercent")
+        //       );
         
-              // Clamp the xPercent to prevent floating off-screen
-              xPercents[i] = Math.min(100, Math.max(-100, xPercents[i]));
+        //       // Clamp the xPercent to prevent floating off-screen
+        //       xPercents[i] = Math.min(100, Math.max(-100, xPercents[i]));
         
-              return xPercents[i];
-            },
-          });
+        //       return xPercents[i];
+        //     },
+        //   });
           // Animate the items off-screen
         tl.to(
         item,
         {
+          opacity: 0, // Hide item while off-screen
           xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
           duration: distanceToLoop / pixelsPerSecond,
-          opacity: 0, // Hide item while off-screen
         },
         0
       )
