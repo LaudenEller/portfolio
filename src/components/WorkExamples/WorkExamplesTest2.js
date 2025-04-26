@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { horizontalLoop } from '../../utils/HorizontalLoop2';
+import styles from './WorkExamplesTest2.module.css'
 
 export default function HorizontalLoopWithControls({
   items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7'],
@@ -10,6 +11,7 @@ export default function HorizontalLoopWithControls({
   repeat = -1,
   paddingRight = 20, // 👈 this now controls the ghost spacing
 }) {
+  const [activeIndex, setActiveIndex] = useState(null);
   const containerRef = useRef(null);
   const animationRef = useRef(null);
 
@@ -53,8 +55,36 @@ export default function HorizontalLoopWithControls({
     });
   };
 
+  const accordionData = [
+    { id: 0, heading: 'M Cafe' },
+    { id: 1, heading: 'Alpenglow' },
+    { id: 2, heading: 'HeyBots' },
+    { id: 3, heading: 'Solid Ground Construciton'},
+    { id: 4, heading: 'Nomadic Vintage Rugs'},
+    { id: 5, heading: 'VallartaBnb'},
+    { id: 6, heading: 'E-Cig Masters'}
+  ];
+
+const closeAccordion = () => {
+  setActiveIndex(null);
+};
+
+const openAccordion = (index) => {
+  setActiveIndex(index);
+};
+
+  const handleAccordionClick = (index) => {
+    if (activeIndex === index) {
+      closeAccordion();
+    } else {
+      openAccordion(index);
+    }
+  };
+
   return (
+    // section container
     <div>
+        {/* Gallery container */}
       <div
         ref={containerRef}
         style={{
@@ -93,10 +123,29 @@ export default function HorizontalLoopWithControls({
         />
       </div>
 
+{/* button container */}
       <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
         <button onClick={handlePrev}>Previous</button>
         <button onClick={handleNext}>Next</button>
       </div>
+{/* accordion container */}
+<div className={styles.accordionContainer}>
+  {accordionData.map((item) => (
+    <div
+      key={item.id}
+      className={styles.accordionTab}
+      onClick={() => handleAccordionClick(item.id)} // Open accordion when clicked
+      >
+        <p>{item.heading}</p>
+        <div
+                  className={styles.accordionContent}
+                  style={{ height: activeIndex === item.id ? '100px' : 0 }}
+                >
+                    {activeIndex === item.id}
+                    </div>
+    </div>
+  ))}
+</div>
     </div>
   );
 }
