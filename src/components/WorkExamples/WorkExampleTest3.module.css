@@ -1,0 +1,175 @@
+/* .workExamples {
+    padding: 2rem 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .darkTheme #work-examples {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+  }
+
+.accordion {
+    margin-top: 2rem;
+    position: relative;
+    background-color: var(--accordion-bg);
+    padding: 1rem;
+  }
+
+  .accordionTab {
+    cursor: pointer;
+    padding: 1rem;
+    background-color: var(--accordion-bg);
+    border: 1px solid var(--accordion-border);
+    border-radius: 0.5rem;
+    height: 0;
+    transition: height 0.5s ease;
+  }
+
+  .accordionTab.active {
+    height: auto;
+  }
+
+  .accordionTab img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .accordionContent {
+    padding: 1rem;
+    background-color: var(--accordion-bg);
+    border: 1px solid var(--accordion-border);
+    border-radius: 0.5rem;
+  } */
+
+  /* 
+  Main container for the entire work examples section.
+  Applies theme colors and general padding.
+*/
+.workExamples {
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* 
+  Holds all accordion tabs in a vertical column.
+  Adds vertical spacing between items and optional vertical padding.
+*/
+.accordionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;              /* Even vertical spacing between tabs */
+  padding: 1rem 0;        /* Vertical padding for breathing room */
+}
+
+/* 
+  Wrapper to allow smooth visual transitions between opened/closed states.
+  Ensures accordion content expands naturally with layout.
+*/
+.accordionWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  transition: margin 0.4s ease; /* For smooth layout shifts */
+  scroll-margin-top: 90px; /* or whatever height your navbar is */
+
+}
+
+/* 
+  The clickable tab that toggles expansion.
+  Contains both header and expandable content.
+*/
+.accordionTab {
+  overflow: hidden;
+  border: 1px solid var(--accordion-border);
+  border-radius: 0.5rem;
+  background-color: var(--accordion-bg);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  /* Visual styling */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); /* Subtle elevation */
+  margin: 0 auto;
+  /* margin: 0 0.5rem; */
+  width: 100%;
+}
+
+/* 
+  Optional hover effect for better interactivity feedback.
+*/
+.accordionTab:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* optional: slightly stronger on hover */
+}
+
+/* 
+  Modifier class for expanded/active tab.
+  Applies slight scaling and higher z-index for layering.
+*/
+.accordionTab.active {
+  transform: scale(1.02); /* Subtle visual emphasis */
+  z-index: 1;             /* Bring to front */
+}
+
+/* 
+  Header layout: image and text side by side.
+*/
+.tabHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* 
+  Thumbnail image inside the tab header.
+  Maintains square aspect ratio with rounded corners.
+*/
+.tabImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;       /* Crop to fit */
+  border-radius: 0.5rem;
+}
+
+/* 
+  Title styling inside the accordion tab.
+*/
+.accordionTab h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* 
+  Subtitle/description text inside the accordion tab.
+*/
+.accordionTab p {
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* 
+  Expandable container holding the component.
+  Transitions height for smooth open/close animation.
+*/
+.accordionContent {
+  overflow: hidden;
+  transition: height 0.4s ease;
+  will-change: height;        /* Hint browser for smoother animations */
+}
+
+/* 
+  Inner content that can scroll independently if it's too tall.
+  Useful for long component content within accordion.
+*/
+.innerContent {
+  padding: 1rem;
+  max-height: 200px;            /* Optional limit for visual consistency */
+  overflow-y: auto;             /* Enables vertical scroll */
+  overscroll-behavior: contain; /* Prevents scroll chaining/bounce on mobile */
+}
