@@ -1,10 +1,14 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
+import Hero2 from '../components/Hero/Hero2';
 // import About from '../components/About/About';
 import WorkExamples from '../components/WorkExamples/WorkExamples';
 import Contact from '../components/Contact/Contact';
 import Highlights from '../components/ProjectHighlights/Highlights';
-import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
+import WorkExamplesTest3 from '../components/WorkExamples/WorkExamplesTest3';
+import Features from '../components/Features/Features';
+import Projects from '../components/WorkExamples/Projects';
+// import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
 import WorkExamplesTest from '../components/WorkExamples/WorkExamplesTest';
 import HorizontalLoopWithControls from '../components/WorkExamples/WorkExamplesTest2';
 
@@ -15,6 +19,14 @@ const Home = () => {
       <section id="hero">
         <Hero />
       </section>
+
+      {/* <section id="hero2">
+        <Hero2 />
+      </section> */}
+      
+      {/* <section id="projects">
+        <Projects />
+      </section> */}
       
       {/* <section id="about">
         <About />
@@ -25,9 +37,10 @@ const Home = () => {
         <Highlights />
       </section>
 
-      <section id="workTest">
+        <section id="workTest">
+        <WorkExamplesTest3 />
         {/* <WorkExamplesTest /> */}
-        <HorizontalLoopWithControls />
+        {/* <HorizontalLoopWithControls /> */}
         </section>
       
       {/* <section id="work1">

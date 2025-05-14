@@ -16,7 +16,7 @@
   }
 
   /* Responsive Layout */
-  /* @media (max-width: 768px) {
+  @media (max-width: 768px) {
     .layoutContainer {
       padding: 0 0.5rem;
     }
@@ -26,4 +26,4 @@
     .layoutContainer {
       padding: 0 0.25rem;
     }
-  }   */
+  }  
