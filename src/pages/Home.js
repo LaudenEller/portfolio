@@ -9,8 +9,8 @@ import WorkExamplesTest3 from '../components/WorkExamples/WorkExamplesTest3';
 import Features from '../components/Features/Features';
 import Projects from '../components/WorkExamples/Projects';
 // import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
-// import WorkExamplesTest from '../components/WorkExamples/WorkExamplesTest';
-// import HorizontalLoopWithControls from '../components/WorkExamples/WorkExamplesTest2';
+import WorkExamplesTest from '../components/WorkExamples/WorkExamplesTest';
+import HorizontalLoopWithControls from '../components/WorkExamples/WorkExamplesTest2';
 
 // This is where the different sections are loaded onto the home page in the right order
 const Home = () => {
@@ -37,11 +37,10 @@ const Home = () => {
         <Highlights />
       </section>
 
-      
-        {/* <WorkExamplesTest /> */}
-        {/* <HorizontalLoopWithControls /> */}
         <section id="workTest">
         <WorkExamplesTest3 />
+        {/* <WorkExamplesTest /> */}
+        {/* <HorizontalLoopWithControls /> */}
         </section>
       
       {/* <section id="work1">

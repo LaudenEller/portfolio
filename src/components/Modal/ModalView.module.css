@@ -1,0 +1,22 @@
+/* components/ModalView.module.css */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 2rem; /* optional spacing around content */
+}
+
+.modalContent {
+  background: white;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 800px; /* Match accordion width if needed */
+}
