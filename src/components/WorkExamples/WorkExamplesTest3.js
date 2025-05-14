@@ -3,6 +3,7 @@ import styles from './WorkExampleTest3.module.css';
 
 // Imported accordion content components
 import MCafe from './MCafe';
+import MCafe1 from './MCafe1';
 import ECigMasters from './ECigMasters';
 import Alpenglow from './Alpenglow';
 import HeyBots from './HeyBots';
@@ -12,7 +13,8 @@ import VallartaBnb from './VallartaBnb';
 
 // Accordion tab content: heading, image, summary, and corresponding component
 const accordionData = [
-  { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
+  // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
+  { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe1 /> },
   { id: 1, heading: 'ECig Masters', image: '/assets/workImages/example1.png', summary: 'E-commerce development for vape products.', component: <ECigMasters /> },
   { id: 2, heading: 'Alpenglow', image: '/assets/workImages/example2.png', summary: 'Visual identity for a mountain lodge.', component: <Alpenglow /> },
   { id: 3, heading: 'HeyBots', image: '/assets/workImages/example3.png', summary: 'Conversational AI landing page.', component: <HeyBots /> },
@@ -26,6 +28,8 @@ export default function WorkExamplesTest3() {
   const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
   const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
+const [visibleIndexes, setVisibleIndexes] = useState([]);
+
 
   /**
    * Lock the body scroll when an accordion is open.
@@ -102,6 +106,31 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, [activeIndex]);
 
+// useEffect(() => {
+//   const observer = new IntersectionObserver(
+//     (entries) => {
+//       entries.forEach((entry) => {
+//         const index = parseInt(entry.target.dataset.index);
+//         if (entry.isIntersecting && !visibleIndexes.includes(index)) {
+//           setVisibleIndexes((prev) => [...prev, index]);
+//           console.log('Observed', entry.target, 'isIntersecting:', entry.isIntersecting);
+//         }
+//       });
+//     },
+//     { threshold: 0.1 }
+//   );
+
+//   innerContentRefs.current.forEach((el, index) => {
+//     if (el) {
+//       el.dataset.index = index;
+//       observer.observe(el);
+//     }
+//   });
+
+//   return () => observer.disconnect();
+// }, [activeIndex]);
+
+
   
   /**
   * Handles user clicking on an accordion tab.
@@ -174,7 +203,12 @@ const handleTouchMove = (e) => {
           }}
         >
           <div 
+          // Content without fade-in effect
           className={styles.innerContent}
+          // Using CSS to fade in content on scroll
+          // className={`${styles.innerContent} ${styles.fadeInInit} ${visibleIndexes.includes(index) ? styles.fadeInVisible : ''}`}
+          // className={`${styles.innerContent} ${styles.fadeInInit} ${visibleIndexes.includes(index) ? styles.triggerFade : ''}`}
+
           ref={(el) => (innerContentRefs.current[index] = el)}
           tabIndex={-1} // Allows programmatic focus
           >
