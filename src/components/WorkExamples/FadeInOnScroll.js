@@ -1,4 +1,3 @@
-// components/FadeInOnScroll.jsx
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './FadeInOnScroll.module.css';
 
@@ -11,7 +10,7 @@ export default function FadeInOnScroll({ children, delay = 0 }) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // only trigger once
+          observer.disconnect();
         }
       },
       { threshold: 0.1 }
