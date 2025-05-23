@@ -52,10 +52,7 @@ const Home = () => {
       {/* <section id="work2">
         <WorkGallery />
       </section> */}
-      
-      <section id="contact">
-        <Contact />
-      </section>
+
     </div>
   );
 };
