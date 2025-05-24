@@ -3,7 +3,6 @@ import Hero from '../components/Hero/Hero';
 import Hero2 from '../components/Hero/Hero2';
 // import About from '../components/About/About';
 import WorkExamples from '../components/WorkExamples/WorkExamples';
-import Contact from '../components/Contact/Contact';
 import Highlights from '../components/ProjectHighlights/Highlights';
 import WorkExamplesTest3 from '../components/WorkExamples/WorkExamplesTest3';
 import Features from '../components/Features/Features';

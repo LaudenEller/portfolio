@@ -6,7 +6,8 @@ const ContactForm = ({ onCloseForm }) => {
   const form = useRef();
   const [success, setSuccess] = useState(false);
   const [animate, setAnimate] = useState(false);
-
+  const [animateOut, setAnimateOut] = useState(false);
+  
   useEffect(() => {
   setAnimate(true); // triggers on mount
   }, []);
@@ -29,8 +30,13 @@ const ContactForm = ({ onCloseForm }) => {
         setTimeout(() => {
           setSuccess(false);
           form.current.reset(); // Optional: Reset form after success
-          if (onCloseForm) onCloseForm(); // Revert footer
-        }, 2000);
+          // Trigger exit animation
+          setAnimateOut(true);
+
+          setTimeout(() => {
+            if (onCloseForm) onCloseForm(); // Revert footer
+        }, 600);
+       }, 2000);
       },
       (error) => {
         console.log(error.text);
@@ -40,7 +46,7 @@ const ContactForm = ({ onCloseForm }) => {
   };
 
   return (
-    <div className={`${styles.contactFormWrapper} ${animate ? styles.animateFallDown : ''}`}>
+    <div className={`${styles.contactFormWrapper} ${animate ? styles.animateFallDown : ''} ${animateOut ? styles.animateFallUp : ''}`}>
       <h2>How can I help?</h2>
       <form ref={form} onSubmit={sendEmail} className={styles.contactForm}>
         <div className={styles.inputRow}>
