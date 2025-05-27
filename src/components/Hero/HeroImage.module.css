@@ -1,14 +1,23 @@
 /* HeroImage.module.css */
-  .heroImage {
+  /* .heroImage {
     max-width: 100%;
     height: auto;
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
     visibility: visible;
-    position: relative; /* or fixed if required */
+    position: relative;
     display: block;
     z-index: 500;
-  }
+  } */
+
+  .heroImage {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  z-index: 500;
+}
+
   
   /* Responsive adjustments */
   @media (max-width: 767px) {

@@ -15,8 +15,8 @@ const Hero = () => {
       aria-label="Introduction Section"
     >
       <div className={`container-fluid px-0 ${styles.heroContainer}`}>
-      <HeroImage theme={theme} />
       <HeroText theme={theme} />
+      <HeroImage theme={theme} />
       {/* <p className={`${styles.heroText}`}>Hi, I'm Lauden, a software engineer committed to helping business be better. Have a look around...</p> */}
       </div>
     </section>
