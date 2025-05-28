@@ -62,19 +62,35 @@ import React, { useContext, useState, useEffect, forwardRef } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './Navbar.module.css';
 import HeroImage from '../Hero/HeroImage';
+import { Logo } from '../Logo/logo';
+import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 const Navbar = () => {
     const { toggleTheme, theme } = useContext(ThemeContext);
+      const [isScrolled, setIsScrolled] = useState(false);
+      const [isVisible, setIsVisible] = useState(false);
+
+      useEffect(() => {
+  const timeout = setTimeout(() => {
+    setIsVisible(true);
+  }, 1000); // 1 second delay
+
+  return () => clearTimeout(timeout);
+}, []);
+
 
   return (
     <nav style={{ width: '100%', fontFamily: 'Arial, sans-serif' }}>
       {/* Row 1: White background */}
-      <div style={{ backgroundColor: '#F6F6F6', height: '15vh' }}>
+      <div 
+      className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
+      style={{ backgroundColor: '#F6F6F6', height: '11vh' }}>
         {/* Empty row with white bg */}
       </div>
 
       {/* Row 2: Two sections */}
       <div
+        className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
         style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -86,7 +102,7 @@ const Navbar = () => {
       >
         {/* Left section - one button */}
         <div>
-          <button style={{ marginLeft: '27.5vw', background: 'none', border: '0', padding: '8px 16px', cursor: 'pointer' }}>
+          <button style={{ marginLeft: '22vw', background: 'none', border: '0', padding: '8px 16px', cursor: 'pointer' }}>
             {/* Theme Toggle Button */}
          <div className={`${styles.toggleContainer}`} onClick={toggleTheme}>
            <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
@@ -95,7 +111,7 @@ const Navbar = () => {
         </div>
 
         {/* Right section - three links */}
-        <div style={{ display: 'flex', borderRight: 'solid', borderLeft: 'solid', borderColor: '#FBFDFF', paddingLeft: '2vw', paddingRight: '2vw', marginRight: '13vw', gap: 30 }}>
+        <div style={{ display: 'flex', height: '7vh', borderRight: 'solid', borderLeft: 'solid', borderColor: '#FBFDFF', paddingTop: '0.3rem',paddingLeft: '2vw', paddingRight: '2vw', marginRight: '13vw', gap: 30 }}>
           <a href="#link1" style={{ textDecoration: 'none', color: '#fbfdff' }}>
             Link 1
           </a>
@@ -113,7 +129,6 @@ const Navbar = () => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '0 20px',
           alignItems: 'center',
           height: 60,
           backgroundColor: '#FBFDFF',
@@ -127,27 +142,55 @@ const Navbar = () => {
             style={{ marginLeft: '200%', height: 40, objectFit: 'contain' }}
           />
         </div> */}
-        <div style={{ height: '35vh', marginLeft: '5vw', width: '25vw', overflow: 'hidden' }}>
-          <HeroImage />
-        </div>
+        {/* <div className={styles.imageLogoContainer}>
+        <div 
+        className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
+        style={{ display: 'flex', position: 'absolute', height: '35vh', marginBottom: '30vw', marginTop: '-6vw', marginLeft: '4vw', width: '22.75vw', overflow: 'visible' }}
+        > */}
+          {/* <HeroImage /> */}
+        {/* </div> */}
+           {/* Logo */}
+         {/* <BootstrapNavbar.Brand 
+         href="#" 
+         className={`${styles.navbar_brand}`}
+         style={{ display: 'flex', position: 'absolute', overflow: 'visible' }}
+         >
+           <div className={styles.navbar_logo}>
+             <Logo isScrolled={isScrolled}/>
+           </div>
+        </BootstrapNavbar.Brand>
+        </div> */}
+        
+        
+        <div className={styles.imageLogoContainer}>
+  {/* Stack image above logo using flex column */}
+  <div className={styles.logoWrapper}>
+    <HeroImage />
+    <div className={styles.navbar_logo}>
+      <Logo isScrolled={isScrolled}/>
+    </div>
+  </div>
+</div>
 
 
         {/* Right section - five links */}
-        <div style={{ width: '70%', display: 'flex', gap: 85 }}>
-          <a href="#nav1" style={{ justifyContent: 'space-evenly', textDecoration: 'none', color: 'black', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.25rem' }}>
-            Nav 1
+        <div 
+        className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
+        style={{ marginLeft: '0.1vw', width: '90%', display: 'flex', gap: 60 }}>
+          <a href="#nav1" style={{ textAlign: 'center', width: '62px', textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
+            About
           </a>
-          <a href="#nav2" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.25rem' }}>
-            Nav 2
+          <a href="#nav2" style={{ textAlign: 'center', width: '62px', textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
+            ESG
           </a>
-          <a href="#nav3" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.25rem' }}>
-            Nav 3
+          <a href="#nav3" style={{  textAlign: 'center', width: '62px',textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
+            Work
           </a>
-          <a href="#nav4" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.25rem' }}>
-            Nav 4
+          <a href="#nav4" style={{ textAlign: 'center', width: '62px', textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
+            AI
           </a>
-          <a href="#nav5" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.25rem' }}>
-            Nav 5
+          <a href="#nav5" style={{ textAlign: 'center', width: '62px', textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
+            Contact
           </a>
         </div>
       </div>

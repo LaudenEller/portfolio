@@ -11,12 +11,15 @@
   } */
 
   .heroImage {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  z-index: 500;
+  /* margin-left: 7vw; */
+  /* max-height: 85%; */
+  /* padding-bottom: 6vh; */
+  /* position: absolute; */
+  /* left: 0; */
+  /* width: 100%; */
+  /* height: auto; */
 }
+
 
   
   /* Responsive adjustments */

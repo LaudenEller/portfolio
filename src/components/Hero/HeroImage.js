@@ -11,8 +11,10 @@ const HeroImage = () => {
     const handleLoad = () => setIsLoaded(true);
 
     const image = new Image();
-    const basePath = `/assets/heroImages/${theme}`;
-    image.src = `${basePath}/hero-desktop.webp`;
+    // const basePath = `/assets/heroImages/${theme}`;
+    // image.src = `${basePath}/hero-desktop.webp`;
+    const basePath = `/assets/heroImages/navBar`;
+    image.src = `${basePath}/heroImage_noBackground.png`;
     image.onload = handleLoad;
 
     return () => {
@@ -27,14 +29,20 @@ const HeroImage = () => {
       <div className="row g-0">
         <div className="col-12">
           {isLoaded && (
-            <img
-              src={`${theme}/hero-desktop.webp`}
-              srcSet={`
-                /assets/heroImages/${theme}/hero-mobile.webp 600w,
-                /assets/heroImages/${theme}/hero-tablet.webp 1200w,
-                /assets/heroImages/${theme}/hero-desktop.webp 1920w
-              `}
-              sizes="(max-width: 600px) 200vw, (max-width: 1200px) 150vw, 75vw"
+            // <img
+            //   src={`${theme}/hero-desktop.webp`}
+            //   srcSet={`
+            //     /assets/heroImages/${theme}/hero-mobile.webp 600w,
+            //     /assets/heroImages/${theme}/hero-tablet.webp 1200w,
+            //     /assets/heroImages/${theme}/hero-desktop.webp 1920w
+            //   `}
+            //   sizes="(max-width: 600px) 200vw, (max-width: 1200px) 150vw, 75vw"
+            //   alt="Hero Banner"
+            //   className={`img-fluid ${styles.heroImage}`}
+            //   loading="eager"
+            // />
+             <img
+              src={`/assets/heroImages/navBar/heroImage_noBackground.png`}
               alt="Hero Banner"
               className={`img-fluid ${styles.heroImage}`}
               loading="eager"
