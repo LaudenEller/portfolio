@@ -42,7 +42,7 @@ const HeroImage = () => {
             //   loading="eager"
             // />
              <img
-              src={`/assets/heroImages/navBar/logoImage_Navbar_50x50.png`}
+              src={`/assets/heroImages/navBar/logoImage_Navbar_200x200.png`}
               alt="Hero Banner"
               className={`img-fluid ${styles.heroImage}`}
               loading="eager"
