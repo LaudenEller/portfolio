@@ -23,7 +23,7 @@ const HeroImage = () => {
     // const basePath = `/assets/heroImages/${theme}`;
     // image.src = `${basePath}/hero-desktop.webp`;
     const basePath = `/assets/heroImages/navBar`;
-    image.src = `${basePath}/logoImage_Navbar_50x50.png`;
+    image.src = `${basePath}/logoImage_Navbar_100x100.png`;
     image.onload = handleLoad;
 
     return () => {

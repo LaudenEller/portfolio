@@ -103,7 +103,7 @@ const Navbar = () => {
       >
         {/* Left section - one button */}
         <div>
-          <button style={{ marginLeft: '22vw', background: 'none', border: '0', padding: '8px 16px', cursor: 'pointer' }}>
+          <button style={{ marginLeft: '18vw', background: 'none', border: '0', padding: '8px 16px', cursor: 'pointer' }}>
             {/* Theme Toggle Button */}
          <div className={`${styles.toggleContainer}`} onClick={toggleTheme}>
            <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`}></div>
@@ -194,7 +194,7 @@ const Navbar = () => {
         className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
         style={{ 
           // marginLeft: '0.1vw', 
-          // width: '90%', 
+          width: '75%', 
           display: 'flex', 
           gap: 60 }}>
 
