@@ -80,6 +80,7 @@ const Navbar = () => {
 
 
   return (
+    <div className={styles.navWrapper}>
     <nav style={{ width: '100%', fontFamily: 'Arial, sans-serif' }}>
       {/* Row 1: White background */}
       <div 
@@ -125,13 +126,28 @@ const Navbar = () => {
       </div>
 
       {/* Row 3: Two sections */}
+      {/* Row 3: Navigation Links */}
+<div
+  className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
+  style={{
+
+  }}
+>
+  <div style={{ display: 'flex', gap: 60 }}>
+    {/* Your 5 links here */}
+  </div>
+</div>
+
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
+          // justifyContent: 'space-between',
           alignItems: 'center',
-          height: 60,
+          // height: 60,
           backgroundColor: '#FBFDFF',
+          justifyContent: 'flex-end',
+          backgroundColor: '#FBFDFF',
+          padding: '0.5rem 2rem',
         }}
       >
         {/* Left section - image */}
@@ -162,21 +178,26 @@ const Navbar = () => {
         </div> */}
         
         
-        <div className={styles.imageLogoContainer}>
+        {/* <div className={styles.imageLogoContainer}> */}
   {/* Stack image above logo using flex column */}
-  <div className={styles.logoWrapper}>
+  {/* <div className={styles.logoWrapper}>
     <HeroImage />
     <div className={styles.navbar_logo}>
       <Logo isScrolled={isScrolled}/>
     </div>
   </div>
-</div>
+</div> */}
 
 
         {/* Right section - five links */}
         <div 
         className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
-        style={{ marginLeft: '0.1vw', width: '90%', display: 'flex', gap: 60 }}>
+        style={{ 
+          // marginLeft: '0.1vw', 
+          // width: '90%', 
+          display: 'flex', 
+          gap: 60 }}>
+
           <a href="#nav1" style={{ textAlign: 'center', width: '62px', textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
             About
           </a>
@@ -194,7 +215,35 @@ const Navbar = () => {
           </a>
         </div>
       </div>
+
+      {/* Row 4: HeroImage and Logo */}
+{/* <div
+  className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
+  style={{ backgroundColor: '#FBFDFF', padding: '1rem 0' }}
+>
+  <div className={styles.imageLogoContainer}>
+    <div className={styles.logoWrapper}>
+      <HeroImage />
+      <div className={styles.navbar_logo}>
+        <Logo isScrolled={isScrolled} />
+      </div>
+    </div>
+  </div>
+</div> */}
+
     </nav>
+
+    {/* Floating Logo + Image */}
+  <div className={styles.floatingLogoContainer}>
+    <div className={styles.logoWrapper}>
+      <HeroImage />
+      <div className={styles.navbar_logo}>
+        <Logo isScrolled={isScrolled} />
+      </div>
+    </div>
+  </div>
+  
+</div>
   );
 };
 

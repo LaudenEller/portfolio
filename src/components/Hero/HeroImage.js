@@ -5,7 +5,16 @@ import styles from './HeroImage.module.css';
 const HeroImage = () => {
   const { theme } = useContext(ThemeContext); // Use context for theme
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
+   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000); // 1 second delay
+  
+    return () => clearTimeout(timeout);
+  }, []);
+  
   useEffect(() => {
     // Ensure image is loaded before applying any effects
     const handleLoad = () => setIsLoaded(true);
@@ -42,9 +51,9 @@ const HeroImage = () => {
             //   loading="eager"
             // />
              <img
-              src={`/assets/heroImages/navBar/logoImage_Navbar_200x200.png`}
+              src={`/assets/heroImages/navBar/logoImage_Navbar_100x100.png`}
               alt="Hero Banner"
-              className={`img-fluid ${styles.heroImage}`}
+              className={`img-fluid ${styles.heroImage} ${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
               loading="eager"
             />
           )}

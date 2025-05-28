@@ -23,8 +23,8 @@ const Footer = () => {
             <div className={styles.profileSection}>
               <img src="/robb.jpg" alt="Robb" className={styles.avatar} />
               <div>
-                <h2>Hi, my name is Lauden.</h2>
-                <p>I'm a software engineer committed to helping business be better.</p>
+                <h2>I'm Lauden - Software Engineer.</h2>
+                <p>And I'm committed to helping business be better, in every way.</p>
               </div>
             </div>
             <button className={styles.hireButton} onClick={handleClick}>Reach out!</button>
