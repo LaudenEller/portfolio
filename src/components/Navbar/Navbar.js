@@ -165,7 +165,7 @@ const Navbar = () => {
   </a>
    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
     <img 
-      src="/assets/socialIcons/github_24x24.png" 
+      src="/assets/socialIcons/github_24x24_white.png" 
       alt="GitHub" 
       style={{ height: '24px', width: '24px' }} 
     />
