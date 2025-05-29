@@ -67,20 +67,31 @@ import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 const Navbar = () => {
     const { toggleTheme, theme } = useContext(ThemeContext);
-      const [isScrolled, setIsScrolled] = useState(false);
-      const [isVisible, setIsVisible] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
-      useEffect(() => {
-  const timeout = setTimeout(() => {
-    setIsVisible(true);
-  }, 1000); // 1 second delay
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setIsVisible(true);
+      }, 1000); // 1 second delay
 
-  return () => clearTimeout(timeout);
-}, []);
+    return () => clearTimeout(timeout);
+    }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 125); // Set threshold for resizing
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className={styles.navWrapper}>
+    // <div className={styles.navWrapper}>
+      <div 
+      className={` ${styles.navWrapper} ${theme === 'dark' ? 'bg-dark' : 'bg-light'} ${isScrolled ? styles.shrink : ""}`}
+      >
     <nav style={{ width: '100%', fontFamily: 'Arial, sans-serif' }}>
       {/* Row 1: White background */}
       <div 
@@ -149,24 +160,24 @@ const Navbar = () => {
   marginRight: '13vw', 
   gap: 30 
 }}> 
-  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+   <a href="https://github.com" target="_blank" rel="noopener noreferrer">
     <img 
-      src="/assets/socialIcons/igLogo_24x24.png" 
-      alt="Instagram" 
+      src="/assets/socialIcons/github_24x24_white.png" 
+      alt="GitHub" 
       style={{ height: '24px', width: '24px' }} 
     />
   </a>
   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
     <img 
-      src="/assets/socialIcons/LIlogo_25x21.png" 
+      src="/assets/socialIcons/Li_logo_24x24.png" 
       alt="LinkedIn" 
       style={{ height: '21px', width: '25px' }} 
     />
   </a>
-   <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
     <img 
-      src="/assets/socialIcons/github_24x24_white.png" 
-      alt="GitHub" 
+      src="/assets/socialIcons/igLogo_bw.png" 
+      alt="Instagram" 
       style={{ height: '24px', width: '24px' }} 
     />
   </a>

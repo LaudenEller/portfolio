@@ -129,9 +129,11 @@
   
   .themeToggle.light {
     /* background-color: rgb(18, 18, 18); */
-    background-color: #fbfdff;
+    /* background-color: #fbfdff; */
+    background-color: #FBFDFF;
     /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3); */
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
+    /* box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3); */
+    box-shadow: 0 0 8px rgba(255, 253, 234, 0.5), 0 0 15px rgba(255, 253, 234, 0.3);
   }
   
   .themeToggle.dark {
