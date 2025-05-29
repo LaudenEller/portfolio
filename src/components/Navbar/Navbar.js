@@ -89,6 +89,18 @@ const Navbar = () => {
         {/* Empty row with white bg */}
       </div>
 
+      {/* <div 
+  className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
+  style={{ backgroundColor: '#F6F6F6', height: '11vh' }}
+>
+  <img 
+    src={`/assets/navBarImages/navbar_bg.png`}
+    alt="Grid Bar" 
+    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+  />
+</div> */}
+
+
       {/* Row 2: Two sections */}
       <div
         className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
@@ -112,7 +124,7 @@ const Navbar = () => {
         </div>
 
         {/* Right section - three links */}
-        <div style={{ display: 'flex', height: '7vh', borderRight: 'solid', borderLeft: 'solid', borderColor: '#FBFDFF', paddingTop: '0.3rem',paddingLeft: '2vw', paddingRight: '2vw', marginRight: '13vw', gap: 30 }}>
+        {/* <div style={{ display: 'flex', height: '7vh', borderRight: 'solid', borderLeft: 'solid', borderColor: '#FBFDFF', paddingTop: '0.3rem',paddingLeft: '2vw', paddingRight: '2vw', marginRight: '13vw', gap: 30 }}>
           <a href="#link1" style={{ textDecoration: 'none', color: '#fbfdff' }}>
             Link 1
           </a>
@@ -122,8 +134,46 @@ const Navbar = () => {
           <a href="#link3" style={{ textDecoration: 'none', color: '#fbfdff' }}>
             Link 3
           </a>
-        </div>
-      </div>
+        </div> */}
+      
+
+<div style={{ 
+  display: 'flex', 
+  height: '7vh', 
+  borderRight: 'solid', 
+  borderLeft: 'solid', 
+  borderColor: '#FFFDEA', 
+  paddingTop: '0.3rem',
+  paddingLeft: '2vw', 
+  paddingRight: '2vw', 
+  marginRight: '13vw', 
+  gap: 30 
+}}> 
+  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+    <img 
+      src="/assets/socialIcons/igLogo_24x24.png" 
+      alt="Instagram" 
+      style={{ height: '24px', width: '24px' }} 
+    />
+  </a>
+  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+    <img 
+      src="/assets/socialIcons/LIlogo_25x21.png" 
+      alt="LinkedIn" 
+      style={{ height: '21px', width: '25px' }} 
+    />
+  </a>
+   <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+    <img 
+      src="/assets/socialIcons/github_24x24.png" 
+      alt="GitHub" 
+      style={{ height: '24px', width: '24px' }} 
+    />
+  </a>
+</div>
+
+</div> 
+
 
       {/* Row 3: Two sections */}
       {/* Row 3: Navigation Links */}
@@ -193,10 +243,11 @@ const Navbar = () => {
         <div 
         className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
         style={{ 
-          // marginLeft: '0.1vw', 
+          marginRight: '3em',
+          marginTop: '4.5vh',
           width: '75%', 
           display: 'flex', 
-          gap: 60 }}>
+          gap: 65 }}>
 
           <a href="#nav1" style={{ textAlign: 'center', width: '62px', textDecoration: 'none', color: '#0F0F0F', fontWeight: 'bold', borderBottom: 'solid', borderWidth: '0.20rem' }}>
             About

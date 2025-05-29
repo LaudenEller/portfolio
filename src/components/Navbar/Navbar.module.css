@@ -60,6 +60,7 @@
     /* height: auto; */
     /* max-height: 50px; */
     /* max-height: 18vh; */
+    margin-left: -0.75em;
   }
 
   .navWrapper {
@@ -81,7 +82,7 @@
   align-items: flex-start;
   justify-content: center;
   gap: 0.5rem;
-  /* padding-left: 1vw; */
+  margin-left: -3vw;
 }
 
 .imageLogoContainer {
@@ -115,6 +116,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin-left: -2em;
   }
   
   .themeToggle {
@@ -122,7 +124,7 @@
     height: 16px;
     border-radius: 50%;
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    margin-right: 0.5rem;
+    /* margin-right: 10rem; */
   }
   
   .themeToggle.light {
