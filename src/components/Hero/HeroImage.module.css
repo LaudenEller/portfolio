@@ -1,14 +1,35 @@
 /* HeroImage.module.css */
-  .heroImage {
+  /* .heroImage {
     max-width: 100%;
     height: auto;
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
     visibility: visible;
-    position: relative; /* or fixed if required */
+    position: relative;
     display: block;
     z-index: 500;
-  }
+  } */
+
+  .heroImage {
+  /* margin-left: 7vw; */
+  /* max-height: 85%; */
+  /* padding-bottom: 6vh; */
+  /* position: absolute; */
+  /* left: 0; */
+  /* width: 100%; */
+  /* height: auto; */
+}
+
+.fadeIn {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  opacity: 1;
+}
+
+
   
   /* Responsive adjustments */
   @media (max-width: 767px) {

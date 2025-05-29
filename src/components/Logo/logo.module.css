@@ -15,10 +15,10 @@
   max-width: 150px; /*Control maximum width here*/
   height: auto; /*Maintains aspect ratio*/
   display: block;
-  visibility: visible;
-  opacity: 1;
-  overflow: visible;
-  position: relative; /*Ensures the object aligns properly*/
+  /* visibility: visible; */
+  /* opacity: 1; */
+  /* overflow: visible; */
+  /* position: relative; Ensures the object aligns properly */
   transition: max-width 0.3s ease, transform 0.3s ease; /* Smooth resizing */
   /* max-height: 50px !important; Adjust as needed */
   /* background: transparent; Ensures no background color is added */

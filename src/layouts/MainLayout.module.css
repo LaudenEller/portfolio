@@ -15,6 +15,12 @@
     position: relative;
   }
 
+  /* Add vertical offset only when sticky navbar is visible */
+.withStickyOffset {
+  margin-top: 0.25vh; /* match your .stickyNav height */
+}
+
+
   /* Responsive Layout */
   @media (max-width: 768px) {
     .layoutContainer {

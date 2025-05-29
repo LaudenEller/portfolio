@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './Footer.module.css';
 import ContactForm from '../Contact/ContactForm';
+import HeroImage from '../Hero/HeroImage';
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
@@ -21,10 +22,10 @@ const Footer = () => {
         {!showForm ? (
           <div className={styles.footerContent}>
             <div className={styles.profileSection}>
-              <img src="/robb.jpg" alt="Robb" className={styles.avatar} />
+              <HeroImage className={styles.avatar} />
               <div>
-                <h2>Hi, my name is Lauden.</h2>
-                <p>I'm a software engineer committed to helping business be better.</p>
+                <h2>I'm Lauden, a Software Engineer</h2>
+                <p>committed to helping business be better in every way.</p>
               </div>
             </div>
             <button className={styles.hireButton} onClick={handleClick}>Reach out!</button>

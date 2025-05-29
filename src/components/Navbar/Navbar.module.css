@@ -1,118 +1,212 @@
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--background-color);
-    padding: 0.5rem 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 47px; /* Define the fixed height of the navbar */
-    transition: height 0.3s ease;
-  }
-  
-  .navbar.shrink {
-    height: 5.5vh;
-  }
+/* === STRUCTURAL WRAPPERS === */
 
-  .navbar.dark {
-    background-color: var(--background-dark);
-  }
-  
-  .navbar.light {
-    background-color: var(--background-color);
-  }
-  
-  .navContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    background-color: var(--background-dark);
-  }
+/* Wraps the entire navbar component */
+.navWrapper {
+  position: relative;
+  width: 100%;
+}
 
-  .navSpacer1 {
-    width: 10px;
-    height: 1px;
-  }
-  
-  .navSpacer2 {
-    width: 125px;
-    height: 1px;
-  }
+/* Applied directly to <nav>, setting base font and full width */
+.navBar {
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
 
-  .navbar_brand {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    width: auto;
-    height: 100%;
-  }
-  
-  .navbar_logo {
-    max-width: 150px;
-    width: 100%;
-    height: 100%;
-    max-height: 50px;
-  }
-  
-  .navLinks {
-    display: flex;
-    gap: 5rem;
-  }
-  
-  .navLink {
-    color: var(--text-color) !important;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .navLink:hover {
-    color: var(--primary-color) !important;
-  }
-  
-  .toggleContainer {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .themeToggle {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    margin-right: 0.5rem;
-  }
-  
-  .themeToggle.light {
-    background-color: rgb(18, 18, 18);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .themeToggle.dark {
-    background-color: #fbfdff;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
-  }
-  
-  @media (max-width: 768px) {
-    .navLinks {
-      flex-direction: column;
-      display: none;
-    }
-  
-    .navbar:hover .navLinks {
-      display: flex;
-    }
-  }
-  
-  @media (min-width: 576px) {
-    .navContainer {
-      max-width: 100% !important;
-    }
-  
-    .navbar:hover .navLinks {
-      display: flex;
-    }
-  }
+/* Top row of the navbar, typically used as a visual spacer */
+.rowOne {
+  background-color: #F6F6F6;
+  height: 11vh;
+}
+
+/* Second row: contains the theme toggle and social icons */
+.rowTwo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 6vh;
+  background-color: #0f0f0f;
+}
+
+.stickyNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12vh;
+  background: #fff; /* or rgba for transparency */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 0 2em;
+  /* transition: transform 0.3s ease-in-out; */
+   opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* When stickyNav becomes visible */
+.revealSticky {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stickyNav .navLinks {
+  margin-top: 0vh;
+}
+
+.stickyLinks {
+padding-left: 6vw;
+}
+
+
+/* === THEME TOGGLE STYLES === */
+
+/* Button for toggling light/dark mode */
+.themeButton {
+  margin-left: 17vw; /* Responsive spacing — might want to fine-tune on smaller screens */
+  background: none;
+  border: none;
+  padding: 2vh 1vw;
+  cursor: pointer;
+}
+.stickyNav .themeToggle {
+  margin-left: -4vw;
+}
+
+/* Wraps the theme toggle indicator */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: -2em;
+}
+
+.stickyNav .toggleContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 2.5vh;
+}
+
+/* The circular toggle switch itself */
+.themeToggle {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Light theme style — soft white with yellow-tinted glow */
+.themeToggle.light {
+  background-color: #FBFDFF;
+  box-shadow: 0 0 8px rgba(255, 253, 234, 0.5), 0 0 15px rgba(255, 253, 234, 0.3);
+}
+
+/* Dark theme style — brighter glow to stand out on dark bg */
+.themeToggle.dark {
+  background-color: #0F0F0F;
+  box-shadow: 0 0 8px rgba(15, 15, 15, 0.5), 0 0 15px rgba(15, 15, 15, 0.3);
+}
+
+
+/* === SOCIAL ICONS === */
+
+/* Container for the social media links */
+.socialIcons {
+  display: flex;
+  height: 7vh;
+  border-left: solid;
+  border-right: solid;
+  border-color: #FFFDEA;
+  padding-top: 0.3rem;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-right: 13vw;
+  gap: 30px;
+}
+
+/* Standard size for each icon */
+.iconImage {
+  height: 24px;
+  width: 24px;
+}
+
+
+/* === NAVIGATION LINKS === */
+
+/* Wrapper for nav links row (third row) */
+.navLinksWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #FBFDFF;
+  padding: 0.5rem 2rem;
+}
+
+/* Container holding all nav links */
+.navLinks {
+  margin-right: 3em;
+  margin-top: 4.5vh;
+  width: 75%;
+  display: flex;
+  gap: 65px;
+}
+
+/* Individual link styling */
+.navLink {
+  text-align: center;
+  width: 62px;
+  text-decoration: none;
+  color: #0F0F0F;
+  font-weight: bold;
+  border-bottom: solid;
+  border-width: 0.20rem;
+}
+
+.navLink:hover {
+  border-color: #FFFDEA;
+}
+
+
+/* === FLOATING LOGO AREA === */
+
+/* Holds the logo and image positioned above the navbar */
+.floatingLogoContainer {
+  position: absolute;
+  top: -0.75em;
+  left: 8vw;
+  z-index: 1500;
+  pointer-events: none; /* Prevents click interference with the nav */
+}
+
+/* Wraps the HeroImage and Logo */
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-left: -3vw;
+}
+
+/* Minor margin tweak for the logo */
+.navbar_logo {
+  margin-left: -0.75em;
+}
+
+
+/* === ANIMATION CLASSES === */
+
+/* Initial fade-in state */
+.fadeIn {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* When visible, fully shown */
+.hidden {
+  opacity: 1;
+}
