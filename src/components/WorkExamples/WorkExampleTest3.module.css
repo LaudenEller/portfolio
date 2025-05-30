@@ -33,7 +33,7 @@
   justify-content: center;
   align-items: stretch;
   transition: margin 0.4s ease; /* For smooth layout shifts */
-  scroll-margin-top: 90px; /* or whatever height your navbar is */
+  scroll-margin-top: 10vh; /* or whatever height your navbar is */
   max-width: 70vw;
 }
 
@@ -129,7 +129,7 @@
 */
 .innerContent {
   padding: 1rem;
-  height: 45vh;            /* Optional limit for visual consistency */
+  height: 60vh;            /* Optional limit for visual consistency */
   overflow-y: auto;             /* Enables vertical scroll */
   overscroll-behavior: contain; /* Prevents scroll chaining/bounce on mobile */
   -webkit-overflow-scrolling: touch;

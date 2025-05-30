@@ -135,6 +135,36 @@ useEffect(() => {
     };
   }, [activeIndex]);
 
+  // Collapse the accordion when the user scrolls to the bottom
+useEffect(() => {
+  if (activeIndex === null) return;
+
+  const el = innerContentRefs.current[activeIndex];
+  if (!el) return;
+
+  const handleScrollToBottom = () => {
+    const tolerance = 5; // buffer in pixels
+    const scrolledToBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - tolerance;
+
+    
+    console.log();
+
+    if (scrolledToBottom) {
+      setTimeout(() => {
+        setActiveIndex(null); // Collapse
+        setHeaderShrunk(false);
+      }, 150); // Slight delay for UX smoothness
+    }
+  };
+
+  el.addEventListener('scroll', handleScrollToBottom);
+
+  return () => {
+    el.removeEventListener('scroll', handleScrollToBottom);
+  };
+}, [activeIndex]);
+
+
   // Variables for mobile scroll override
   let lastY = 0; 
 
