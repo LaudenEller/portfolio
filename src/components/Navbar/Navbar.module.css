@@ -115,7 +115,7 @@ padding-left: 6vw;
 /* === SOCIAL ICONS === */
 
 /* Container for the social media links */
-.socialIcons {
+/* .socialIcons {
   display: flex;
   height: 7vh;
   border-left: solid;
@@ -126,7 +126,39 @@ padding-left: 6vw;
   padding-right: 2vw;
   margin-right: 13vw;
   gap: 30px;
+} */
+
+.socialIcons {
+  display: flex;
+  gap: 30px;
+  height: 6vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-right: 13vw;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #FFFDEA;
+  border-right-color: #FFFDEA;
+  transition: border-color 0.3s ease;
+  align-items: center;
 }
+
+/* Side-specific hover classes */
+.highlightTop {
+  border-left-color: #0F0F0F;
+  border-right-color: #0F0F0F;
+}
+
+.highlightLeft {
+  border-left-color: #0F0F0F
+}
+
+.highlightRight {
+  border-right-color: #0F0F0F
+}
+
 
 /* Standard size for each icon */
 .iconImage {
