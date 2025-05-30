@@ -91,8 +91,8 @@ const Navbar = () => {
         {/* Row 1: Spacer with background */}
         <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowOne}`} />
 
-        {/* Row 2: Toggle and icons */}
-        {/* <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowTwo}`}>
+        {/* Row 2: Theme toggle + updated social icons box */}
+        <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowTwo}`}>
           <div>
             <button
               aria-label="Toggle theme"
@@ -105,68 +105,41 @@ const Navbar = () => {
             </button>
           </div>
 
-          <div className={styles.socialIcons}>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <div
+            className={`${styles.socialIcons} ${
+              hoveredSide ? styles[`highlight${hoveredSide}`] : ''
+            }`}
+            onMouseLeave={() => setHoveredSide(null)} // Reset on exit
+          >
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              onMouseEnter={() => setHoveredSide('Left')}
+            >
               <img src="/assets/socialIcons/github_24x24_white.png" alt="GitHub" className={styles.iconImage} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              onMouseEnter={() => setHoveredSide('Top')}
+            >
               <img src="/assets/socialIcons/Li_logo_24x24.png" alt="LinkedIn" className={styles.iconImage} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              onMouseEnter={() => setHoveredSide('Right')}
+            >
               <img src="/assets/socialIcons/igLogo_bw.png" alt="Instagram" className={styles.iconImage} />
             </a>
           </div>
-        </div> */}
-
-  {/* Row 2: Theme toggle + updated social icons box */}
-      <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowTwo}`}>
-        <div>
-          <button
-            aria-label="Toggle theme"
-            className={styles.themeButton}
-            onClick={toggleTheme}
-          >
-            <div className={styles.toggleContainer}>
-              <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`} />
-            </div>
-          </button>
         </div>
-
-        <div
-          className={`${styles.socialIcons} ${
-            hoveredSide ? styles[`highlight${hoveredSide}`] : ''
-          }`}
-          onMouseLeave={() => setHoveredSide(null)} // Reset on exit
-        >
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            onMouseEnter={() => setHoveredSide('Left')}
-          >
-            <img src="/assets/socialIcons/github_24x24_white.png" alt="GitHub" className={styles.iconImage} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            onMouseEnter={() => setHoveredSide('Top')}
-          >
-            <img src="/assets/socialIcons/Li_logo_24x24.png" alt="LinkedIn" className={styles.iconImage} />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            onMouseEnter={() => setHoveredSide('Right')}
-          >
-            <img src="/assets/socialIcons/igLogo_bw.png" alt="Instagram" className={styles.iconImage} />
-          </a>
-        </div>
-      </div>
 
         {/* Row 3: Placeholder */}
         <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''}`} />
