@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
 import Hero2 from '../components/Hero/Hero2';
-// import About from '../components/About/About';
+import AboutSection from '../components/About/AboutSection';
 import WorkExamples from '../components/WorkExamples/WorkExamples';
 import Highlights from '../components/ProjectHighlights/Highlights';
 import WorkExamplesTest3 from '../components/WorkExamples/WorkExamplesTest3';
@@ -28,7 +28,7 @@ const Home = () => {
       </section> */}
       
       {/* <section id="about">
-        <About />
+        <AboutSection />
       </section> */}
       
 

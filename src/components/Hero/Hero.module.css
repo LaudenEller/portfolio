@@ -1,15 +1,13 @@
 .hero {
   background-color: var(--background-color);
   color: var(--text-color);
-  /* padding: 2rem 1rem; */
+  position: relative; /* critical so .overlay can anchor to it */
+  min-height: 120vh;   /* enough height for overlay to float inside */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: start;
   text-align: center;
-  position: sticky;
-  min-height: 40rem;
-  /* padding-bottom: 50px; */
-  /* Hero-specific color accents */
   --hero-heading-color: var(--primary-color);
   --hero-accent-color: var(--secondary-color);
 }
@@ -32,43 +30,6 @@
   /* padding: 20px; Adjust based on screen size */
 }
 
-.heroContainer img {
-  /* Optional: Limit image height*/
-  /* max-height: 100vh;  */
-  /* Ensures the image fills its container */
-  /* object-fit: cover;  */
-}
-
-/* Component-specific responsiveness */
-@media (min-width: 768px) {
-  .hero {
-    /* flex-direction: row; */
-    /* text-align: left; */
-    /* padding: 3rem 1.5rem; */
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-    margin-top: 15vh;
-    width: 40vw;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero {
-    /* padding: 4rem 2rem; */
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  /* .hero p {
-    font-size: 1.3rem;
-    max-width: 900px;
-  } */
+.accent {
+  color: #F26419; /* or any color you want */
 }
