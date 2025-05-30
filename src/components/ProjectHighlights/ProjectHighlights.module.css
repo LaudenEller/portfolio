@@ -46,7 +46,7 @@
 /* Intro Text Container */
 .introContainer {
   text-align: center;
-  margin-bottom: 1rem; /* Space between intro and image */
+  margin-bottom: 2rem; /* Space between intro and image */
   width: 50%;
   position: relative;
 }
