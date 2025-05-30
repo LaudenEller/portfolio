@@ -25,7 +25,7 @@ const Footer = () => {
               <HeroImage className={styles.avatar} />
               <div>
                 <h2>I'm Lauden, a Software Engineer</h2>
-                <p>committed to helping business be better in every way.</p>
+                <p>who wants to help make your business better.</p>
               </div>
             </div>
             <button className={styles.hireButton} onClick={handleClick}>Reach out!</button>

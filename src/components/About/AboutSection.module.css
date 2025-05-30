@@ -1,0 +1,100 @@
+.aboutContainer {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.toggleButton {
+  background: #0f0f0f;
+  color: #fffdea;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.toggleButton:hover {
+  background: #222;
+}
+
+.aboutWrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.visible {
+  max-height: 25vh; /* adjust based on content */
+  opacity: 1;
+}
+
+.toggleBar {
+  display: inline-block;
+  background: #0F0F0F;
+  padding: 0.01rem 3rem;
+  font-size: 0.25rem;
+  border-radius: 50px; /* fully rounded */
+  cursor: pointer;
+  transition: background 0.3s ease;
+  user-select: none;
+  z-index: 250;
+  position: relative;
+  /* outline: none; */
+}
+
+.toggleBar:hover,
+.toggleBar:focus {
+  background: #FFFDEA;
+  color: #0f0f0f; /* fix text visibility */
+}
+
+/* The floating overlay */
+.overlay {
+  position: absolute; /* change from fixed to absolute */
+  top: 50%;            /* adjust to float mid-hero */
+  left: 50%;
+  width: auto; /* only as wide as needed */
+  max-width: 90vw;
+   /* height: 100vh; */
+  padding: 4vh 2vw; /* adds breathing room from edges */
+  pointer-events: none; /* allow interaction only with child */
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease;
+}
+
+/* When visible */
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Inner content (the paragraph) */
+.aboutCard {
+  pointer-events: auto;
+  background: #fffdea;
+  color: #0f0f0f;
+  padding: 2rem;
+  margin-top: 45vh; /* optional vertical nudge */
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  
+  /* Initial hidden state */
+  opacity: 0;
+  transform: translateY(-20px) scale(0.97);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.visible .aboutCard {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
