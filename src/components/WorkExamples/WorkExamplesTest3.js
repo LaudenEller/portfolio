@@ -10,6 +10,7 @@ import HeyBots from './HeyBots';
 import SolidGroundConstruction from './SolidGroundConstruction';
 import NomadicVintageRugs from './NomadicVintageRugs';
 import VallartaBnb from './VallartaBnb';
+import FadeInOnScroll from './FadeInOnScroll';
 
 // Accordion tab content: heading, image, summary, and corresponding component
 const accordionData = [
@@ -163,6 +164,7 @@ useEffect(() => {
         {accordionData.map((item, index) => {
           const isActive = activeIndex === item.id;
           return (
+            <FadeInOnScroll>
             <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
               <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
                 <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
@@ -214,6 +216,7 @@ useEffect(() => {
                 </div>
               </div>
             </div>
+            </FadeInOnScroll>
           );
         })}
       </div>
