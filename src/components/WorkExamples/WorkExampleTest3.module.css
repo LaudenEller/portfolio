@@ -218,7 +218,7 @@
   width: 100%;
   flex-shrink: 1;
   height: auto;
-  max-height: 10vh;
+  max-height: 25vh;
   object-fit: contain;
   display: block;
   border-radius: 1rem;

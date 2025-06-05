@@ -55,6 +55,23 @@
 
 .stickyNav .navLinks {
   margin-top: 0vh;
+  display: flex;
+  gap: 65px;
+  width: 75%; /* Ensure the container takes full width */
+}
+
+.stickyNav .navLink {
+  width: 62px;
+  text-align: center;
+  text-decoration: none;
+  color: #0F0F0F;
+  font-weight: bold;
+  border-bottom: solid;
+  border-width: 0.20rem;
+  flex-grow: 1; /* This makes all links grow to fill available space evenly */
+  flex-shrink: 0;
+  text-align: center; /* Ensures text is centered within the link */
+
 }
 
 .stickyLinks {

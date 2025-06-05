@@ -56,7 +56,7 @@ const Navbar = () => {
             <Logo isScrolled={isScrolled} />
           </div>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.stickyLinks} ${styles.navLinks}`}>
-            {['About', 'ESG', 'Work', 'AI', 'Contact'].map((text, index) => (
+            {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
               <a
                 key={text}
                 href={`#nav${index + 1}`}
@@ -147,7 +147,7 @@ const Navbar = () => {
         {/* Row 3: Nav links */}
         <div className={styles.navLinksWrapper}>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.navLinks}`}>
-            {['About', 'ESG', 'Work', 'AI', 'Contact'].map((text, index) => (
+            {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
               <a
                 key={text}
                 href={`#nav${index + 1}`}
