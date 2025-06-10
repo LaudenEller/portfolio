@@ -69,7 +69,7 @@
   border-bottom: solid;
   border-width: 0.20rem;
   flex-grow: 1; /* This makes all links grow to fill available space evenly */
-  flex-shrink: 0;
+  flex-shrink: 0; /* This makes so that the menulinks remain their proper size in .StickyNav */
   text-align: center; /* Ensures text is centered within the link */
 
 }

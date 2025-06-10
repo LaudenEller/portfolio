@@ -3,23 +3,21 @@ import React, { useContext, useState, useEffect } from 'react';
 import ThemeContext from '../../contexts/ThemeContext'; // Theme context for dark/light mode toggle
 import styles from './Navbar.module.css';              // CSS module styles for scoped class names
 import HeroImage from '../Hero/HeroImage';             // Custom component displaying hero image
-import { Logo } from '../Logo/logo';                   // Custom component displaying logo
+import { Logo } from '../Logo/logo';                   // Custom component displaying log o
+import { useNavigate } from 'react-router-dom';                
+import { useAboutContext } from '../../contexts/AboutContext';
 
 const Navbar = () => {
   const [revealSticky, setRevealSticky] = useState(false);
-  
   const [showFloatingNav, setShowFloatingNav] = useState(false);
-  
   // Access the theme and toggle function from context
   const { toggleTheme, theme } = useContext(ThemeContext);
-
   // Track scroll state to shrink navbar on scroll
   const [isScrolled, setIsScrolled] = useState(false);
-
   // Used to delay visibility for fade-in effect
   const [isVisible, setIsVisible] = useState(false);
-
-  const [hoveredSide, setHoveredSide] = useState(null); // <-- NEW
+  const [hoveredSide, setHoveredSide] = useState(null);
+  const navigate = useNavigate();
 
   // Fade-in effect after 1 second on component mount
   useEffect(() => {
@@ -46,6 +44,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const { setShowAbout } = useAboutContext();
+
+const scrollToAbout = () => {
+  setShowAbout(true); // 👈 trigger About open
+  navigate("/#nav1"); // 👈 scroll to Hero section
+};
+
    return (
     <>
     {showFloatingNav && (
@@ -57,11 +62,18 @@ const Navbar = () => {
           </div>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.stickyLinks} ${styles.navLinks}`}>
             {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
-              <a
-                key={text}
-                href={`#nav${index + 1}`}
-                className={styles.navLink}
-              >
+              // <a
+              //   key={text}
+              //   href={`#nav${index + 1}`}
+              //   className={styles.navLink}
+              // >
+              // For a controlled navigation to about page
+               <a
+                  key={text}
+                  onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
+                  href={text === 'About' ? '#nav1' : `#nav${index + 1}`}  // Handle other links normally
+                  className={styles.navLink}
+                >
                 {text}
               </a>
             ))}
@@ -148,11 +160,20 @@ const Navbar = () => {
         <div className={styles.navLinksWrapper}>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.navLinks}`}>
             {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
-              <a
-                key={text}
-                href={`#nav${index + 1}`}
-                className={styles.navLink}
-              >
+              // <a
+              //   key={text}
+              //   href={`#nav${index + 1}`}
+              //   className={styles.navLink}
+              // >
+              //   {text}
+              // </a>
+            // For a controlled navigation to about page
+               <a
+                  key={text}
+                  onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
+                  href={text === 'About' ? '#nav1' : `#nav${index + 1}`}  // Handle other links normally
+                  className={styles.navLink}
+                >
                 {text}
               </a>
             ))}
