@@ -79,17 +79,12 @@ const scrollToAbout = () => {
             ))}
           </div>
         </div>
-        <div>
-            <button
-              aria-label="Toggle theme"
-              className={styles.themeButton}
-              onClick={toggleTheme}
-            >
               <div className={styles.toggleContainer}>
-                <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.light : styles.dark}`} />
+                <button
+                aria-label="Toggle theme"
+                onClick={toggleTheme} 
+                className={`${styles.themeButton} ${styles.themeToggle} ${theme === 'dark' ? styles.light : styles.dark}`} />
               </div>
-            </button>
-          </div>
   </div>
 )}
     <div 
@@ -106,15 +101,12 @@ const scrollToAbout = () => {
         {/* Row 2: Theme toggle + updated social icons box */}
         <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowTwo}`}>
           <div>
-            <button
-              aria-label="Toggle theme"
-              className={styles.themeButton}
-              onClick={toggleTheme}
-            >
               <div className={styles.toggleContainer}>
-                <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`} />
+                <button 
+                aria-label="Toggle theme"
+                onClick={toggleTheme}
+                className={`${styles.themeButton} ${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`} />
               </div>
-            </button>
           </div>
 
           <div

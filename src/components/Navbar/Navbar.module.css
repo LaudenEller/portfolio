@@ -33,14 +33,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 12vh;
+  height: 10vh;
   background: #fff; /* or rgba for transparency */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 2000;
   display: flex;
   align-items: end;
   justify-content: space-between;
-  padding: 0 2em;
+  /* padding: 0 2em; */
   /* transition: transform 0.3s ease-in-out; */
    opacity: 0;
   transform: translateY(-100%);
@@ -54,10 +54,10 @@
 }
 
 .stickyNav .navLinks {
-  margin-top: 0vh;
+  /* margin-top: 1vh; */
   display: flex;
   gap: 65px;
-  width: 75%; /* Ensure the container takes full width */
+  width: 100%; /* Ensure the container takes full width */
 }
 
 .stickyNav .navLink {
@@ -83,14 +83,16 @@ padding-left: 6vw;
 
 /* Button for toggling light/dark mode */
 .themeButton {
-  margin-left: 17vw; /* Responsive spacing — might want to fine-tune on smaller screens */
+  margin-left: 19vw; /* Responsive spacing — might want to fine-tune on smaller screens */
   background: none;
   border: none;
   padding: 2vh 1vw;
   cursor: pointer;
 }
-.stickyNav .themeToggle {
-  margin-left: -4vw;
+
+.stickyNav .themeButton {
+  margin-left: 5.5vw;
+  margin-right: 4vw;
 }
 
 /* Wraps the theme toggle indicator */
@@ -105,7 +107,14 @@ padding-left: 6vw;
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding-bottom: 2.5vh;
+  padding-bottom: 2.75vh;
+  margin-right: 2vw;
+}
+
+.stickyNav .navbar_logo {
+  cursor: pointer;
+  margin-bottom: -5vh;
+  margin-left: 2vw;
 }
 
 /* The circular toggle switch itself */
@@ -201,7 +210,8 @@ padding-left: 6vw;
   align-items: center;
   justify-content: flex-end;
   background-color: #FBFDFF;
-  padding: 0.5rem 2rem;
+  padding: 0.75rem 2rem;
+  /* margin-right: 10vw; */
 }
 
 /* Container holding all nav links */

@@ -1,7 +1,7 @@
 /* Layout Container */
 .layoutContainer {
     width: 100%;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     position:  relative;
     display: flex;
     flex-direction: column;

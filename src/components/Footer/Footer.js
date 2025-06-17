@@ -17,18 +17,18 @@ const Footer = () => {
   };
 
   return (
-    <footer className={`${styles.footer} ${theme === 'dark' ? styles.darkFooter : styles.lightFooter}`}>
+    <footer id='nav5' className={`${styles.footer} ${theme === 'dark' ? styles.darkFooter : styles.lightFooter}`}>
       <div className={styles.footerContainer}>
         {!showForm ? (
           <div className={styles.footerContent}>
             <div className={styles.profileSection}>
               <HeroImage className={styles.avatar} />
               <div>
-                <h2>I'm Lauden, a Software Engineer</h2>
-                <p>who wants to help make your business better.</p>
+                {/* <h2>I'm Lauden, a Software Engineer</h2> */}
+                <p>How can I help you make your business better?</p>
               </div>
             </div>
-            <button className={styles.hireButton} onClick={handleClick}>Reach out!</button>
+            <button className={styles.hireButton} onClick={handleClick}>Let's find out.</button>
           </div>
         ) : (
           <ContactForm onCloseForm={handleCloseForm} />
