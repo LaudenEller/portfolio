@@ -3,21 +3,21 @@ import React, { useContext, useState, useEffect } from 'react';
 import ThemeContext from '../../contexts/ThemeContext'; // Theme context for dark/light mode toggle
 import styles from './Navbar.module.css';              // CSS module styles for scoped class names
 import HeroImage from '../Hero/HeroImage';             // Custom component displaying hero image
-import { Logo } from '../Logo/logo';                   // Custom component displaying logo
+import { Logo } from '../Logo/logo';                   // Custom component displaying log o
+import { useNavigate } from 'react-router-dom';                
+import { useAboutContext } from '../../contexts/AboutContext';
 
 const Navbar = () => {
   const [revealSticky, setRevealSticky] = useState(false);
-  
   const [showFloatingNav, setShowFloatingNav] = useState(false);
-  
   // Access the theme and toggle function from context
   const { toggleTheme, theme } = useContext(ThemeContext);
-
   // Track scroll state to shrink navbar on scroll
   const [isScrolled, setIsScrolled] = useState(false);
-
   // Used to delay visibility for fade-in effect
   const [isVisible, setIsVisible] = useState(false);
+  const [hoveredSide, setHoveredSide] = useState(null);
+  const navigate = useNavigate();
 
   // Fade-in effect after 1 second on component mount
   useEffect(() => {
@@ -44,6 +44,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const { setShowAbout } = useAboutContext();
+
+const scrollToAbout = () => {
+  setShowAbout(true); // 👈 trigger About open
+  navigate("/#nav1"); // 👈 scroll to Hero section
+};
+
    return (
     <>
     {showFloatingNav && (
@@ -54,34 +61,30 @@ const Navbar = () => {
             <Logo isScrolled={isScrolled} />
           </div>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.stickyLinks} ${styles.navLinks}`}>
-            {['About', 'ESG', 'Work', 'AI', 'Contact'].map((text, index) => (
-              <a
-                key={text}
-                href={`#nav${index + 1}`}
-                className={styles.navLink}
-              >
+            {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
+               <a
+                  key={text}
+                  onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
+                  href={text === 'About' ? '#nav1' : `#nav${index + 1}`}  // Handle other links normally
+                  className={styles.navLink}
+                >
                 {text}
               </a>
             ))}
           </div>
         </div>
-        <div>
-            <button
-              aria-label="Toggle theme"
-              className={styles.themeButton}
-              onClick={toggleTheme}
-            >
               <div className={styles.toggleContainer}>
-                <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.light : styles.dark}`} />
+                <button
+                aria-label="Toggle theme"
+                onClick={toggleTheme} 
+                className={`${styles.themeButton} ${styles.themeToggle} ${theme === 'dark' ? styles.light : styles.dark}`} />
               </div>
-            </button>
-          </div>
   </div>
 )}
-    <div 
+    <div
       className={`
-        ${styles.navWrapper} 
-        ${theme === 'dark' ? 'bg-dark' : 'bg-light'} 
+        ${styles.navWrapper}
+        ${theme === 'dark' ? 'bg-dark' : 'bg-light'}
         ${isScrolled ? styles.shrink : ''}
       `}
     >
@@ -89,28 +92,48 @@ const Navbar = () => {
         {/* Row 1: Spacer with background */}
         <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowOne}`} />
 
-        {/* Row 2: Toggle and icons */}
+        {/* Row 2: Theme toggle + updated social icons box */}
         <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.rowTwo}`}>
           <div>
-            <button
-              aria-label="Toggle theme"
-              className={styles.themeButton}
-              onClick={toggleTheme}
-            >
               <div className={styles.toggleContainer}>
-                <div className={`${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`} />
+                <button 
+                aria-label="Toggle theme"
+                onClick={toggleTheme}
+                className={`${styles.themeButton} ${styles.themeToggle} ${theme === 'dark' ? styles.dark : styles.light}`} />
               </div>
-            </button>
           </div>
 
-          <div className={styles.socialIcons}>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <div
+            className={`${styles.socialIcons} ${
+              hoveredSide ? styles[`highlight${hoveredSide}`] : ''
+            }`}
+            onMouseLeave={() => setHoveredSide(null)} // Reset on exit
+          >
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              onMouseEnter={() => setHoveredSide('Left')}
+            >
               <img src="/assets/socialIcons/github_24x24_white.png" alt="GitHub" className={styles.iconImage} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              onMouseEnter={() => setHoveredSide('Top')}
+            >
               <img src="/assets/socialIcons/Li_logo_24x24.png" alt="LinkedIn" className={styles.iconImage} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              onMouseEnter={() => setHoveredSide('Right')}
+            >
               <img src="/assets/socialIcons/igLogo_bw.png" alt="Instagram" className={styles.iconImage} />
             </a>
           </div>
@@ -122,12 +145,13 @@ const Navbar = () => {
         {/* Row 3: Nav links */}
         <div className={styles.navLinksWrapper}>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.navLinks}`}>
-            {['About', 'ESG', 'Work', 'AI', 'Contact'].map((text, index) => (
-              <a
-                key={text}
-                href={`#nav${index + 1}`}
-                className={styles.navLink}
-              >
+            {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
+               <a
+                  key={text}
+                  onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
+                  href={text === 'About' ? '#nav1' : `#nav${index + 1}`}  // Handle other links normally
+                  className={styles.navLink}
+                >
                 {text}
               </a>
             ))}

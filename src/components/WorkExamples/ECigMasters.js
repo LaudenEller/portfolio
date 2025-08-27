@@ -36,7 +36,7 @@ const ECigMasters = () => {
 
       {/* Main article content with multiple sections animated on scroll */}
       <div className={`${styles.article__content} ${styles.revealContent}`}>
-        
+        <br></br>
         {/* Section: Where we started */}
         <FadeInOnScroll delay={100}>
           <h3>Where we started</h3>
@@ -145,9 +145,7 @@ const ECigMasters = () => {
 
  {/* Article footer with closing note */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={450}>
           <p className={styles.note}>From static mailers to dynamic inventory-driven e-commerce<span className={styles.dot}>.</span></p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );

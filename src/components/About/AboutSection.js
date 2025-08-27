@@ -26,9 +26,15 @@
 import React, { useState } from 'react';
 import AboutParagraph from './AboutParagraph';
 import styles from './AboutSection.module.css';
+import { useAboutContext } from '../../contexts/AboutContext';
 
 const AboutSection = () => {
-  const [showAbout, setShowAbout] = useState(false);
+  // context-based expansion
+  const { showAbout, setShowAbout } = useAboutContext();
+  
+  // Direct expansion
+  // const [showAbout, setShowAbout] = useState(false);
+
 
   return (
     <div className={styles.aboutSectionContainer}>

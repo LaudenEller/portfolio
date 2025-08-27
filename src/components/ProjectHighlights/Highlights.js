@@ -28,33 +28,9 @@ const Highlights = () => {
 
   
   const handlePopUp = (e, content) => {
-
-    // This is to find the transform value of the scrollbox done by gsap
-    // const scrollBox = document.querySelector('.scrollBox');
-    // const gsapY = gsap.getProperty(scrollBox, 'y');
-    // console.log(`GSAP Transform Y: ${gsapY}`);
-
-    // This is to find how much scrollable containers there are on the page as a whole
-    // document.querySelectorAll('*').forEach((el) => {
-    //   if (el.scrollHeight > el.clientHeight) {
-    //     console.log('Scrollable container:', el);
-    //   }
-    // });
-    // console.log(`Page height: ${document.body.scrollHeight}`);
-  
-    // This is the many attempts at finding the perceived location of the button when clicked, window.scrollY 
-    // const buttonRect = e.target.getBoundingClientRect();
     const parent = e.target.offsetParent; // Get the transformed parent
-    // const parentX = _gsap.getProperty(parent, "x") || 0; // GSAP x transform
     const parentY = _gsap.getProperty(parent, "y") || 0; // GSAP y transform
-    // const containerScrollY = scrollBoxRef.current.scrollTop;
-    // const containerScrollY = sectionRef.current.scrollTop;
-    // const top = buttonRect.top + containerScrollY; // Adjust for scroll and parent transform
-    // const left = buttonRect.left + window.scrollX + parentX + buttonRect.width / 2; // Center the box horizontally
-    // console.log('scrollY', containerScrollY)
-    // console.log('parent', parent)
     const position = getPerceivedPositionWithGSAP(e.target, scrollBoxRef.current);
-    // const position = getPerceivedPositionWithGSAP(e.target, sectionRef.current);
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
     const t = barRef.bottom;
@@ -107,7 +83,7 @@ console.log('l', l)
     const pinTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top top",
+        start: "top-=50 top",
         end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 1.25}`,
         pin: true,
         pinSpacing: true,

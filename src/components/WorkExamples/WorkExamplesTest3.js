@@ -10,17 +10,18 @@ import HeyBots from './HeyBots';
 import SolidGroundConstruction from './SolidGroundConstruction';
 import NomadicVintageRugs from './NomadicVintageRugs';
 import VallartaBnb from './VallartaBnb';
+import FadeInOnScroll from './FadeInOnScroll';
 
 // Accordion tab content: heading, image, summary, and corresponding component
 const accordionData = [
   // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
-  { id: 0, heading: 'M Cafe', color: 'blue', image: '/assets/workImages/example0.png', summary: 'Teamed up with a designer to breathe life into a promotional webpage for our beloved show, Adventure Time. Delivered a fully responsive design with dynamic content capabilities.', component: <MCafe1 /> },
-  { id: 1, heading: 'ECig Masters', color: 'blue', image: '/assets/workImages/example1.png', summary: 'E-commerce development for vape products.', component: <ECigMasters /> },
-  { id: 2, heading: 'Alpenglow', color: 'blue', image: '/assets/workImages/example2.png', summary: 'Visual identity for a mountain lodge.', component: <Alpenglow /> },
-  { id: 3, heading: 'HeyBots', color: 'blue', image: '/assets/workImages/example3.png', summary: 'Conversational AI landing page.', component: <HeyBots /> },
-  { id: 4, heading: 'Solid Ground Construction', color: 'blue', image: '/assets/workImages/example4.png', summary: 'Web presence for a construction company.', component: <SolidGroundConstruction /> },
-  { id: 5, heading: 'Nomadic Vintage Rugs', color: 'blue', image: '/assets/workImages/example5.png', summary: 'One-of-a-kind Shopify rug store.', component: <NomadicVintageRugs /> },
-  { id: 6, heading: 'Vallarta Bnb', image: '/assets/workImages/example6.png', summary: 'Booking platform for vacation rentals.', component: <VallartaBnb /> },
+  { id: 0, client: 'M Cafe', heading: 'Takeout the fees', color: 'blue', image: '/assets/workImages/example0.png', summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', date: '2025', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <MCafe1 /> },
+  { id: 1, client: 'Nomadic Vintage Rugs', heading: 'Shop-ify unique items', color: 'blue', image: '/assets/workImages/example5.png', summary: 'One-of-a-kind Shopify rug store.', date: '2024', role: 'Backend developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <NomadicVintageRugs /> },
+  { id: 2, client: 'Alpenglow', heading: 'Modern real estate in Mexico', color: 'blue', image: '/assets/workImages/example2.png', summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', date: '2024', role: 'Project manager', demo: 'https://www.google.com', code: 'https://www.github.com', component: <Alpenglow /> },
+  { id: 3, client: 'HeyBots', heading: 'Conversational AI', color: 'blue', image: '/assets/workImages/example3.png', summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', date: '2024', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <HeyBots /> },
+  { id: 4, client: 'E\-Cig Masters', heading: 'Complicated B2B tax rules', color: 'blue', image: '/assets/workImages/example1.png', summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', date: '2023', role: 'Backend developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <ECigMasters /> },  
+  { id: 5, client: 'VallartaBnb', heading: 'Fee-free booking platform', image: '/assets/workImages/example6.png', summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', date: '2023', role: 'Project manager', demo: 'https://www.google.com', code: 'https://www.github.com', component: <VallartaBnb /> },
+  { id: 6, client: 'Solid Ground Construction', heading: 'Project bids make it or break it', color: 'blue', image: '/assets/workImages/example4.png', summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', date: '2022', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <SolidGroundConstruction /> },
 ];
 
 export default function WorkExamplesTest3() {
@@ -134,6 +135,36 @@ useEffect(() => {
     };
   }, [activeIndex]);
 
+  // Collapse the accordion when the user scrolls to the bottom
+useEffect(() => {
+  if (activeIndex === null) return;
+
+  const el = innerContentRefs.current[activeIndex];
+  if (!el) return;
+
+  const handleScrollToBottom = () => {
+    const tolerance = 5; // buffer in pixels
+    const scrolledToBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - tolerance;
+
+    
+    console.log();
+
+    if (scrolledToBottom) {
+      setTimeout(() => {
+        setActiveIndex(null); // Collapse
+        setHeaderShrunk(false);
+      }, 150); // Slight delay for UX smoothness
+    }
+  };
+
+  el.addEventListener('scroll', handleScrollToBottom);
+
+  return () => {
+    el.removeEventListener('scroll', handleScrollToBottom);
+  };
+}, [activeIndex]);
+
+
   // Variables for mobile scroll override
   let lastY = 0; 
 
@@ -163,6 +194,7 @@ useEffect(() => {
         {accordionData.map((item, index) => {
           const isActive = activeIndex === item.id;
           return (
+            <FadeInOnScroll>
             <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
               <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
                 <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
@@ -179,22 +211,22 @@ useEffect(() => {
                       <div className={styles.projectInfo}>
                         <div className={styles.infoRow}>
                           <span className={styles.infoLabel}>Client</span>
-                          <span className={styles.infoValue}>{item.heading}</span>
+                          <span className={styles.infoValue}>{item.client}</span>
                         </div>
                         <div className={styles.infoRow}>
                           <span className={styles.infoLabel}>Year</span>
-                          <span className={styles.infoValue}>2023</span>
+                          <span className={styles.infoValue}>{item.date}</span>
                         </div>
                         <div className={styles.infoRow}>
                           <span className={styles.infoLabel}>Role</span>
-                          <span className={styles.infoValue}>Design & Dev</span>
+                          <span className={styles.infoValue}>{item.role}</span>
                         </div>
                       </div>
                     </div>
 
                     <div className={styles.projectLinks}>
-                      <a href="#" className={styles.projectButton} style={{color: item.color}}>Live Demo ↗</a>
-                      <a href="#" className={styles.projectButton}>See on GitHub 🐙</a>
+                      <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{color: item.color}}>Live Demo ↗</a>
+                      <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton}>See the process 🐙</a>
                     </div>
 
                   </div>
@@ -214,6 +246,7 @@ useEffect(() => {
                 </div>
               </div>
             </div>
+            </FadeInOnScroll>
           );
         })}
       </div>

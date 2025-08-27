@@ -126,12 +126,10 @@ const VallartaBnb = () => {
 
       {/* Footer with a closing statement */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={400}>
           <p className={styles.note}>
             Built to empower local hosts — not platforms
             <span className={styles.dot}>.</span>
           </p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );

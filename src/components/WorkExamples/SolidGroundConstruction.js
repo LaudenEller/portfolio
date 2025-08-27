@@ -125,12 +125,10 @@ const SolidGroundConstruction = () => {
 
       {/* Footer with closing note */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={400}>
           <p className={styles.note}>
             From spreadsheets to streamlined estimates
             <span className={styles.dot}>.</span>
           </p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );

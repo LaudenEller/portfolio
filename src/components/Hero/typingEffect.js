@@ -32,6 +32,9 @@ const TypingEffectMultiLine = ({
         i === 0 ? 0 : `+=${lineDelay / 1000}`
       );
     });
+    return () => {
+      tl.kill();
+    };
   }, [lines, speed, lineDelay, initialDelay]);
 
   return (

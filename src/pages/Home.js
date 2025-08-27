@@ -10,12 +10,37 @@ import Projects from '../components/WorkExamples/Projects';
 // import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
 import WorkExamplesTest from '../components/WorkExamples/WorkExamplesTest';
 import HorizontalLoopWithControls from '../components/WorkExamples/WorkExamplesTest2';
+import { useRef, useEffect } from 'react';
+import { useAboutContext } from '../contexts/AboutContext';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // This is where the different sections are loaded onto the home page in the right order
 const Home = () => {
+  const heroRef = useRef(null);
+  const { setShowAbout } = useAboutContext();
+  
+useEffect(() => {
+    if (!heroRef.current) return;
+
+    const trigger = ScrollTrigger.create({
+      trigger: heroRef.current,
+      start: 'top top',
+      end: 'bottom top',
+      onLeave: () => setShowAbout(false),
+      onLeaveBack: () => setShowAbout(false),
+      markers: false, // Turn to true for debugging
+    });
+
+    return () => trigger.kill(); // cleanup
+  }, [setShowAbout]);
+
+
   return (
     <div>
-      <section id="hero">
+      <section 
+      ref={heroRef}
+      id="nav1">
         <Hero />
       </section>
 
@@ -32,11 +57,11 @@ const Home = () => {
       </section> */}
       
 
-      <section id="projectContainer">
+      <section id="nav2">
         <Highlights />
       </section>
 
-        <section id="workTest">
+        <section id="nav3">
         <WorkExamplesTest3 />
         {/* <WorkExamplesTest /> */}
         {/* <HorizontalLoopWithControls /> */}

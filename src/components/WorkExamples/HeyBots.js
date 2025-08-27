@@ -24,9 +24,8 @@ const HeyBots = () => {
       <header className={styles.articleHeading}>
         <FadeInOnScroll>
           <h2 className={styles.articleHeading__title}>
-            HEYBOTS — AI CHATBOTS FOR CUSTOMER SERVICE AND SALES AUTOMATION
+            HEYBOTS — AI CHATBOTS FOR CUSTOMER SERVICE AND SALES AUTOMATION<span className={styles.dot}>.</span>
           </h2>
-          <span className={styles.dot}>.</span>
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
           <span className={styles.articleHeading__byline}>
@@ -39,7 +38,7 @@ const HeyBots = () => {
 
       {/* Main article content with multiple fade-in sections */}
       <div className={`${styles.article__content} ${styles.revealContent}`}>
-        
+        <br></br>
         {/* Section: Where we started */}
         <FadeInOnScroll delay={100}>
           <h3>Where we started</h3>
@@ -131,12 +130,10 @@ const HeyBots = () => {
 
       {/* Article footer with concluding note */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={400}>
           <p className={styles.note}>
             From static FAQ pages to real-time AI conversations
             <span className={styles.dot}>.</span>
           </p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );
