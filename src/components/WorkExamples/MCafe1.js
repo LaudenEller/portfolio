@@ -1,5 +1,5 @@
 import FadeInOnScroll from './FadeInOnScroll';
-import styles from './MCafe1.module.css'; // Make sure this matches the CSS file name
+import styles from './MCafe1.module.css';
 
 /**
  * M Cafe component
@@ -36,7 +36,7 @@ const MCafe1 = () => {
           <span className={styles.articleHeading__byline}><strong>POS + delivery app integration for a ghost kitchen model</strong></span>
         </FadeInOnScroll>
         </header>
-
+        <br></br>
         {/* Main article content with multiple sections animated on scroll */}
         <div className={`${styles.article__content} ${styles.revealContent}`}>
         
@@ -47,10 +47,12 @@ const MCafe1 = () => {
               After 25 years serving natural foods to LA’s Hollywood crowd, M Café got priced out of their brick-and-mortar.
               Pivoting to a modern model, the team launched a <strong>ghost kitchen</strong>—where online orders are everything.
             </p>
+            <br></br>
             <p>
               But their setup was fractured. Orders were lost, margins eaten by fees, and backend systems weren’t talking to
               each other. They needed a fix, fast.
             </p>
+            <br></br>
             <blockquote>“Every order mattered, and they were losing them daily.”</blockquote>
             <p>📸 [Insert: Screenshot of broken POS/tablet stack or delivery dashboard]</p>
           </FadeInOnScroll>
@@ -62,10 +64,12 @@ const MCafe1 = () => {
               The project kicked off with a deep dive into delivery app integrations. I reviewed and compared over a dozen
               platforms—from Otter to Chowly to native APIs—looking for the smartest way to unify their backend.
             </p>
+            <br></br>
             <p>
               Ultimately, I identified an underused feature in their current POS system, <strong>Revel</strong>, that could
               connect directly to DoorDash Drive and reduce third-party fees.
             </p>
+            <br></br>
             <blockquote>“Speed to market was critical. We didn’t need more tools—we needed smarter ones.”</blockquote>
             <p>📸 [Insert: Competitive analysis chart or vendor comparison]</p>
           </FadeInOnScroll>
@@ -74,6 +78,7 @@ const MCafe1 = () => {
           <FadeInOnScroll delay={200}>
             <h3>Building the bridge</h3>
             <p>We migrated the restaurant’s new <strong>Squarespace</strong> website to act as the central hub. From there, I configured:</p>
+            <br></br>
             <ul>
               <li>SEO-optimized landing pages to help convert traffic</li>
               <li>Integrated DoorDash Drive via Revel to handle deliveries</li>
@@ -92,8 +97,11 @@ const MCafe1 = () => {
               Nothing works perfectly on the first try. We spent weeks in customer support limbo troubleshooting bugs between
               Squarespace, Revel, and DoorDash APIs.
             </p>
+            <br></br>
             <p>Payments failed. Tickets got lost. Support pointed fingers.</p>
+            <br></br>
             <blockquote>“Some nights I felt more like a translator than a developer.”</blockquote>
+            <br></br>
             <p>
               But the work paid off—we eventually stabilized the stack with clean data flows and direct, traceable orders.
             </p>
@@ -107,6 +115,7 @@ const MCafe1 = () => {
             While integration was the priority, SEO wasn’t optional. As a ghost kitchen, M Café lives or dies by its online
             visibility.
           </p>
+          <br></br>
           <ul>
             <li>Metadata and page speed</li>
             <li>Keyword targeting for local food searches</li>
@@ -121,6 +130,7 @@ const MCafe1 = () => {
           <p>
             M Café now operates a <strong>fully integrated ghost kitchen</strong> with a lean, connected digital ecosystem:
           </p>
+          <br></br>
           <ul>
             <li>Website orders go directly to the POS, eliminating missed tickets</li>
             <li>Delivery fees dropped significantly by rerouting traffic from third-party apps</li>
@@ -147,9 +157,7 @@ const MCafe1 = () => {
 
       {/* Article footer with closing note */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={450}>
           <p className={styles.note}>A modern tech shift, built for speed and simplicity.</p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );

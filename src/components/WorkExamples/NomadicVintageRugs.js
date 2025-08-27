@@ -27,9 +27,8 @@ const NomadicVintageRugs = () => {
       <header className={styles.articleHeading}>
         <FadeInOnScroll>
           <h2 className={styles.articleHeading__title}>
-            NOMADIC VINTAGE RUGS — SHOPIFY E-COMMERCE SETUP FOR VINTAGE RUG DEALER
+            NOMADIC VINTAGE RUGS — SHOPIFY E-COMMERCE SETUP FOR VINTAGE RUG DEALER<span className={styles.dot}>.</span>
           </h2>
-          <span className={styles.dot}>.</span>
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
           <span className={styles.articleHeading__byline}>
@@ -42,7 +41,7 @@ const NomadicVintageRugs = () => {
 
       {/* Main content sections with fade-in animations */}
       <div className={`${styles.article__content} ${styles.revealContent}`}>
-        
+        <br></br>
         {/* Section: Where we started */}
         <FadeInOnScroll delay={100}>
           <h3>Where we started</h3>
@@ -130,12 +129,10 @@ const NomadicVintageRugs = () => {
 
       {/* Footer with a closing tagline */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={400}>
           <p className={styles.note}>
             Bringing texture and tradition to the web
             <span className={styles.dot}>.</span>
           </p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );

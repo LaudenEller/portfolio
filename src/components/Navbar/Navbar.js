@@ -62,12 +62,6 @@ const scrollToAbout = () => {
           </div>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.stickyLinks} ${styles.navLinks}`}>
             {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
-              // <a
-              //   key={text}
-              //   href={`#nav${index + 1}`}
-              //   className={styles.navLink}
-              // >
-              // For a controlled navigation to about page
                <a
                   key={text}
                   onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
@@ -87,10 +81,10 @@ const scrollToAbout = () => {
               </div>
   </div>
 )}
-    <div 
+    <div
       className={`
-        ${styles.navWrapper} 
-        ${theme === 'dark' ? 'bg-dark' : 'bg-light'} 
+        ${styles.navWrapper}
+        ${theme === 'dark' ? 'bg-dark' : 'bg-light'}
         ${isScrolled ? styles.shrink : ''}
       `}
     >
@@ -152,14 +146,6 @@ const scrollToAbout = () => {
         <div className={styles.navLinksWrapper}>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.navLinks}`}>
             {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
-              // <a
-              //   key={text}
-              //   href={`#nav${index + 1}`}
-              //   className={styles.navLink}
-              // >
-              //   {text}
-              // </a>
-            // For a controlled navigation to about page
                <a
                   key={text}
                   onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click

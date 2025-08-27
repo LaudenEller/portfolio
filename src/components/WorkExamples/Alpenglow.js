@@ -26,8 +26,8 @@ const Alpenglow = () => {
         <FadeInOnScroll>
           <h2 className={styles.articleHeading__title}>
             ALPENGLOW — BRANDING, WORDPRESS, AND AI CHATBOT FOR LUXURY REAL ESTATE
-          </h2>
           <span className={styles.dot}>.</span>
+          </h2>
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
           <span className={styles.articleHeading__byline}>
@@ -40,7 +40,7 @@ const Alpenglow = () => {
 
       {/* Main article content with fade-in animated sections */}
       <div className={`${styles.article__content} ${styles.revealContent}`}>
-        
+        <br></br>
         {/* Section: Where we started */}
         <FadeInOnScroll delay={100}>
           <h3>Where we started</h3>
@@ -136,12 +136,10 @@ const Alpenglow = () => {
 
       {/* Article footer with closing note */}
       <footer className={styles.article__footer}>
-        <FadeInOnScroll delay={400}>
           <p className={styles.note}>
             Luxury, multilingual support, and performance — all in one
             <span className={styles.dot}>.</span>
           </p>
-        </FadeInOnScroll>
       </footer>
     </article>
   );
