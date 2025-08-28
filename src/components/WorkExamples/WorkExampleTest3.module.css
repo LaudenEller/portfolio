@@ -27,6 +27,7 @@
 /* 
   Wrapper to allow smooth visual transitions between opened/closed states.
   Ensures accordion content expands naturally with layout.
+  This wraps individual tabs
 */
 .accordionWrapper {
   display: flex;
@@ -128,13 +129,18 @@
   Useful for long component content within accordion.
 */
 .innerContent {
-  padding: 1rem;
+  padding-top: 1rem;
   height: 60vh;            /* Optional limit for visual consistency */
   overflow-y: auto;             /* Enables vertical scroll */
-  overscroll-behavior: contain; /* Prevents scroll chaining/bounce on mobile */
+  /*overscroll-behavior: contain;*/ /* Prevents scroll chaining/bounce on mobile */
   -webkit-overflow-scrolling: touch;
   pointer-events: auto;
   touch-action: pan-y;
+}
+
+.innerContent::-webkit-scrollbar {
+  width: 0;                  /* vertical */
+  height: 0;                 /* horizontal */
 }
 
 .innerContent:focus {
@@ -316,8 +322,8 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 0.65rem;
-  color: #d1ff52;
-  border-bottom: 1px solid #b1ff27;
+  color: var(--text-color);
+  border-bottom: 1px solid;
   transition: all 0.2s ease;
 }
 

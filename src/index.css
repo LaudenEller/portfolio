@@ -11,6 +11,16 @@ html {
   --bs-primary: var(--primary-color);
   --bs-secondary: var(--secondary-color);
   /* Add any other overrides here */
+
+  /* Hide scrollbars but keep scrolling */
+  overflow: auto;            /* or overflow-y: auto */
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;     /* Firefox */
+}
+
+:root::-webkit-scrollbar {
+  width: 0;                  /* vertical */
+  height: 0;                 /* horizontal */
 }
 
 body {

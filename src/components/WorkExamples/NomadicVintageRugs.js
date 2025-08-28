@@ -20,15 +20,17 @@ import styles from './MCafe1.module.css';
  * @component
  * @returns {JSX.Element} Case study article for Nomadic Vintage Rugs Shopify project
  */
-const NomadicVintageRugs = () => {
+const NomadicVintageRugs = ({color, color2}) => {
   return (
-    <article className={`${styles.article} ${styles.imageRight}`}>
+    <article style={{backgroundColor: color}} className={`${styles.article} ${styles.imageRight}`}>
       {/* Article header with title and byline, fading in on scroll */}
       <header className={styles.articleHeading}>
         <FadeInOnScroll>
+          <span style={{color: color2}} className={styles.date}>SRING 2024</span>
           <h2 className={styles.articleHeading__title}>
-            NOMADIC VINTAGE RUGS — SHOPIFY E-COMMERCE SETUP FOR VINTAGE RUG DEALER<span className={styles.dot}>.</span>
+            CATALOGUING UNIQUE RUGS
           </h2>
+          <div style={{backgroundColor: color2}} className={styles.redBar}></div>
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
           <span className={styles.articleHeading__byline}>
@@ -38,21 +40,21 @@ const NomadicVintageRugs = () => {
           </span>
         </FadeInOnScroll>
       </header>
-
+<br></br>
       {/* Main content sections with fade-in animations */}
       <div className={`${styles.article__content} ${styles.revealContent}`}>
-        <br></br>
         {/* Section: Where we started */}
         <FadeInOnScroll delay={100}>
-          <h3>Where we started</h3>
           <p>📍 <strong>Client:</strong> Nomadic Vintage Rugs</p>
           <p>
             A vintage rug dealer in Portland wanted to expand beyond the local storefront and build a stronger connection
             with their growing client base—without losing the personal, tactile feel their customers loved.
           </p>
+          <br></br>
           <p>
             Their goal was a seamless online shopping experience that reflected the texture, story, and tradition behind each rug.
           </p>
+          <br></br>
           <blockquote>“We needed to bring the warmth of a rug store into the digital world.”</blockquote>
           <p>📸 [Insert: Photo of physical store or vintage rugs]</p>
         </FadeInOnScroll>
@@ -65,11 +67,12 @@ const NomadicVintageRugs = () => {
             and ease of maintenance. Shopify offered a strong foundation to scale online sales while keeping customer
             relationships close.
           </p>
+          <br></br>
           <p>
             Digitizing the inventory posed a unique challenge due to the one-of-a-kind nature of each rug, requiring
             consistent, high-quality photography to showcase details.
           </p>
-          <blockquote>“Capturing texture and color accurately was non-negotiable.”</blockquote>
+          <br></br>
           <p>📸 [Insert: Sample photography guide or product photo setup]</p>
         </FadeInOnScroll>
 
@@ -85,6 +88,7 @@ const NomadicVintageRugs = () => {
             <li>Set up Shopify’s POS and CRM to unify online and in-store customer data</li>
             <li>Ensured the site maintained a personal, boutique feel despite scaling digitally</li>
           </ul>
+          <br></br>
           <p>📸 [Insert: Screenshot of Shopify admin or product page]</p>
         </FadeInOnScroll>
 
@@ -95,6 +99,7 @@ const NomadicVintageRugs = () => {
             Because each rug is unique, traditional inventory management systems weren’t sufficient. We needed a process
             flexible enough to handle one-off items while remaining searchable and SEO-friendly.
           </p>
+          <br></br>
           <blockquote>“One size doesn’t fit all—especially for vintage treasures.”</blockquote>
           <p>📸 [Insert: Inventory management interface or SEO report]</p>
         </FadeInOnScroll>
@@ -112,7 +117,7 @@ const NomadicVintageRugs = () => {
             <li>Unified customer data from both online and physical stores</li>
             <li>Scalable platform ready to support growing demand</li>
           </ul>
-          <blockquote>“Bringing texture and tradition to the web, one rug at a time.”</blockquote>
+          <br></br>
           <p>📸 [Insert: Final website homepage or product gallery]</p>
         </FadeInOnScroll>
 

@@ -20,19 +20,19 @@ import styles from './MCafe1.module.css';
  * @returns {JSX.Element} The ECigMasters case study article
  */
 
-const MCafe1 = () => {
+const MCafe1 = ({color, color2,}) => {
   return (
-    <article className={`${styles.article} ${styles.imageRight}`}>
+    <article style={{backgroundColor: color}} className={`${styles.article} ${styles.imageRight}`}>
 
       {/* Article header with animated title and byline */}
       <header className={styles.articleHeading}>
         <FadeInOnScroll>
-          <span className={styles.date}>MARCH - AUGUST 2025</span>
+          <span style={{color: color2}} className={styles.date}>MARCH - AUGUST 2025</span>
           <h2 className={styles.articleHeading__title}>
             M CAFE - ONLINE 
           </h2>
           <h2>ORDERING</h2>
-            <div className={styles.redBar}></div>
+            <div style={{backgroundColor: color2}} className={styles.redBar}></div>
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
           <span className={styles.articleHeading__byline}><strong>New website with delivery app integration for a ghost kitchen model</strong></span>
