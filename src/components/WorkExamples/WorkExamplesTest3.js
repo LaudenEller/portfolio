@@ -15,13 +15,13 @@ import FadeInOnScroll from './FadeInOnScroll';
 // Accordion tab content: heading, image, summary, and corresponding component
 const accordionData = [
   // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
-  { id: 0, client: 'M Cafe', heading: 'Takeout the fees', color: 'blue', image: '/assets/workImages/example0.png', summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', date: '2025', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <MCafe1 /> },
-  { id: 1, client: 'Nomadic Vintage Rugs', heading: 'Shop-ify unique items', color: 'blue', image: '/assets/workImages/example5.png', summary: 'One-of-a-kind Shopify rug store.', date: '2024', role: 'Backend developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <NomadicVintageRugs /> },
-  { id: 2, client: 'Alpenglow', heading: 'Modern real estate in Mexico', color: 'blue', image: '/assets/workImages/example2.png', summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', date: '2024', role: 'Project manager', demo: 'https://www.google.com', code: 'https://www.github.com', component: <Alpenglow /> },
-  { id: 3, client: 'HeyBots', heading: 'Conversational AI', color: 'blue', image: '/assets/workImages/example3.png', summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', date: '2024', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <HeyBots /> },
-  { id: 4, client: 'E\-Cig Masters', heading: 'Complicated B2B tax rules', color: 'blue', image: '/assets/workImages/example1.png', summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', date: '2023', role: 'Backend developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <ECigMasters /> },  
-  { id: 5, client: 'VallartaBnb', heading: 'Fee-free booking platform', image: '/assets/workImages/example6.png', summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', date: '2023', role: 'Project manager', demo: 'https://www.google.com', code: 'https://www.github.com', component: <VallartaBnb /> },
-  { id: 6, client: 'Solid Ground Construction', heading: 'Project bids make it or break it', color: 'blue', image: '/assets/workImages/example4.png', summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', date: '2022', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <SolidGroundConstruction /> },
+  { id: 0, client: 'M Cafe', heading: 'Takeout the fees', color: '#FEFFF6', image: '/assets/workImages/example0.png', summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', tech: 'Revel, Squarespace', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <MCafe1 /> },
+  { id: 1, client: 'Nomadic Vintage Rugs', heading: 'Shop-ify unique items', color: 'blue', image: '/assets/workImages/example5.png', summary: 'One-of-a-kind Shopify rug store.', tech: 'Shopify', role: 'Backend developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <NomadicVintageRugs /> },
+  { id: 2, client: 'Alpenglow', heading: 'Modern real estate in Mexico', color: 'blue', image: '/assets/workImages/example2.png', summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', tech: 'Wordpress, MLS Providers', role: 'Project manager', demo: 'https://www.google.com', code: 'https://www.github.com', component: <Alpenglow /> },
+  { id: 3, client: 'HeyBots', heading: 'Conversational AI', color: 'blue', image: '/assets/workImages/example3.png', summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', tech: 'ChatGPT, Kinsta', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <HeyBots /> },
+  { id: 4, client: 'E\-Cig Masters', heading: 'Complicated B2B tax rules', color: 'blue', image: '/assets/workImages/example1.png', summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', tech: 'ManageMore, Wordpress', role: 'Backend developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <ECigMasters /> },  
+  { id: 5, client: 'VallartaBnb', heading: 'Zero-commission bookings', image: '/assets/workImages/example6.png', summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', tech: 'Bubble', role: 'Project manager', demo: 'https://www.google.com', code: 'https://www.github.com', component: <VallartaBnb /> },
+  { id: 6, client: 'Solid Ground Construction', heading: 'No more legal pad bids', color: 'blue', image: '/assets/workImages/example4.png', summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', tech: 'Google Suite', role: 'Full stack developer', demo: 'https://www.google.com', code: 'https://www.github.com', component: <SolidGroundConstruction /> },
 ];
 
 export default function WorkExamplesTest3() {
@@ -199,7 +199,9 @@ useEffect(() => {
               <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
                 <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
                   <div className={styles.tabImageWrapper}>
-                    <div className={styles.imageCardWrapper}>
+                    <div className={styles.imageCardWrapper}
+                    style={{ backgroundColor: item.color} }
+                    >
                     <img src={item.image} alt={item.heading} className={styles.tabImageLarge} />
                     </div>
                   </div>
@@ -214,8 +216,8 @@ useEffect(() => {
                           <span className={styles.infoValue}>{item.client}</span>
                         </div>
                         <div className={styles.infoRow}>
-                          <span className={styles.infoLabel}>Year</span>
-                          <span className={styles.infoValue}>{item.date}</span>
+                          <span className={styles.infoLabel}>Tech</span>
+                          <span className={styles.infoValue}>{item.tech}</span>
                         </div>
                         <div className={styles.infoRow}>
                           <span className={styles.infoLabel}>Role</span>

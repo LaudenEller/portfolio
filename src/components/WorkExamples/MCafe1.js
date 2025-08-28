@@ -27,13 +27,15 @@ const MCafe1 = () => {
       {/* Article header with animated title and byline */}
       <header className={styles.articleHeading}>
         <FadeInOnScroll>
+          <span className={styles.date}>MARCH - AUGUST 2025</span>
           <h2 className={styles.articleHeading__title}>
-            ONLINE ORDERING
-            <span className={styles.dot}>.</span>
+            M CAFE - ONLINE 
           </h2>
+          <h2>ORDERING</h2>
+            <div className={styles.redBar}></div>
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
-          <span className={styles.articleHeading__byline}><strong>POS + delivery app integration for a ghost kitchen model</strong></span>
+          <span className={styles.articleHeading__byline}><strong>New website with delivery app integration for a ghost kitchen model</strong></span>
         </FadeInOnScroll>
         </header>
         <br></br>
@@ -42,19 +44,20 @@ const MCafe1 = () => {
         
           {/* Section: Where We Started */}
           <FadeInOnScroll delay={100}>
-            <h3>Where we started</h3>
+            {/* <h3>Where we started</h3> */}
             <p>
               After 25 years serving natural foods to LA’s Hollywood crowd, M Café got priced out of their brick-and-mortar.
               Pivoting to a modern model, the team launched a <strong>ghost kitchen</strong>—where online orders are everything.
             </p>
             <br></br>
             <p>
-              But their setup was fractured. Orders were lost, margins eaten by fees, and backend systems weren’t talking to
-              each other. They needed a fix, fast.
+              But their set up was ancient with legacy POS software and a basic informative website. 
+              They were dependent on delivery platforms and expensive middleware technology. They needed a fix, fast.
             </p>
             <br></br>
-            <blockquote>“Every order mattered, and they were losing them daily.”</blockquote>
-            <p>📸 [Insert: Screenshot of broken POS/tablet stack or delivery dashboard]</p>
+            <blockquote>“With margins eating more than 30% in fees, our business model needs to change.”</blockquote>
+            <br></br>
+            <p>📸 [Insert: Screenshot of new website]</p>
           </FadeInOnScroll>
 
           {/* Section: Research and Direction */}
@@ -66,19 +69,19 @@ const MCafe1 = () => {
             </p>
             <br></br>
             <p>
-              Ultimately, I identified an underused feature in their current POS system, <strong>Revel</strong>, that could
+              Ultimately, I zero'd in on a brand new feature in their current POS system, <strong>Revel</strong>, that could
               connect directly to DoorDash Drive and reduce third-party fees.
             </p>
             <br></br>
-            <blockquote>“Speed to market was critical. We didn’t need more tools—we needed smarter ones.”</blockquote>
-            <p>📸 [Insert: Competitive analysis chart or vendor comparison]</p>
+            <blockquote>“Speed to market was critical. We didn’t need more tools—we needed cheaper ones.”</blockquote>
+            <br></br>
+            <p>📸 [Insert: screen recording of Milanote board]</p>
           </FadeInOnScroll>
 
           {/* Section: Building The Bridge */}
           <FadeInOnScroll delay={200}>
             <h3>Building the bridge</h3>
             <p>We migrated the restaurant’s new <strong>Squarespace</strong> website to act as the central hub. From there, I configured:</p>
-            <br></br>
             <ul>
               <li>SEO-optimized landing pages to help convert traffic</li>
               <li>Integrated DoorDash Drive via Revel to handle deliveries</li>
@@ -87,6 +90,7 @@ const MCafe1 = () => {
             <p>
               I also ensured the restaurant’s online ordering was fully mobile-responsive and synced across delivery platforms.
             </p>
+            <br></br>
             <p>📸 [Insert: Screenshot of website order page or Revel dashboard]</p>
           </FadeInOnScroll>
 
@@ -94,17 +98,18 @@ const MCafe1 = () => {
           <FadeInOnScroll delay={250}>
             <h3>The ugly middle</h3>
             <p>
-              Nothing works perfectly on the first try. We spent weeks in customer support limbo troubleshooting bugs between
-              Squarespace, Revel, and DoorDash APIs.
+              Nothing works perfectly on the first try. We spent months in customer support limbo troubleshooting bugs between
+              Revel and DoorDash.
             </p>
             <br></br>
-            <p>Payments failed. Tickets got lost. Support pointed fingers.</p>
+            <p>Orders failed. Menus got lost. Support pointed fingers.</p>
             <br></br>
             <blockquote>“Some nights I felt more like a translator than a developer.”</blockquote>
             <br></br>
             <p>
-              But the work paid off—we eventually stabilized the stack with clean data flows and direct, traceable orders.
+              But the work paid off—I eventually stabilized the stack with clean data flows and direct, traceable orders.
             </p>
+            <br></br>
             <p>📸 [Insert: Email thread or backend bug log—redacted]</p>
           </FadeInOnScroll>
 
@@ -115,7 +120,6 @@ const MCafe1 = () => {
             While integration was the priority, SEO wasn’t optional. As a ghost kitchen, M Café lives or dies by its online
             visibility.
           </p>
-          <br></br>
           <ul>
             <li>Metadata and page speed</li>
             <li>Keyword targeting for local food searches</li>
@@ -130,14 +134,14 @@ const MCafe1 = () => {
           <p>
             M Café now operates a <strong>fully integrated ghost kitchen</strong> with a lean, connected digital ecosystem:
           </p>
-          <br></br>
           <ul>
-            <li>Website orders go directly to the POS, eliminating missed tickets</li>
             <li>Delivery fees dropped significantly by rerouting traffic from third-party apps</li>
+            <li>Website orders go directly to the POS, eliminating mutliple KDS tablets</li>
             <li>Online visibility improved with optimized SEO and consistent social linking</li>
             <li>The owners regained <strong>control over their customer experience</strong>—and margins</li>
           </ul>
           <blockquote>“The tech works. The team’s breathing easier. And customers get their food faster.”</blockquote>
+          <br></br>
           <p>📸 [Insert: final screenshot of full flow—website to delivery confirmation]</p>
           </FadeInOnScroll>
 

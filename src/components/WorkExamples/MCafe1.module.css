@@ -1,9 +1,9 @@
 .article {
   max-width: 768px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  padding: 1rem 1rem;
   color: #1a1a1a;
-  background-color: #ffffff;
+  background-color: #FEFFF6;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.7;
 }
@@ -31,6 +31,23 @@
 
 .dot {
   color: #f24e1e; /* signature accent dot */
+}
+
+.date {
+color: #F24E1E;
+font-size: 0.5rem;
+font-style: normal;
+font-weight: 700;
+letter-spacing: 1.313px;
+text-transform: uppercase;
+}
+
+.redBar {
+  width: 7%;
+  height: 1.5px;
+  background-color: #f24e1e;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .article__content {
