@@ -18,16 +18,18 @@ import styles from './MCafe1.module.css'; // Reusing the same module CSS file as
  * @component
  * @returns {JSX.Element} The ECigMasters case study article
  */
-const ECigMasters = () => {
+const ECigMasters = ({ color, color2 }) => {
   return (
-    <article className={`${styles.article} ${styles.imageRight}`}>
+    <article className={`${styles.article} ${styles.imageRight}`} style={{ backgroundColor: color }}>
       
       {/* Article header with animated title and byline */}
       <header className={styles.articleHeading}>
         <FadeInOnScroll>
+          <div className={styles.seasonLabel}>FALL 2023</div>
             <h2 className={styles.articleHeading__title}>E-CIG MASTERS — WHOLESALE E-COMMERCE WITH COMPLIANCE BUILT-IN
               <span className={styles.dot}>.</span>
             </h2>
+            <div className={styles.titleRule} style={{ backgroundColor: color2 }} />
         </FadeInOnScroll>
         <FadeInOnScroll delay={50}>
           <span className={styles.articleHeading__byline}><strong>Inventory sync, regulation-aware tax setup, and mobile purchasing for a fast-moving industry</strong></span>
@@ -66,22 +68,24 @@ const ECigMasters = () => {
             with <strong>WooCommerce</strong>, built on <strong>WordPress</strong> for flexibility and plugin support.
           </p>
           <blockquote>“This wasn’t a Shopify situation—it needed backend power and regulatory nuance.”</blockquote>
-          <p>📸 [Insert: Visual comparison of system options or workflow diagram]</p>
+          <p>📸 [Insert: Slideshow comparisons of their logo choices]</p>
+          <p>📸 [Insert: Large versions of the logos they settled on]</p>
         </FadeInOnScroll>
 
         {/* Section: Implementation */}
         <FadeInOnScroll delay={200}>
           <h3>Implementation</h3>
           <p>
-            I configured their e-commerce system to sync inventory from ManageMore into WooCommerce, ensuring that product availability
-            was always accurate—even when SKUs changed weekly.
+            We built a new WordPress website and set up their online catalogue using WooCommerce ensuring live updates and secure order processing. Most of our time was used preparing photos for the web and building their product catalogue inside ManageMore.
           </p>
-          <ul>
-            <li>Tax zones and compliance rules were built to match U.S. regulations per state</li>
-            <li>The store was optimized for mobile-first wholesale buyers placing bulk orders from their phones</li>
-            <li>Product visibility and categorization were made dynamic, so the team could update listings without disrupting the frontend</li>
-          </ul>
-          <p>📸 [Insert: Screenshot of product dashboard or tax rule settings]</p>
+          <p>📸 [Insert: Fire graphic art of nicotine-free vapes]</p>
+          <p>Setting up the backend on Kinsta allowed distribution offices in different locations to update the same inventory and process orders in the correct queue.
+            <br/>
+            <br/>
+            We had to configure a new online store in ManageMore by creating a client database, a product database, a tax and payments database with extensive state-by-state configurations.
+          </p>
+          <p>📸 [Insert: Gumi .jpg and .png comparison examples]</p>
+          <p>We had to prepare all the product images for online and mobile presentations.</p>
         </FadeInOnScroll>
 
         {/* Section: Challenges in the details */}
@@ -99,45 +103,117 @@ const ECigMasters = () => {
           <p>📸 [Insert: Product update interface or compliance workflow]</p>
         </FadeInOnScroll>
 
-        {/* Section: SEO & discoverability */}
+        {/* Section: ManageMore & Kinsta */}
         <FadeInOnScroll delay={300}>
-        <h3>SEO & discoverability</h3>
+        <h3>Architecting the Digital Backbone: ManageMore on Kinsta</h3>
+          <article>
+          <div id="manageMoreKinstaContentBox">
+          <div className='manageMoreKinstaTextBox'>
           <p>
-            Once the site was functional, we focused on visibility. Using keyword-optimized metadata and structured markup, we targeted
-            high-value B2B search queries.
+            Backend Synchronization: Leveraging Kinsta hosting, we enabled distribution offices in different locations to update the same inventory in real-time, ensuring accurate stock levels and efficient order queuing
+          <br/>
+          <br/>
+          ManageMore Configuration: This involved meticulously configuring a new online store within ManageMore, building extensive client, product, and tax databases with granular state-by-state rules.
           </p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: vertical Gimi yellow E-Cigarettes image]</p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: 2000 puff Kiwi Strawberry image]</p>
+          </div>
+          <div className='manageMoreKinstaTextBox'>
           <p>
-            Within weeks, E-Cig Masters ranked in the top 5 Google results for major vape brands + “wholesale” and “B2B”.
+            Visualizing the Product: Preparing thousands of product images for optimal online and mobile presentation, ensuring a visually rich and accurate catalog.
           </p>
-          <blockquote>“They weren’t just online—they were dominant in search.”</blockquote>
-          <p>📸 [Insert: Google search results or traffic analytics graph]</p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: horizontal Gimi yellow e-cigarette image]</p>
+          </div>
+          <div className='manageMoreKinstaTextBox'>
+            <p>Automated Compliance Logic: The most demanding aspect was the intricate configuration of ManageMore's product catalog and the automated tax rules. The sheer volume of constantly changing products, regulations, and tax implications across states demanded continuous updates and meticulous attention.</p>
+          </div>
+          </div>
+          </article>
+        </FadeInOnScroll>
+
+        {/* Section: Product Matrixes */}
+        <FadeInOnScroll delay={350}>
+        <h3>Product Matrix Hell</h3>
+          <article>
+          <div id="manageMoreKinstaContentBox">
+          <div className='manageMoreKinstaTextBox'>
+          <p>
+            Not only did every item come in 45 flavors, the choices changed every couple weeks and they offered several purchase size options for many products - necessitating even more flexibility and likewise careful and accurate cataloguing.
+          </p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: Minute Maid juice matrix image]</p>
+          </div>
+          <div className='manageMoreKinstaTextBox'>
+          <p>
+            Preparing thousands of product images for optimal online and mobile presentation, ensuring a visually rich and accurate catalog.
+          </p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: View mode SVG for nicotine free]</p>
+          </div>
+          <div className='manageMoreKinstaTextBox'>
+            <h6>Flum pebble icy mint</h6>
+            <p>Flavors would become incredibly popular and then never be seen again.</p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: Flum Pebble matrix image]</p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: View mode SVG for mobile]</p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: Swift matrix image]</p>
+          </div>
+          <div className='manageMoreKinstaTextBox'>
+          <p>Product image processing for the constantly rotating flavors was almost a full time job.</p>
+          </div>
+          <div className="manageMoreKinstaImageBox">
+            <p>📸 [Insert: Flum Float 3000 more flavors coming soon image]</p>
+          </div>
+          </div>
+          </article>
         </FadeInOnScroll>
 
         {/* Section: The outcome */}
-        <FadeInOnScroll delay={350}>
-        <h3>The outcome</h3>
+        <FadeInOnScroll delay={400}>
+        <h3>Our Outcomes</h3>
+          <br />
           <p>
-            The team now runs a stable, scalable wholesale store where clients can order confidently from their phones—without needing
-            to leave a voicemail or call for stock checks.
+            <strong>The Transformation:</strong> Six months later, E-Cig Masters operates like a different company. Clients browse live inventory on their phones at 2 AM and place orders that automatically route to the right warehouse with correct tax calculations.
+          <br />
+          <br />
+          <strong>The office went from reactive to proactive.</strong> Instead of fielding calls about out-of-stock items, they're analyzing purchase patterns and planning inventory.
+          <br />
+          <br />
+          <strong>Customer loyalty improved dramatically.</strong> When clients can see exactly what's available and place orders anytime, they stop shopping around.
+          <br />
+          <br />
+          <strong>Compliance became automatic.</strong> The system handles regulatory complexity in the background, reducing legal risk while improving efficiency.
+          <br />
+          <br />
+          <strong>The real win?</strong> E-Cig Masters now collects data on customer behavior, enabling targeted promotions and informed business decisions. They went from guessing what clients wanted to knowing what they'll order next.
           </p>
-          <ul>
-            <li>Online orders replaced manual processing, saving hours per day</li>
-            <li>Inventory now syncs automatically between POS and storefront</li>
-            <li>The site ranks top 5 on Google for multiple vape-related B2B search terms</li>
-            <li>The client now has a reliable, compliant foundation for future growth</li>
-          </ul>
           <blockquote>“Their clients stopped calling. Not because they didn’t care—but because everything just worked.”</blockquote>
           <p>📸 [Insert: Screenshot of live store or mobile checkout experience]</p>
         </FadeInOnScroll>
 
         {/* Section: Tools used */}
-        <FadeInOnScroll delay={400}>
+        <FadeInOnScroll delay={450}>
           <h3>Tools used</h3>
+          <br />
           <ul>
-            <li><strong>ManageMore</strong> – Inventory and backend platform, synced to online store</li>
             <li><strong>WordPress</strong> – CMS used for managing site content and plugins</li>
-            <li><strong>WooCommerce</strong> – E-commerce engine for checkout, tax zones, and product catalog</li>
-            <li><strong>Google Search Console</strong> – Monitoring search visibility, indexing, and keyword performance</li>
+            <li><strong>WooCommerce</strong> – E-commerce engine for checkout, and order management</li>
+            <li><strong>ManageMore</strong> – Inventory and compliance software, synced to online store</li>
+            <li><strong>Kinsta</strong> – Backend server that hosted ManageMore for all their warehouses</li>
+            <li><strong>GSC</strong> – Monitoring search visibility, indexing, and keyword performance</li>
           </ul>
         </FadeInOnScroll>
 
