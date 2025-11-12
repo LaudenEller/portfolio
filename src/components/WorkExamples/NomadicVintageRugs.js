@@ -1,5 +1,5 @@
 import FadeInOnScroll from './FadeInOnScroll';
-import styles from './MCafe1.module.css';
+import styles from './MCafe.module.css';
 
 /**
  * NomadicVintageRugs Component

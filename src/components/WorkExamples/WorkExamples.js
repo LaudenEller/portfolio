@@ -1,271 +1,337 @@
-import React, { useRef, useState, useEffect, useContext, useCallback } from 'react';
-import gsap from 'gsap';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './WorkExamples.module.css';
-import ThemeContext from '../../contexts/ThemeContext';
-import TextOnlyExample from './TextOnlyExample';
-import ImageLeftExample from './ImageLeftExample';
-import ImageRightExample from './ImageRightExample';
 
-// TODO: the gallery and accordion need to be refactored through CSS
+// Imported accordion content components
+import MCafe from './MCafe';
+import ECigMasters from './ECigMasters';
+import Alpenglow from './Alpenglow';
+import HeyBots from './HeyBots';
+import SolidGroundConstruction from './SolidGroundConstruction';
+import NomadicVintageRugs from './NomadicVintageRugs';
+import VallartaBnb from './VallartaBnb';
+import FadeInOnScroll from './FadeInOnScroll';
 
-const WorkExamples = () => {
-  const { theme } = useContext(ThemeContext);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const galleryRef = useRef(null);
-  const galleryItemsRef = useRef([]);
-  const accordionRefs = useRef([]);
+// Accordion tab content: heading, image, summary, and corresponding component
+const accordionData = [
+  // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
+  { id: 0, 
+    client: 'M Cafe', 
+    heading: 'Takeout the fees', 
+    color: '#FEFFF6', 
+    color2: '#FD2B1F', 
+    image: '/assets/workImages/example0.png', 
+    summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', 
+    tech: 'Revel, Squarespace', 
+    role: 'Full stack developer', 
+    demo: 'https://www.google.com', 
+    code: 'https://www.github.com', 
+    component: MCafe },
+  { id: 1, 
+    client: 'Nomadic Vintage Rugs', 
+    heading: 'Shop-ify unique items', 
+    color: '#FFFAF2', 
+    color2: '#17476A', 
+    image: '/assets/workImages/example5.png', 
+    summary: 'One-of-a-kind Shopify rug store.', 
+    tech: 'Shopify', 
+    role: 'Backend developer', 
+    demo: 'https://nomadicvintagerugs.com/', 
+    code: 'https://www.github.com', 
+    component: NomadicVintageRugs  },
+  { id: 2, 
+    client: 'Alpenglow', 
+    heading: 'Modern real estate in Mexico', 
+    color: 'blue', 
+    image: '/assets/workImages/example1.png', 
+    summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', 
+    tech: 'Wordpress, MLS Providers', 
+    role: 'Project manager', 
+    demo: 'https://www.google.com', 
+    code: 'https://www.github.com', 
+    component: Alpenglow },
+  { id: 3, 
+    client: 'HeyBots', 
+    heading: 'Conversational AI', 
+    color: 'blue', 
+    image: '/assets/workImages/example3.png', 
+    summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', 
+    tech: 'ChatGPT, Kinsta', 
+    role: 'Full stack developer', 
+    demo: 'https://www.google.com', 
+    code: 'https://www.github.com', 
+    component: HeyBots },
+  { id: 4, 
+    client: 'E\-Cig Masters', 
+    heading: 'Complicated B2B tax rules', 
+    color: '#5CEBB9',
+    color2: '#F7F3F8',
+    image: '/assets/workImages/example2.png', 
+    summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', 
+    tech: 'ManageMore, Wordpress', 
+    role: 'Backend developer', 
+    demo: 'https://www.google.com', 
+    code: 'https://www.github.com', 
+    component: ECigMasters },  
+  { id: 5, 
+    client: 'VallartaBnb', 
+    heading: 'Zero-commission bookings', 
+    image: '/assets/workImages/example6.png', 
+    summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', 
+    tech: 'Bubble', 
+    role: 'Project manager', 
+    demo: 'https://www.google.com', 
+    code: 'https://www.github.com', 
+    component: VallartaBnb },
+  { id: 6, 
+    client: 'Solid Ground Construction', 
+    heading: 'No more legal pad bids', 
+    color: 'blue', 
+    image: '/assets/workImages/example4.png', 
+    summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', 
+    tech: 'Google Suite', 
+    role: 'Full stack developer', 
+    demo: 'https://www.google.com', 
+    code: 'https://www.github.com', 
+    component: SolidGroundConstruction  },
+];
 
-  let currentIndex = 0;
-  let isHovering = false;
+export default function WorkExamples() {
+  const [activeIndex, setActiveIndex] = useState(null); // Tracks currently opened accordion
+  const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
+  const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
+  const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
+  const [visibleIndexes, setVisibleIndexes] = useState([]);
+  const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
+
+
+  /**
+   * Lock the body scroll when an accordion is open.
+   * Helps prevent background scrolling when inner content is scrollable.
+   */
+useEffect(() => {
+ document.body.style.overflow = activeIndex !== null ? 'hidden' : '';
+    return () => (document.body.style.overflow = '');
+  }, [activeIndex]);
+
+/**
+   * Redirect global scroll events (wheel/touch) to the inner scrollable content.
+   * Helps route mouse or touch scrolls directly to the accordion content
+   */
+useEffect(() => {
+  if (activeIndex === null) return;
+
+  const handleScrollRedirect = (e) => {
+    const el = innerContentRefs.current[activeIndex];
+    if (el) {
+      el.scrollTop += e.deltaY; // Manual scroll
+      e.preventDefault();       // Prevent page scroll
+    }
+  };
+
+  const handleTouchStart = (e) => (lastY = e.touches[0].clientY);
+  const handleTouchMove = (e) => {
+    const el = innerContentRefs.current[activeIndex];
+    if (el) {
+      const deltaY = lastY - e.touches[0].clientY;
+      el.scrollTop += deltaY;
+      lastY = e.touches[0].clientY;
+      e.preventDefault(); // Stop body scroll
+    }
+  };
+
+  document.addEventListener('wheel', handleScrollRedirect, { passive: false });
+  document.addEventListener('touchstart', handleTouchStart, { passive: false });
+  document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+  // Cleanup
+  return () => {
+    document.removeEventListener('wheel', handleScrollRedirect);
+    document.removeEventListener('touchstart', handleTouchStart);
+    document.removeEventListener('touchmove', handleTouchMove);
+  };
+}, [activeIndex]);
+
+/**
+   * Prevent scroll bounce when content is already scrolled to the top or bottom.
+   * Avoids "bleeding" into background scroll, especially on trackpads or mobile.
+   */
+useEffect(() => {
+  if (activeIndex === null) return;
+
+  const timer = setTimeout(() => {
+    const el = innerContentRefs.current[activeIndex];
+    if (!el) return;
+
+    const handleWheel = (e) => {
+      const atTop = el.scrollTop === 0;
+      const atBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight;
+      if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+        e.preventDefault(); // Block scroll pass-through
+      }
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    // Cleanup
+    return () => { el.removeEventListener('wheel', handleWheel); };
+  }, 100); // Delay ensures DOM has updated
+
+  return () => clearTimeout(timer);
+  }, [activeIndex]);
   
-   // Wraps the gallery in an inifinite loop so that as you scroll past either edge, you return to the beginning or end respectively
-   const scrollGallery = useCallback(
-    (direction) => {
-      // Checks to see if gallery ref is rendered before proceeding
-      if (!galleryRef.current) return;
-      const gallery = galleryRef.current;
-      // Saves gallery items to a flat array
-      const items = gsap.utils.toArray(`.${styles.galleryItem}`);
-
-      const itemWidth = items[0].offsetWidth; // Get width of one item
-      const totalWidth = items.length * itemWidth; // Get total width of all items
-
-      // First parameter is the minimum number in the range of values that it wraps back to , second parameter is the array it wraps
-      const wrapIndex = gsap.utils.wrap(0, items.length);
-      // changes current index + or - 1 based on direction, and passes the index to wrapIndex. 
-        // Returns the corresponding index from the wrapped array, so that the direction past current index gets added to the assigned edge
-      currentIndex = wrapIndex(currentIndex + direction);
-
-      // gsap.to(items, {
-      //   duration: 0.5,
-      //   ease: "power2.out",
-      //   x: `+=${direction * items[0].offsetWidth}`,
-      //   modifiers: {
-      //     x: gsap.utils.unitize(x => parseFloat(x) % (items.length * items[0].offsetWidth))
-      //   },
-      // });
-
-
-      // gsap.to(gallery, {
-      //   x: () => -items[currentIndex].offsetLeft, // Moves to the selected item
-      //   duration: 0.5,
-      //   ease: "power2.out",
-      //   modifiers: {
-      //     x: (xValue) => {
-      //       let newX = parseFloat(xValue);
-  
-      //       // Ensure that the items loop seamlessly
-      //       if (newX <= -totalWidth) {
-      //         newX += totalWidth; // Wrap forward
-      //       } else if (newX >= 0) {
-      //         newX -= totalWidth; // Wrap backward
-      //       }
-  
-      //       return `${newX}px`; // GSAP will apply this new position
-      //     },
-      //   },
-      // });
-
-      // gsap.to(gallery, {
-      //   x: () => -items[currentIndex].offsetLeft,
-      //   duration: 0.5,
-      //   ease: 'power2.out',
-      //   modifiers: {
-      //     x: gsap.utils.wrap(-items.length * items[0].offsetWidth, 0),
-      //   },
-      // });
-
-      gsap.to(gallery, {
-        x: -items[currentIndex].offsetLeft * 0.6,
-        duration: 0.5,
-        ease: 'power2.out',
-      });
-
-    },
-    []
-  );
-
-  // const scrollGallery = useCallback(
-  //   (direction) => {
-  //     if (!galleryRef.current) return;
-  //     const gallery = galleryRef.current;
-  //     const items = gsap.utils.toArray(`.${styles.galleryItem}`);
-  //     const itemWidth = items[0].offsetWidth;
-  //     const totalWidth = items.length * itemWidth;
-  
-  //     gsap.to(gallery, {
-  //       duration: 0.5,
-  //       ease: "power2.out",
-  //       x: `-=${direction * itemWidth}`, // Move left or right
-  //       modifiers: {
-  //         x: gsap.utils.unitize((x) => {
-  //           let newX = parseFloat(x);
-  //           if (newX <= -totalWidth) return `${newX + totalWidth}px`; // Loop forward
-  //           if (newX >= 0) return `${newX - totalWidth}px`; // Loop backward
-  //           return `${newX}px`; // Normal movement
-  //         }),
-  //       },
-  //     });
-  //   },
-  //   []
-  // );
-  
-
-  // TODO: Rebuild mouseMove function so that if the cursor is in either side third of the screen, 
-  //        the gallery scrolls in that direction, otherwise it stops scrolling
+// New effect: listen to scroll on innerContent to toggle header shrink
   useEffect(() => {
-    const gallery = galleryRef.current;
-    console.log('galleryRef in useEffect', gallery)
-    // Handles mouse hovering over the gallery
-    const handleMouseMove = (event) => {
-      const { left, width } = gallery.getBoundingClientRect();
-      const mouseX = event.clientX - left;
-      const threshold = 100;
-      let scrollSpeed = 0;
+    if (activeIndex === null) {
+      setHeaderShrunk(false);
+      return;
+    }
+    const el = innerContentRefs.current[activeIndex];
+    if (!el) return;
 
-      if (mouseX < threshold) {
-        scrollSpeed = -0.5;
-      } else if (mouseX > width - threshold) {
-        scrollSpeed = 0.5;
-      }
-
-      if (!isHovering) {
-        isHovering = true;
-        gsap.to(gallery, {
-          x: `+=${scrollSpeed * 100}`, // Adjust for smooth scroll
-          duration: 0.3,
-          ease: 'power2.out',
-          repeat: -1,
-        });
+    const onScroll = () => {
+      if (el.scrollTop > 0) {
+        setHeaderShrunk(true);
+      } else {
+        setHeaderShrunk(false);
       }
     };
 
-    const stopHoverScroll = () => {
-      isHovering = false;
-      gsap.killTweensOf(gallery);
-    };
+    el.addEventListener('scroll', onScroll);
 
-    gallery.addEventListener('mousemove', handleMouseMove);
-    gallery.addEventListener('mouseleave', stopHoverScroll);
+    // Init check
+    onScroll();
 
     return () => {
-      gallery.removeEventListener('mousemove', handleMouseMove);
-      gallery.removeEventListener('mouseleave', stopHoverScroll);
+      el.removeEventListener('scroll', onScroll);
+      setHeaderShrunk(false);
     };
-  }, []);
+  }, [activeIndex]);
 
-  const handleGalleryItemClick = (index) => {
+  // Collapse the accordion when the user scrolls to the bottom
+useEffect(() => {
+  if (activeIndex === null) return;
+
+  const el = innerContentRefs.current[activeIndex];
+  if (!el) return;
+
+  const handleScrollToBottom = () => {
+    const tolerance = 5; // buffer in pixels
+    const scrolledToBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - tolerance;
+
+    if (scrolledToBottom) {
+      setTimeout(() => {
+        setActiveIndex(null); // Collapse
+        setHeaderShrunk(false);
+      }, 250); // Slight delay for UX smoothness
+    
+    // TODO: Reset section scroll to top after collapsing
+    
+    }
+  };
+
+  el.addEventListener('scroll', handleScrollToBottom);
+
+  return () => {
+    el.removeEventListener('scroll', handleScrollToBottom);
+  };
+}, [activeIndex]);
+
+
+  // Variables for mobile scroll override
+  let lastY = 0; 
+
+  /**
+  * Handles user clicking on an accordion tab.
+  * Scrolls to the tab, then expands it and sets focus on content for keyboard access.
+  */
+  const handleAccordionClick = (index) => {
     if (activeIndex === index) {
-      closeAccordion(index);
+      setActiveIndex(null); // Collapse if already open
+       setHeaderShrunk(false);
     } else {
-      openAccordion(index);
+      wrapperRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
+      // Delay state update to give scroll time to complete
+      setTimeout(() => {
+        setActiveIndex(index);
+        setHeaderShrunk(false);
+        // After expansion, set focus on inner content for accessibility
+        setTimeout(() => { innerContentRefs.current[index]?.focus(); }, 50);
+      }, 200); // Delay to allow DOM to update
     }
   };
-
-  const openAccordion = (index) => {
-    setActiveIndex(index);
-    const galleryItem = galleryItemsRef.current[index];
-    gsap.to(galleryItem, { scale: 1.5, x: 0, duration: 0.25 });
-    galleryItemsRef.current.forEach((item, i) => {
-      if (i !== index) {
-        gsap.to(item, { scale: 0.8, opacity: 0.5, duration: 0.5 });
-      }
-    });
-    gsap.to(accordionRefs.current[index], {
-      height: 'auto',
-      opacity: 1,
-      duration: 0.5,
-      ease: 'power3.out',
-    });
-  };
-
-  const closeAccordion = () => {
-    setActiveIndex(null);
-    accordionRefs.current.forEach((ref) => {
-      gsap.to(ref, { height: 0, opacity: 0, duration: 0.5, ease: 'power3.in' });
-    });
-    galleryItemsRef.current.forEach((item) => {
-      gsap.to(item, { scale: 1, opacity: 1, duration: 0.5 });
-    });
-  };
-
-  const renderAccordionContent = (index) => {
-    if (activeIndex === index) {
-      switch (index) {
-        case 0:
-          return <TextOnlyExample />;
-        case 1:
-          return <ImageLeftExample />;
-        case 2:
-          return <ImageRightExample />;
-        case 3:
-          return <TextOnlyExample />;
-        case 4:
-          return <ImageLeftExample />;
-        case 5:
-          return <ImageRightExample />;
-        case 6:
-          return <TextOnlyExample />;
-        case 7:
-          return <ImageLeftExample />;
-        case 8:
-          return <ImageRightExample />;
-        case 9:
-          return <TextOnlyExample />;
-        case 10:
-          return <ImageLeftExample />;
-          case 11:
-          return <ImageRightExample />;
-        default:
-          return null;
-      }
-    }
-  };
-
+  
   return (
-    <div
-      id="work-examples"
-      className={`${styles.workExamples}`}
-    >
-      <div className={styles.galleryWrapper}>
-        {/* <button className={styles.prevButton} onClick={() => scrollGallery(-1)}>←</button> */}
-        <div ref={galleryRef} className={styles.gallery}>
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((index) => (
-            <div
-              key={index}
-              ref={(el) => (galleryItemsRef.current[index] = el)}
-              className={styles.galleryItem}
-              onClick={() => handleGalleryItemClick(index)}
-            >
-              <img src={`assets/workImages/example${index + 1}.png`} alt={`Example ${index + 1}`} />
-              <p>Example {index + 1}</p>
-            </div>
-          ))}
-        </div>
-        {/* <button className={styles.nextButton} onClick={() => scrollGallery(1)}>→</button> */}
-      </div>
+    <div id="work-examples" className={styles.workExamples}>
+      <div className={styles.accordionContainer}>
+        {accordionData.map((item, index) => {
+          const isActive = activeIndex === item.id;
+          return (
+            <FadeInOnScroll>
+            <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
+              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
+                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
+                  <div className={styles.tabImageWrapper}>
+                    <div className={styles.imageCardWrapper}
+                    style={{ backgroundColor: item.color} }
+                    >
+                    <img src={item.image} alt={item.heading} className={styles.tabImageLarge} />
+                    </div>
+                  </div>
+                  <div className={styles.tabDetails}>
+                    <h3 className={styles.tabTitle}>{item.heading}<span style={{color: item.color2}}>.</span></h3>
+                    <p className={styles.tabSummary}>{item.summary}</p>
+                    <div className={styles.projectInfoBlock}>
+                      <h4 className={styles.projectInfoLabel}>PROJECT INFO</h4>
+                      <div className={styles.projectInfo}>
+                        <div className={styles.infoRow}>
+                          <span className={styles.infoLabel}>Client</span>
+                          <span className={styles.infoValue}>{item.client}</span>
+                        </div>
+                        <div className={styles.infoRow}>
+                          <span className={styles.infoLabel}>Tech</span>
+                          <span className={styles.infoValue}>{item.tech}</span>
+                        </div>
+                        <div className={styles.infoRow}>
+                          <span className={styles.infoLabel}>Role</span>
+                          <span className={styles.infoValue}>{item.role}</span>
+                        </div>
+                      </div>
+                    </div>
 
-      {/* Accordion Section */}
-      <div className={styles.accordion}>
-        {[0, 1, 2, 3, 4, 5].map((index) => (
-          <div
-            key={index}
-            className={`${styles.accordionTab} ${activeIndex === index ? styles.active : ''}`}
-            onClick={() => handleGalleryItemClick(index)}
-          >
-            <p>Tab {index + 1}</p>
-            <div
-              ref={(el) => (accordionRefs.current[index] = el)}
-              className={styles.accordionContent}
-              style={{ height: activeIndex === index ? 'auto' : 0 }}
-            >
-              {renderAccordionContent(index)}
+                    <div className={styles.projectLinks}>
+                      <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>
+                      <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>
+                    </div>
+
+                  </div>
+                </div>
+                <div
+                  ref={(el) => (contentRefs.current[index] = el)}
+                  className={styles.accordionContent}
+                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px' }}
+                >
+                  <div
+                    className={styles.innerContent}
+                    ref={(el) => (innerContentRefs.current[index] = el)}
+                    tabIndex={-1}
+                  >
+                    {(() => {
+                      const Comp = item.component;
+                      return (
+                        <Comp
+                        // Pass all props needed in child components
+                        color={item.color}
+                        color2={item.color2}
+                        />
+                      )
+                    })()}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+            </FadeInOnScroll>
+          );
+        })}
       </div>
     </div>
   );
-};
-
-export default WorkExamples;
+}

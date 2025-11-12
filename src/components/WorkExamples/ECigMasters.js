@@ -1,5 +1,5 @@
 import FadeInOnScroll from './FadeInOnScroll';
-import styles from './MCafe1.module.css'; // Reusing the same module CSS file as MCafe1
+import styles from './MCafe.module.css'; // Reusing the same module CSS file as MCafe1
 
 /**
  * ECigMasters component

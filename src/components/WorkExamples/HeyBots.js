@@ -1,5 +1,5 @@
 import FadeInOnScroll from './FadeInOnScroll';
-import styles from './MCafe1.module.css'; // Matches the target layout’s CSS
+import styles from './MCafe.module.css'; // Matches the target layout’s CSS
 
 /**
  * HeyBots Component
