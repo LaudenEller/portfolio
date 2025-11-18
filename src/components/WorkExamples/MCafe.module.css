@@ -22,7 +22,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: blue;
+  color: #a06;
   opacity: 0.7;
 }
 
@@ -206,4 +206,16 @@
   margin: 0;
   color: #2b2b2b;
   font-size: 14px;
+}
+
+/* Optional: subtle fade-in effect for each FadeInOnScroll item */
+.reveal-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-content.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
