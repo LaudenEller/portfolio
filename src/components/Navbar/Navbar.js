@@ -6,6 +6,7 @@ import HeroImage from '../Hero/HeroImage';             // Custom component displ
 import { Logo } from '../Logo/logo';                   // Custom component displaying log o
 import { useNavigate } from 'react-router-dom';                
 import { useAboutContext } from '../../contexts/AboutContext';
+import { useNavShrink } from '../../contexts/NavShrinkContext';
 
 const Navbar = () => {
   const [revealSticky, setRevealSticky] = useState(false);
@@ -18,6 +19,7 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredSide, setHoveredSide] = useState(null);
   const navigate = useNavigate();
+  const { isNavShrinked } = useNavShrink();
 
   // Fade-in effect after 1 second on component mount
   useEffect(() => {
@@ -54,7 +56,7 @@ const scrollToAbout = () => {
    return (
     <>
     {showFloatingNav && (
-  <div className={`${styles.stickyNav} ${revealSticky ? styles.revealSticky : ''}`}>
+  <div className={`${styles.stickyNav} ${revealSticky ? styles.revealSticky : ''} ${isNavShrinked ? styles.shrink : ''}`}>
     {/* Row 3: Nav links */}
         <div className={styles.navLinksWrapper}>
           <div className={styles.navbar_logo}>
@@ -85,7 +87,6 @@ const scrollToAbout = () => {
       className={`
         ${styles.navWrapper}
         ${theme === 'dark' ? 'bg-dark' : 'bg-light'}
-        ${isScrolled ? styles.shrink : ''}
       `}
     >
       <nav className={styles.navBar}>

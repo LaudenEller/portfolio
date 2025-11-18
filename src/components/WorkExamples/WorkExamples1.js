@@ -96,14 +96,13 @@ const accordionData = [
     component: SolidGroundConstruction  },
 ];
 
-export default function WorkExamples() {
+const WorkExamples1 = () => {
   const [activeIndex, setActiveIndex] = useState(null); // Tracks currently opened accordion
   const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
   const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
   const [visibleIndexes, setVisibleIndexes] = useState([]);
-  const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
-  const { setIsNavShrinked } = useNavShrink();
+  const { setShrinkFactor } = useNavShrink(); // Changed from setIsNavShrinked
 
 
   /**
@@ -183,34 +182,36 @@ useEffect(() => {
 // New effect: listen to scroll on innerContent to toggle header shrink
   useEffect(() => {
     if (activeIndex === null) {
-      setHeaderShrunk(false);
-      setIsNavShrinked(false);
+      setShrinkFactor(0);
       return;
     }
     const el = innerContentRefs.current[activeIndex];
     if (!el) return;
 
     const onScroll = () => {
-      if (el.scrollTop > 0) {
-        setHeaderShrunk(true);
-        setIsNavShrinked(true);
-      } else {
-        setHeaderShrunk(false);
-        setIsNavShrinked(false);
-      }
+      const scrollTop = el.scrollTop;
+        const maxScroll = 300; // Distance until full shrink (adjust as needed)
+        
+      const factor = Math.min(scrollTop / maxScroll, 1);
+      
+      // Apply easing for smoother progression
+      const easedFactor = factor < 0.5 
+        ? 2 * factor * factor 
+        : 1 - Math.pow(-2 * factor + 2, 2) / 2;
+      
+      setShrinkFactor(easedFactor);
     };
 
     el.addEventListener('scroll', onScroll);
 
     // Init check
-    onScroll();
+    // onScroll();
 
     return () => {
       el.removeEventListener('scroll', onScroll);
-      setHeaderShrunk(false);
-      setIsNavShrinked(false);
+     setShrinkFactor(0);
     };
-  }, [activeIndex, setIsNavShrinked]);
+  }, [activeIndex, setShrinkFactor]);
 
   // Collapse the accordion when the user scrolls to the bottom
 useEffect(() => {
@@ -226,8 +227,7 @@ useEffect(() => {
     if (scrolledToBottom) {
       setTimeout(() => {
         setActiveIndex(null); // Collapse
-        setHeaderShrunk(false);
-        setIsNavShrinked(false);
+       setShrinkFactor(0); // Reset shrink factor
       }, 250); // Slight delay for UX smoothness
     
     // TODO: Reset section scroll to top after collapsing
@@ -253,13 +253,11 @@ useEffect(() => {
   const handleAccordionClick = (index) => {
     if (activeIndex === index) {
       setActiveIndex(null); // Collapse if already open
-       setHeaderShrunk(false);
     } else {
       wrapperRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
       // Delay state update to give scroll time to complete
       setTimeout(() => {
         setActiveIndex(index);
-        setHeaderShrunk(false);
         // After expansion, set focus on inner content for accessibility
         setTimeout(() => { innerContentRefs.current[index]?.focus(); }, 50);
       }, 200); // Delay to allow DOM to update
@@ -275,7 +273,7 @@ useEffect(() => {
             <FadeInOnScroll>
             <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
               <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
-                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
+                <div className={`${styles.tabLayout}`}>
                   <div className={styles.tabImageWrapper}>
                     <div className={styles.imageCardWrapper}
                     style={{ backgroundColor: item.color} }
@@ -342,3 +340,4 @@ useEffect(() => {
     </div>
   );
 }
+export default WorkExamples1;

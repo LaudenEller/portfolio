@@ -7,13 +7,16 @@ import './styles/sharedStyles.css';
 import './styles/themes.css';
 import './styles/responsive.css';
 import { AboutProvider } from './contexts/AboutContext';
+import { NavShrinkProvider } from './contexts/NavShrinkContext';
 
 function App() {
 
   return (
     <ThemeProvider>
       <AboutProvider>
+        <NavShrinkProvider>
       <ThemedApp />
+      </NavShrinkProvider>
       </AboutProvider>
     </ThemeProvider>
   );
