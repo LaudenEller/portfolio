@@ -18,19 +18,14 @@ const MCafe = ({ color, color2 }) => {
             <div className={styles.seasonLabel}>SPRING 2025</div>
             <div className={styles.titleBlock}>
               <h1 className={styles.title}>
-                M CAFE - ONLINE <br /> ORDERING<span className={styles.titleDot} style={{ color: color2 }}>.</span>
+                M CAFE - ONLINE <br /> ORDERING
+                <span className={styles.titleDot} style={{ color: color2 }}>.</span>
               </h1>
               <div className={styles.titleRule} style={{ backgroundColor: color2 }} />
             </div>
             <p className={styles.subhead}>
               New website with delivery app integration for a ghost kitchen model
             </p>
-          </FadeInOnScroll>
-
-          <FadeInOnScroll delay={60}>
-            <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={heroImg} alt="M Cafe website preview" />
-            </div>
           </FadeInOnScroll>
         </header>
 
@@ -42,6 +37,11 @@ const MCafe = ({ color, color2 }) => {
               out of their brick & mortar. Pivoting to the modern landscape, the owners decided to
               launch a <strong>ghost kitchen</strong> concept — where online orders are everything.
             </p>
+             <FadeInOnScroll delay={60}>
+            <div className={styles.screenshot}>
+              <img className={styles.screenshotImg} src={heroImg} alt="M Cafe website preview" />
+            </div>
+          </FadeInOnScroll>
             <p className={styles.body}>
               But their set up was ancient with legacy POS software and a basic informative website.
               They were dependent on delivery platforms and expensive middleware technology.
@@ -51,7 +51,9 @@ const MCafe = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={60}>
             <blockquote className={styles.pullQuote}>
-              <span className={styles.pullQuoteMark} style={{ color: color2 }}>“</span>
+              <span className={styles.pullQuoteMark} style={{ color: color2 }}>
+                “
+                </span>
               <span className={styles.pullQuoteText}>
                 In the over-crowded market of delivery fulfillment, many restaurants are flailing
                 with twelve software subscriptions and three KDS tablets, losing time and struggling
