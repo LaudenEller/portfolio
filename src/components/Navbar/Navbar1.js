@@ -19,7 +19,7 @@ const Navbar1 = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredSide, setHoveredSide] = useState(null);
   const navigate = useNavigate();
-  // const { isNavShrinked } = useNavShrink();
+  const { isNavShrinked } = useNavShrink();
 const { shrinkFactor } = useNavShrink(); // Get shrink factor
   
 // Fade-in effect after 1 second on component mount

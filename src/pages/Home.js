@@ -2,9 +2,10 @@ import Hero from '../components/Hero/Hero';
 import Highlights from '../components/ProjectHighlights/Highlights';
 // import WorkExamples from '../components/WorkExamples/WorkExamples';
 import { useRef, useEffect } from 'react';
+import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
 import { useAboutContext } from '../contexts/AboutContext';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { WorkExamples1 } from '../components/WorkExamples/WorkExamples1';
+// import { WorkExamples1 } from '../../components/WorkExamples/WorkExamples1';
 
 // This is where the different sections are loaded onto the home page in the right order
 const Home = () => {

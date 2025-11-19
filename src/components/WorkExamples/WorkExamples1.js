@@ -102,7 +102,11 @@ const WorkExamples1 = () => {
   const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
   const [visibleIndexes, setVisibleIndexes] = useState([]);
-  const { setShrinkFactor } = useNavShrink(); // Changed from setIsNavShrinked
+  const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
+  
+
+  //   Saves Shrink Context to local variable
+  const { shrinkFactor, setShrinkFactor } = useNavShrink(); // Get shrinkFactor value
 
 
   /**
@@ -183,29 +187,36 @@ useEffect(() => {
   useEffect(() => {
     if (activeIndex === null) {
       setShrinkFactor(0);
+      setHeaderShrunk(false);
       return;
     }
     const el = innerContentRefs.current[activeIndex];
     if (!el) return;
 
     const onScroll = () => {
-      const scrollTop = el.scrollTop;
-        const maxScroll = 300; // Distance until full shrink (adjust as needed)
+      if (el.scrollTop > 0) {
+        
+        const scrollTop = el.scrollTop;
+        const maxScroll = 50; // Distance until full shrink (adjust as needed)
         
       const factor = Math.min(scrollTop / maxScroll, 1);
       
       // Apply easing for smoother progression
-      const easedFactor = factor < 0.5 
+      const easedFactor = factor < 0.1 
         ? 2 * factor * factor 
         : 1 - Math.pow(-2 * factor + 2, 2) / 2;
       
       setShrinkFactor(easedFactor);
+      setHeaderShrunk(true)
+      } else {
+        setHeaderShrunk(false);
+      }
     };
 
     el.addEventListener('scroll', onScroll);
 
     // Init check
-    // onScroll();
+    onScroll();
 
     return () => {
       el.removeEventListener('scroll', onScroll);
@@ -227,10 +238,15 @@ useEffect(() => {
     if (scrolledToBottom) {
       setTimeout(() => {
         setActiveIndex(null); // Collapse
+        setHeaderShrunk(false);
        setShrinkFactor(0); // Reset shrink factor
-      }, 250); // Slight delay for UX smoothness
-    
-    // TODO: Reset section scroll to top after collapsing
+      
+    // Reset scroll position to top
+      el.scrollTo({
+        top: wrapperRefs.current[activeIndex].offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }, 850); // Slight delay for UX smoothness
     
     }
   };
@@ -264,6 +280,37 @@ useEffect(() => {
     }
   };
   
+
+  const getAccordionStyles = (isActive) => {
+  if (!isActive) return {};
+  
+  const widthScale = 1 - (shrinkFactor * 0.05);
+  const paddingScale = 1 - (shrinkFactor * 0.1);
+  
+  return {
+    transform: `scale(${widthScale})`,
+    transformOrigin: 'top center',
+    paddingLeft: `${paddingScale * 2}rem`,
+    paddingRight: `${paddingScale * 2}rem`
+  };
+};
+
+  /**
+ * Handles user scrolling into an accordion tab.
+ * Expands width and height as user scrolls away from the top of the tab.
+ */
+// Add this function to calculate expansion styles
+  const getExpansionStyles = (isActive) => {
+    if (!isActive) return {};
+    
+    const expansion = shrinkFactor * 0.2; // 0-20% expansion
+    return {
+      width: `${100 + (expansion * 100)}%`,
+      transform: `translateX(${-expansion * 10}%)`,
+      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
+    };
+  };
+
   return (
     <div id="work-examples" className={styles.workExamples}>
       <div className={styles.accordionContainer}>
@@ -273,7 +320,7 @@ useEffect(() => {
             <FadeInOnScroll>
             <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
               <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
-                <div className={`${styles.tabLayout}`}>
+                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
                   <div className={styles.tabImageWrapper}>
                     <div className={styles.imageCardWrapper}
                     style={{ backgroundColor: item.color} }
@@ -311,8 +358,8 @@ useEffect(() => {
                 </div>
                 <div
                   ref={(el) => (contentRefs.current[index] = el)}
-                  className={styles.accordionContent}
-                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px' }}
+                  className={`${styles.accordionContent} ${isActive ? styles.expanding : ''}`}
+                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px', ...getExpansionStyles(isActive) }}
                 >
                   <div
                     className={styles.innerContent}
