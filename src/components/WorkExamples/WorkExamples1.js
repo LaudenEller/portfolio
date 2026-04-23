@@ -10,6 +10,7 @@ import SolidGroundConstruction from './SolidGroundConstruction';
 import NomadicVintageRugs from './NomadicVintageRugs';
 import VallartaBnb from './VallartaBnb';
 import FadeInOnScroll from './FadeInOnScroll';
+import { useNavShrink } from '../../contexts/NavShrinkContext';
 
 // Accordion tab content: heading, image, summary, and corresponding component
 const accordionData = [
@@ -95,13 +96,17 @@ const accordionData = [
     component: SolidGroundConstruction  },
 ];
 
-export default function WorkExamples() {
+const WorkExamples1 = () => {
   const [activeIndex, setActiveIndex] = useState(null); // Tracks currently opened accordion
   const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
   const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
   const [visibleIndexes, setVisibleIndexes] = useState([]);
   const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
+  
+
+  //   Saves Shrink Context to local variable
+  const { shrinkFactor, setShrinkFactor } = useNavShrink(); // Get shrinkFactor value
 
 
   /**
@@ -181,6 +186,7 @@ useEffect(() => {
 // New effect: listen to scroll on innerContent to toggle header shrink
   useEffect(() => {
     if (activeIndex === null) {
+      setShrinkFactor(0);
       setHeaderShrunk(false);
       return;
     }
@@ -189,7 +195,19 @@ useEffect(() => {
 
     const onScroll = () => {
       if (el.scrollTop > 0) {
-        setHeaderShrunk(true);
+        
+        const scrollTop = el.scrollTop;
+        const maxScroll = 50; // Distance until full shrink (adjust as needed)
+        
+      const factor = Math.min(scrollTop / maxScroll, 1);
+      
+      // Apply easing for smoother progression
+      const easedFactor = factor < 0.1 
+        ? 2 * factor * factor 
+        : 1 - Math.pow(-2 * factor + 2, 2) / 2;
+      
+      setShrinkFactor(easedFactor);
+      setHeaderShrunk(true)
       } else {
         setHeaderShrunk(false);
       }
@@ -202,9 +220,9 @@ useEffect(() => {
 
     return () => {
       el.removeEventListener('scroll', onScroll);
-      setHeaderShrunk(false);
+     setShrinkFactor(0);
     };
-  }, [activeIndex]);
+  }, [activeIndex, setShrinkFactor]);
 
   // Collapse the accordion when the user scrolls to the bottom
 useEffect(() => {
@@ -221,9 +239,14 @@ useEffect(() => {
       setTimeout(() => {
         setActiveIndex(null); // Collapse
         setHeaderShrunk(false);
-      }, 250); // Slight delay for UX smoothness
-    
-    // TODO: Reset section scroll to top after collapsing
+       setShrinkFactor(0); // Reset shrink factor
+      
+    // Reset scroll position to top
+      el.scrollTo({
+        top: wrapperRefs.current[activeIndex].offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }, 850); // Slight delay for UX smoothness
     
     }
   };
@@ -246,19 +269,49 @@ useEffect(() => {
   const handleAccordionClick = (index) => {
     if (activeIndex === index) {
       setActiveIndex(null); // Collapse if already open
-       setHeaderShrunk(false);
     } else {
       wrapperRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
       // Delay state update to give scroll time to complete
       setTimeout(() => {
         setActiveIndex(index);
-        setHeaderShrunk(false);
         // After expansion, set focus on inner content for accessibility
         setTimeout(() => { innerContentRefs.current[index]?.focus(); }, 50);
       }, 200); // Delay to allow DOM to update
     }
   };
   
+
+  // THIS IS MEANT TO PLACE THE EXPANDED ACCORDION TAB ON SCROLL SO IT TAKES UP MORE OF THE SCREEN
+//   const getAccordionStyles = (isActive) => {
+//   if (!isActive) return {};
+  
+//   const widthScale = 1 - (shrinkFactor * 0.05);
+//   const paddingScale = 1 - (shrinkFactor * 0.1);
+  
+//   return {
+//     transform: `scale(${widthScale})`,
+//     transformOrigin: 'top center',
+//     paddingLeft: `${paddingScale * 2}rem`,
+//     paddingRight: `${paddingScale * 2}rem`
+//   };
+// };
+
+  /**
+ * Handles user scrolling into an accordion tab.
+ * Expands width and height of inner accordion content as user scrolls away from the top of the tab.
+ */
+// Add this function to calculate expansion styles
+  const getExpansionStyles = (isActive) => {
+    if (!isActive) return {};
+    
+    const expansion = shrinkFactor * 0.2; // 0-20% expansion
+    return {
+      width: `${100 + (expansion * 100)}%`,
+      transform: `translateX(${-expansion * 10}%)`,
+      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
+    };
+  };
+
   return (
     <div id="work-examples" className={styles.workExamples}>
       <div className={styles.accordionContainer}>
@@ -306,8 +359,8 @@ useEffect(() => {
                 </div>
                 <div
                   ref={(el) => (contentRefs.current[index] = el)}
-                  className={styles.accordionContent}
-                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px' }}
+                  className={`${styles.accordionContent} ${isActive ? styles.expanding : ''}`}
+                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px', ...getExpansionStyles(isActive) }}
                 >
                   <div
                     className={styles.innerContent}
@@ -335,3 +388,4 @@ useEffect(() => {
     </div>
   );
 }
+export default WorkExamples1;

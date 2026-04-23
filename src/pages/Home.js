@@ -1,7 +1,7 @@
 import Hero from '../components/Hero/Hero';
 import Highlights from '../components/ProjectHighlights/Highlights';
-import WorkExamples from '../components/WorkExamples/WorkExamples';
 import { useRef, useEffect } from 'react';
+import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
 import { useAboutContext } from '../contexts/AboutContext';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -40,7 +40,7 @@ useEffect(() => {
       </section>
 
         <section id="nav3">
-        <WorkExamples />
+        <WorkExamples1 />
         </section>
       
     </div>
