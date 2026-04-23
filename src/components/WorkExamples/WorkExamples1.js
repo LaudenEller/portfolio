@@ -281,23 +281,24 @@ useEffect(() => {
   };
   
 
-  const getAccordionStyles = (isActive) => {
-  if (!isActive) return {};
+  // THIS IS MEANT TO PLACE THE EXPANDED ACCORDION TAB ON SCROLL SO IT TAKES UP MORE OF THE SCREEN
+//   const getAccordionStyles = (isActive) => {
+//   if (!isActive) return {};
   
-  const widthScale = 1 - (shrinkFactor * 0.05);
-  const paddingScale = 1 - (shrinkFactor * 0.1);
+//   const widthScale = 1 - (shrinkFactor * 0.05);
+//   const paddingScale = 1 - (shrinkFactor * 0.1);
   
-  return {
-    transform: `scale(${widthScale})`,
-    transformOrigin: 'top center',
-    paddingLeft: `${paddingScale * 2}rem`,
-    paddingRight: `${paddingScale * 2}rem`
-  };
-};
+//   return {
+//     transform: `scale(${widthScale})`,
+//     transformOrigin: 'top center',
+//     paddingLeft: `${paddingScale * 2}rem`,
+//     paddingRight: `${paddingScale * 2}rem`
+//   };
+// };
 
   /**
  * Handles user scrolling into an accordion tab.
- * Expands width and height as user scrolls away from the top of the tab.
+ * Expands width and height of inner accordion content as user scrolls away from the top of the tab.
  */
 // Add this function to calculate expansion styles
   const getExpansionStyles = (isActive) => {

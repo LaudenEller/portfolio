@@ -33,13 +33,13 @@
   display: flex;
   justify-content: center;
   align-items: stretch;
-  transition: 
+  /* transition: 
   margin 0.4s ease,
   transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-  padding 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); */
   scroll-margin-top: 10vh;
   max-width: 70vw;
-  will-change: transform, margin, padding;
+  /* will-change: transform, margin, padding; */
   overflow: visible;
 }
 
@@ -128,9 +128,9 @@
   margin: 0 auto; /* Center the content */
   transform-origin: top center;
   transition: 
-    height 0.4s ease,
-    width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    height 0.1s ease,
+    width 0.1s cubic-bezier(3, 10.56, 10.64, 10),
+    transform 0.1s cubic-bezier(3, 10.56, 10.64, 10);
   will-change: height, width, transform;
   position: relative;
   z-index: 10;
@@ -146,7 +146,7 @@
   Useful for long component content within accordion.
 */
 .innerContent {
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   height: 60vh;
   overflow-y: auto;             /* Enables vertical scroll */
   /*overscroll-behavior: contain;*/ /* Prevents scroll chaining/bounce on mobile */
@@ -218,7 +218,7 @@
 }
 
  .shrinkHeader .tabImageWrapper {
-  transform: scale(0.25);
+  /* transform: scale(0.25); */
 }
 
 /* .shrinkHeader.accordionWrapper {
