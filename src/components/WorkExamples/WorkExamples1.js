@@ -21,6 +21,7 @@ const accordionData = [
     color: '#FEFFF6', 
     color2: '#FD2B1F', 
     image: '/assets/workImages/example0.png', 
+    image2: '/favicon.ico', 
     summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', 
     tech: 'Revel, Squarespace', 
     role: 'Full stack developer', 
@@ -33,6 +34,7 @@ const accordionData = [
     color: '#FFFAF2', 
     color2: '#17476A', 
     image: '/assets/workImages/example5.png', 
+    image2: '/favicon.ico', 
     summary: 'One-of-a-kind Shopify rug store.', 
     tech: 'Shopify', 
     role: 'Backend developer', 
@@ -44,6 +46,7 @@ const accordionData = [
     heading: 'Modern real estate in Mexico', 
     color: 'blue', 
     image: '/assets/workImages/example1.png', 
+    image2: '/favicon.ico', 
     summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', 
     tech: 'Wordpress, MLS Providers', 
     role: 'Project manager', 
@@ -55,6 +58,7 @@ const accordionData = [
     heading: 'Conversational AI', 
     color: 'blue', 
     image: '/assets/workImages/example3.png', 
+    image2: '/favicon.ico', 
     summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', 
     tech: 'ChatGPT, Kinsta', 
     role: 'Full stack developer', 
@@ -67,6 +71,7 @@ const accordionData = [
     color: '#5CEBB9',
     color2: '#F7F3F8',
     image: '/assets/workImages/example2.png', 
+    image2: '/favicon.ico', 
     summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', 
     tech: 'ManageMore, Wordpress', 
     role: 'Backend developer', 
@@ -77,6 +82,7 @@ const accordionData = [
     client: 'VallartaBnb', 
     heading: 'Zero-commission bookings', 
     image: '/assets/workImages/example6.png', 
+    image2: '/favicon.ico', 
     summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', 
     tech: 'Bubble', 
     role: 'Project manager', 
@@ -88,6 +94,7 @@ const accordionData = [
     heading: 'No more legal pad bids', 
     color: 'blue', 
     image: '/assets/workImages/example4.png', 
+    image2: '/favicon.ico', 
     summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', 
     tech: 'Google Suite', 
     role: 'Full stack developer', 
@@ -103,7 +110,6 @@ const WorkExamples1 = () => {
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
   const [visibleIndexes, setVisibleIndexes] = useState([]);
   const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
-  
 
   //   Saves Shrink Context to local variable
   const { shrinkFactor, setShrinkFactor } = useNavShrink(); // Get shrinkFactor value
@@ -323,10 +329,28 @@ useEffect(() => {
               <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
                 <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
                   <div className={styles.tabImageWrapper}>
-                    <div className={styles.imageCardWrapper}
-                    style={{ backgroundColor: item.color} }
+                    <div className={`${styles.imageCardWrapper} ${isActive && headerShrunk ? styles.imageCardWrapperHidden : ''}`}
+                    style={{ 
+                      backgroundColor: item.color, 
+                    } }
                     >
-                    <img src={item.image} alt={item.heading} className={styles.tabImageLarge} />
+                    <img 
+                    src={item.image} 
+                    alt={item.heading} 
+                    className={styles.tabImageLarge} />
+                    </div>
+                    {/* Second image wrapper — fades in on scroll */}
+                    <div
+                    className={`${styles.imageCardWrapper}
+                    ${styles.imageCardWrapper2} ${isActive && headerShrunk ?
+                      styles.imageCardWrapper2Visible : ''}`}
+                    style={{
+                      backgroundColor: item.color }}
+                    >
+                    <img
+                      src={item.image2}
+                      alt={item.heading}
+                      className={styles.tabImageSmall} />
                     </div>
                   </div>
                   <div className={styles.tabDetails}>
