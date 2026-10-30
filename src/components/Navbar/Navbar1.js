@@ -17,6 +17,7 @@ const socialLinks = [
   { label: 'LinkedIn', href: '', icon: '/assets/socialIcons/Li_logo_24x24.png', side: 'Top' },
   { label: 'Instagram', href: '', icon: '/assets/socialIcons/igLogo_bw.png', side: 'Right' },
 ];
+const activeSocialLinks = socialLinks.filter(({ href }) => href);
 
 const navLinks = [
   { label: 'About', href: '#nav1' },
@@ -138,25 +139,27 @@ const scrollToAbout = () => {
               </div>
           </div>
 
-          <div
-            className={`${styles.socialIcons} ${
-              hoveredSide ? styles[`highlight${hoveredSide}`] : ''
-            }`}
-            onMouseLeave={() => setHoveredSide(null)} // Reset on exit
-          >
-            {socialLinks.filter(({ href }) => href).map(({ label, href, icon, side }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              onMouseEnter={() => setHoveredSide(side)}
+          {activeSocialLinks.length > 0 && (
+            <div
+              className={`${styles.socialIcons} ${
+                hoveredSide ? styles[`highlight${hoveredSide}`] : ''
+              }`}
+              onMouseLeave={() => setHoveredSide(null)} // Reset on exit
             >
-              <img src={icon} alt={label} className={styles.iconImage} />
-            </a>
-            ))}
-          </div>
+              {activeSocialLinks.map(({ label, href, icon, side }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                onMouseEnter={() => setHoveredSide(side)}
+              >
+                <img src={icon} alt={label} className={styles.iconImage} />
+              </a>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Row 3: Placeholder */}

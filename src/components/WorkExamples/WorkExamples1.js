@@ -364,8 +364,9 @@ useEffect(() => {
           return (
             <FadeInOnScroll key={item.id}>
             <div className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
-              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(index)}>
-                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
+              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`}>
+                {/* Only the header toggles the card, so taps inside an open article don't collapse it */}
+                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`} onClick={() => handleAccordionClick(index)}>
                   <div className={styles.tabImageWrapper}>
                     <div className={styles.imageCardWrapper}
                     style={{ backgroundColor: item.color} }
