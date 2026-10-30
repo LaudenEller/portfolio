@@ -23,7 +23,7 @@ const accordionData = [
     heading: 'Takeout the fees', 
     color: '#FEFFF6', 
     color2: '#FD2B1F', 
-    image: '/assets/workImages/example0.png', 
+    image: '/assets/workImages/example0.jpg', 
     summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', 
     tech: 'Revel, Squarespace', 
     role: 'Full stack developer', 
