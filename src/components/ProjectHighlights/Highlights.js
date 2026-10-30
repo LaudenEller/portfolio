@@ -4,8 +4,6 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
-import _gsap from 'gsap/gsap-core';
-import { getPerceivedPositionWithGSAP } from '../../utils/PositionUtils';
 import ThemeContext from '../../contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,11 +27,8 @@ const Highlights = () => {
   
   const handlePopUp = (e, content) => {
     const parent = e.target.offsetParent; // Get the transformed parent
-    const parentY = _gsap.getProperty(parent, "y") || 0; // GSAP y transform
-    const position = getPerceivedPositionWithGSAP(e.target, scrollBoxRef.current);
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
-    const t = barRef.bottom;
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
     const l = 500;
 console.log('client top', top)
@@ -173,8 +168,8 @@ console.log('l', l)
 <div className={styles.projectContent}>
       {/* Image Container */}
       <div className={styles.imageContainer}>
-        <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.firstProjectImage} />
-        <img ref={secondImageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.hiddenImage} />
+        <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="ESG ecosystem map: framework developers, standard setters, assurers, data providers and initiatives" className={styles.firstProjectImage} />
+        <img ref={secondImageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="" className={styles.hiddenImage} />
       </div>
 
       {/* Right Side - Scroll Box with Text and Buttons */}

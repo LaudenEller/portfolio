@@ -62,7 +62,7 @@ const accordionData = [
     code: 'https://www.github.com', 
     component: HeyBots },
   { id: 4, 
-    client: 'E\-Cig Masters', 
+    client: 'E-Cig Masters', 
     heading: 'Complicated B2B tax rules', 
     color: '#5CEBB9',
     color2: '#F7F3F8',
@@ -101,7 +101,6 @@ const WorkExamples1 = () => {
   const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
   const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
-  const [visibleIndexes, setVisibleIndexes] = useState([]);
   const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
   
 
@@ -124,6 +123,8 @@ useEffect(() => {
    */
 useEffect(() => {
   if (activeIndex === null) return;
+
+  let lastY = 0; // Last touch position, for the mobile scroll override
 
   const handleScrollRedirect = (e) => {
     const el = innerContentRefs.current[activeIndex];
@@ -256,11 +257,9 @@ useEffect(() => {
   return () => {
     el.removeEventListener('scroll', handleScrollToBottom);
   };
-}, [activeIndex]);
+}, [activeIndex, setShrinkFactor]);
 
 
-  // Variables for mobile scroll override
-  let lastY = 0; 
 
   /**
   * Handles user clicking on an accordion tab.

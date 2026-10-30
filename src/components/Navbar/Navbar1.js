@@ -14,12 +14,11 @@ const Navbar1 = () => {
   // Access the theme and toggle function from context
   const { toggleTheme, theme } = useContext(ThemeContext);
   // Track scroll state to shrink navbar on scroll
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled] = useState(false);
   // Used to delay visibility for fade-in effect
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredSide, setHoveredSide] = useState(null);
   const navigate = useNavigate();
-  const { isNavShrinked } = useNavShrink();
 const { shrinkFactor } = useNavShrink(); // Get shrink factor
   
 // Fade-in effect after 1 second on component mount
