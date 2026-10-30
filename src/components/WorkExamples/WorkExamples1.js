@@ -112,6 +112,32 @@ const accordionData = [
 
 const publishedCases = accordionData.filter((item) => item.published);
 
+// Phones, touch screens and reduced-motion users get a simple accordion: normal page
+// scrolling, tap to open/close, no scroll redirect, body lock or auto-collapse (run 001, T10).
+const SIMPLE_MODE_QUERY = '(max-width: 768px), (hover: none), (prefers-reduced-motion: reduce)';
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const useMediaQuery = (query) => {
+  const getMatch = () => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false);
+  const [matches, setMatches] = useState(getMatch);
+
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange();
+    // Safari < 14 only supports addListener/removeListener
+    if (mql.addEventListener) mql.addEventListener('change', onChange);
+    else mql.addListener(onChange);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', onChange);
+      else mql.removeListener(onChange);
+    };
+  }, [query]);
+
+  return matches;
+};
+
 const WorkExamples1 = () => {
   const [activeIndex, setActiveIndex] = useState(null); // Tracks currently opened accordion
   const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
@@ -123,22 +149,25 @@ const WorkExamples1 = () => {
   //   Saves Shrink Context to local variable
   const { shrinkFactor, setShrinkFactor } = useNavShrink(); // Get shrinkFactor value
 
+  const simpleMode = useMediaQuery(SIMPLE_MODE_QUERY);
+  const prefersReducedMotion = useMediaQuery(REDUCED_MOTION_QUERY);
+
 
   /**
    * Lock the body scroll when an accordion is open.
    * Helps prevent background scrolling when inner content is scrollable.
    */
 useEffect(() => {
- document.body.style.overflow = activeIndex !== null ? 'hidden' : '';
+ document.body.style.overflow = activeIndex !== null && !simpleMode ? 'hidden' : '';
     return () => (document.body.style.overflow = '');
-  }, [activeIndex]);
+  }, [activeIndex, simpleMode]);
 
 /**
    * Redirect global scroll events (wheel/touch) to the inner scrollable content.
    * Helps route mouse or touch scrolls directly to the accordion content
    */
 useEffect(() => {
-  if (activeIndex === null) return;
+  if (activeIndex === null || simpleMode) return;
 
   let lastY = 0; // Last touch position, for the mobile scroll override
 
@@ -171,14 +200,14 @@ useEffect(() => {
     document.removeEventListener('touchstart', handleTouchStart);
     document.removeEventListener('touchmove', handleTouchMove);
   };
-}, [activeIndex]);
+}, [activeIndex, simpleMode]);
 
 /**
    * Prevent scroll bounce when content is already scrolled to the top or bottom.
    * Avoids "bleeding" into background scroll, especially on trackpads or mobile.
    */
 useEffect(() => {
-  if (activeIndex === null) return;
+  if (activeIndex === null || simpleMode) return;
 
   const timer = setTimeout(() => {
     const el = innerContentRefs.current[activeIndex];
@@ -198,11 +227,11 @@ useEffect(() => {
   }, 100); // Delay ensures DOM has updated
 
   return () => clearTimeout(timer);
-  }, [activeIndex]);
+  }, [activeIndex, simpleMode]);
   
 // New effect: listen to scroll on innerContent to toggle header shrink
   useEffect(() => {
-    if (activeIndex === null) {
+    if (activeIndex === null || simpleMode) {
       setShrinkFactor(0);
       setHeaderShrunk(false);
       return;
@@ -239,11 +268,11 @@ useEffect(() => {
       el.removeEventListener('scroll', onScroll);
      setShrinkFactor(0);
     };
-  }, [activeIndex, setShrinkFactor]);
+  }, [activeIndex, simpleMode, setShrinkFactor]);
 
   // Collapse the accordion when the user scrolls to the bottom
 useEffect(() => {
-  if (activeIndex === null) return;
+  if (activeIndex === null || simpleMode) return;
 
   const el = innerContentRefs.current[activeIndex];
   if (!el) return;
@@ -273,7 +302,7 @@ useEffect(() => {
   return () => {
     el.removeEventListener('scroll', handleScrollToBottom);
   };
-}, [activeIndex, setShrinkFactor]);
+}, [activeIndex, simpleMode, setShrinkFactor]);
 
 
 
@@ -285,7 +314,7 @@ useEffect(() => {
     if (activeIndex === index) {
       setActiveIndex(null); // Collapse if already open
     } else {
-      wrapperRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
+      wrapperRefs.current[index]?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
       // Delay state update to give scroll time to complete
       setTimeout(() => {
         setActiveIndex(index);
@@ -377,10 +406,14 @@ useEffect(() => {
                 <div
                   ref={(el) => (contentRefs.current[index] = el)}
                   className={`${styles.accordionContent} ${isActive ? styles.expanding : ''}`}
-                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px', ...getExpansionStyles(isActive) }}
+                  style={{
+                    // Simple mode: open to the article's full height (incl. late-loading images); the page scrolls
+                    height: isActive ? (simpleMode ? 'auto' : `${contentRefs.current[index]?.scrollHeight}px`) : '0px',
+                    ...(simpleMode ? {} : getExpansionStyles(isActive)),
+                  }}
                 >
                   <div
-                    className={styles.innerContent}
+                    className={`${styles.innerContent} ${simpleMode ? styles.innerContentSimple : ''}`}
                     ref={(el) => (innerContentRefs.current[index] = el)}
                     tabIndex={-1}
                   >

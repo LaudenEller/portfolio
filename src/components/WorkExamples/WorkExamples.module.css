@@ -157,6 +157,13 @@
   /* height: 100%; */
 }
 
+/* Simple mode (phones, touch, reduced motion): the article flows in the page instead of
+   scrolling inside a 60vh box. See SIMPLE_MODE_QUERY in WorkExamples1.js. */
+.innerContentSimple {
+  height: auto;
+  overflow: visible;
+}
+
 .innerContent::-webkit-scrollbar {
   width: 0;                  /* vertical */
   height: 0;                 /* horizontal */
