@@ -331,11 +331,11 @@ useEffect(() => {
     <div id="work-examples" className={styles.workExamples}>
       <div className={styles.accordionContainer}>
         {publishedCases.map((item, index) => {
-          const isActive = activeIndex === item.id;
+          const isActive = activeIndex === index;
           return (
-            <FadeInOnScroll>
-            <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
-              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
+            <FadeInOnScroll key={item.id}>
+            <div className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
+              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(index)}>
                 <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
                   <div className={styles.tabImageWrapper}>
                     <div className={styles.imageCardWrapper}
