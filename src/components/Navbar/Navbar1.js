@@ -8,6 +8,16 @@ import { useNavigate } from 'react-router-dom';
 import { useAboutContext } from '../../contexts/AboutContext';
 import { useNavShrink } from '../../contexts/NavShrinkContext';
 
+// Nav links and the section ids they scroll to. Targets are explicit so removing a link
+// never shifts the others. Ai section (#nav4) is planned; add back when it exists:
+// { label: 'Ai', href: '#nav4' },
+const navLinks = [
+  { label: 'About', href: '#nav1' },
+  { label: 'ESG', href: '#nav2' },
+  { label: 'Work', href: '#nav3' },
+  { label: 'Contact', href: '#nav5' },
+];
+
 const Navbar1 = () => {
   const [revealSticky, setRevealSticky] = useState(false);
   const [showFloatingNav, setShowFloatingNav] = useState(false);
@@ -80,14 +90,14 @@ const scrollToAbout = () => {
             <Logo isScrolled={isScrolled} />
           </div>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.stickyLinks} ${styles.navLinks}`}>
-            {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
+            {navLinks.map(({ label, href }) => (
                <a
-                  key={text}
-                  onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
-                  href={text === 'About' ? '#nav1' : `#nav${index + 1}`}  // Handle other links normally
+                  key={label}
+                  onClick={label === 'About' ? scrollToAbout : null} // Scroll to About on click
+                  href={href}
                   className={styles.navLink}
                 >
-                {text}
+                {label}
               </a>
             ))}
           </div>
@@ -163,14 +173,14 @@ const scrollToAbout = () => {
         {/* Row 3: Nav links */}
         <div className={styles.navLinksWrapper}>
           <div className={`${styles.fadeIn} ${isVisible ? styles.hidden : ''} ${styles.navLinks}`}>
-            {['About', 'ESG', 'Work', 'Ai', 'Contact'].map((text, index) => (
+            {navLinks.map(({ label, href }) => (
                <a
-                  key={text}
-                  onClick={text === 'About' ? scrollToAbout : null} // Scroll to About on click
-                  href={text === 'About' ? '#nav1' : `#nav${index + 1}`}  // Handle other links normally
+                  key={label}
+                  onClick={label === 'About' ? scrollToAbout : null} // Scroll to About on click
+                  href={href}
                   className={styles.navLink}
                 >
-                {text}
+                {label}
               </a>
             ))}
           </div>
