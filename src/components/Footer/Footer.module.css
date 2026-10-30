@@ -45,6 +45,8 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none; /* also used on the mailto <a> */
 }
 
 .hireButton:hover {

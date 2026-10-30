@@ -4,6 +4,15 @@ import styles from './Footer.module.css';
 import ContactForm from '../Contact/ContactForm';
 import HeroImage from '../Hero/HeroImage';
 
+// The contact form needs EmailJS keys at build time. Until they're set on the host
+// (run 001, M2-T16), the button opens an email instead of a form that would error.
+const CONTACT_EMAIL = 'lauden@thekiterises.com';
+const emailJsConfigured = Boolean(
+  process.env.REACT_APP_EMAILJS_SERVICE_ID &&
+  process.env.REACT_APP_EMAILJS_TEMPLATE_ID &&
+  process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+);
+
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
   const [showForm, setShowForm] = useState(false);
@@ -28,7 +37,11 @@ const Footer = () => {
                 <p>How can I help you make your business better?</p>
               </div>
             </div>
-            <button className={styles.hireButton} onClick={handleClick}>Let's find out.</button>
+            {emailJsConfigured ? (
+              <button className={styles.hireButton} onClick={handleClick}>Let's find out.</button>
+            ) : (
+              <a className={styles.hireButton} href={`mailto:${CONTACT_EMAIL}`}>Let's find out.</a>
+            )}
           </div>
         ) : (
           <ContactForm onCloseForm={handleCloseForm} />
