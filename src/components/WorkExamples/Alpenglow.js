@@ -54,7 +54,7 @@ const Alpenglow = () => {
             global, performed locally, and guided clients seamlessly toward a sale.
           </p>
           <blockquote>“They needed to look like a brand from L.A., not just another listing site in Mexico.”</blockquote>
-          <p>📸 [Insert: Screenshot of typical competitor site vs. Alpenglow homepage]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of typical competitor site vs. Alpenglow homepage */}
         </FadeInOnScroll>
 
         {/* Section: Design and direction */}
@@ -69,7 +69,7 @@ const Alpenglow = () => {
             and clear property calls to action.
           </p>
           <blockquote>“Design had to feel premium, but never overwhelming.”</blockquote>
-          <p>📸 [Insert: Moodboard or homepage mockup]</p>
+          {/* 📸 Media to add (M2-T13): Moodboard or homepage mockup */}
         </FadeInOnScroll>
 
         {/* Section: Multilingual AI sales support */}
@@ -85,7 +85,7 @@ const Alpenglow = () => {
             without waiting for a business-hour reply.
           </p>
           <blockquote>“It’s like having a real estate agent who never sleeps—and speaks 100 languages.”</blockquote>
-          <p>📸 [Insert: Screenshot of chatbot UI on WhatsApp and/or training flow]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of chatbot UI on WhatsApp and/or training flow */}
         </FadeInOnScroll>
 
         {/* Section: Engineering for the backend */}
@@ -101,7 +101,7 @@ const Alpenglow = () => {
             breaking the user experience or performance.
           </p>
           <blockquote>“Most MLS feeds are messy. We made them elegant.”</blockquote>
-          <p>📸 [Insert: Admin view of listings or database mapping diagram]</p>
+          {/* 📸 Media to add (M2-T13): Admin view of listings or database mapping diagram */}
         </FadeInOnScroll>
 
         {/* Section: The outcome */}
@@ -118,7 +118,7 @@ const Alpenglow = () => {
             <li>Optimized for SEO, mobile performance, and international traffic</li>
           </ul>
           <blockquote>“Luxury, multilingual support, and performance—built into every click.”</blockquote>
-          <p>📸 [Insert: Final homepage, mobile view, and chatbot in use on WhatsApp]</p>
+          {/* 📸 Media to add (M2-T13): Final homepage, mobile view, and chatbot in use on WhatsApp */}
         </FadeInOnScroll>
 
         {/* Section: Tools used */}

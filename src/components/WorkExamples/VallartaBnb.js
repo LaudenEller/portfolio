@@ -53,7 +53,7 @@ const VallartaBnb = () => {
             popular platforms like Airbnb.
           </p>
           <blockquote>“Local hosts were being sidelined by big platforms—and their margins suffered.”</blockquote>
-          <p>📸 [Insert: Screenshot of multiple listing platforms or fee breakdown]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of multiple listing platforms or fee breakdown */}
         </FadeInOnScroll>
 
         {/* Section: Research and direction */}
@@ -68,7 +68,7 @@ const VallartaBnb = () => {
             VallartaBnb the ability to invite other hosts to list and manage their properties collaboratively from one platform.
           </p>
           <blockquote>“We wanted to empower hosts to reclaim control—without sacrificing reach or convenience.”</blockquote>
-          <p>📸 [Insert: Workflow diagram of Bubble app and Lodgify sync]</p>
+          {/* 📸 Media to add (M2-T13): Workflow diagram of Bubble app and Lodgify sync */}
         </FadeInOnScroll>
 
         {/* Section: Implementation */}
@@ -83,7 +83,7 @@ const VallartaBnb = () => {
             <li>Collaboration features for hosts to manage multiple properties together</li>
             <li>Optimized booking flows focused on trust and ease of use</li>
           </ul>
-          <p>📸 [Insert: Screenshot of Bubble app UI or Lodgify dashboard]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of Bubble app UI or Lodgify dashboard */}
         </FadeInOnScroll>
 
         {/* Section: Challenges */}
@@ -94,7 +94,7 @@ const VallartaBnb = () => {
             ongoing synchronization to prevent double bookings and data inconsistencies.
           </p>
           <blockquote>“We had to keep data flowing smoothly—no matter how many platforms or hosts joined.”</blockquote>
-          <p>📸 [Insert: Example sync error resolution or data mapping schema]</p>
+          {/* 📸 Media to add (M2-T13): Example sync error resolution or data mapping schema */}
         </FadeInOnScroll>
 
         {/* Section: The outcome */}
@@ -110,7 +110,7 @@ const VallartaBnb = () => {
             <li>The app scales to onboard new hosts and properties easily</li>
           </ul>
           <blockquote>“Built to empower local hosts—not platforms.”</blockquote>
-          <p>📸 [Insert: Final app homepage or host collaboration screen]</p>
+          {/* 📸 Media to add (M2-T13): Final app homepage or host collaboration screen */}
         </FadeInOnScroll>
 
         {/* Section: Tools used */}

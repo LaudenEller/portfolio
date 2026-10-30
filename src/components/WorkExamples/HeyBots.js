@@ -52,7 +52,7 @@ const HeyBots = () => {
             immediate support to customers across multiple channels.
           </p>
           <blockquote>“Fast, accurate responses are no longer a luxury—they’re table stakes.”</blockquote>
-          <p>📸 [Insert: Screenshot of traditional FAQ page vs chatbot interaction]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of traditional FAQ page vs chatbot interaction */}
         </FadeInOnScroll>
 
         {/* Section: Research and direction */}
@@ -68,7 +68,7 @@ const HeyBots = () => {
             and Shopify storefronts.
           </p>
           <blockquote>“The chatbot needed to feel like a helpful human agent—without the wait or cost.”</blockquote>
-          <p>📸 [Insert: Diagram of chatbot training pipeline or integration flow]</p>
+          {/* 📸 Media to add (M2-T13): Diagram of chatbot training pipeline or integration flow */}
         </FadeInOnScroll>
 
         {/* Section: Implementation */}
@@ -85,7 +85,7 @@ const HeyBots = () => {
           <p>
             The system was designed to be easily updated, so businesses could add or refine knowledge without retraining from scratch.
           </p>
-          <p>📸 [Insert: Screenshot of Zapier workflow or chatbot in action on WhatsApp]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of Zapier workflow or chatbot in action on WhatsApp */}
         </FadeInOnScroll>
 
         {/* Section: Challenges */}
@@ -97,7 +97,7 @@ const HeyBots = () => {
             up-to-date information across all platforms was critical to maintaining trust.
           </p>
           <blockquote>“The technology was complex—but the experience needed to be seamless.”</blockquote>
-          <p>📸 [Insert: Screenshot of chatbot training dashboard or user feedback]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of chatbot training dashboard or user feedback */}
         </FadeInOnScroll>
 
         {/* Section: The outcome */}
@@ -113,7 +113,7 @@ const HeyBots = () => {
             <li>Multi-channel presence ensures customers get help wherever they shop</li>
           </ul>
           <blockquote>“From static FAQ pages to real-time AI conversations—customer support evolved.”</blockquote>
-          <p>📸 [Insert: Analytics dashboard or chatbot conversation screenshot]</p>
+          {/* 📸 Media to add (M2-T13): Analytics dashboard or chatbot conversation screenshot */}
         </FadeInOnScroll>
 
         {/* Section: Tools used */}

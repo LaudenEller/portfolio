@@ -55,7 +55,7 @@ const SolidGroundConstruction = () => {
             forecasting inefficient and error-prone.
           </p>
           <blockquote>“They needed a system that worked for their unique workflows—not a one-size-fits-all tool.”</blockquote>
-          <p>📸 [Insert: Screenshot of old spreadsheet-based bidding]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of old spreadsheet-based bidding */}
         </FadeInOnScroll>
 
         {/* Section: Research and direction */}
@@ -66,7 +66,7 @@ const SolidGroundConstruction = () => {
             This gave the team flexible tools for organizing bids, tracking costs, and forecasting budgets—without heavy software overhead.
           </p>
           <blockquote>“The goal was to simplify complex data flows while keeping everything accessible to the whole team.”</blockquote>
-          <p>📸 [Insert: Workflow diagram or Google Sheets dashboard]</p>
+          {/* 📸 Media to add (M2-T13): Workflow diagram or Google Sheets dashboard */}
         </FadeInOnScroll>
 
         {/* Section: Implementation */}
@@ -83,7 +83,7 @@ const SolidGroundConstruction = () => {
           <p>
             This innovation dramatically reduced manual entry and helped keep estimates consistent and transparent across projects.
           </p>
-          <p>📸 [Insert: Chrome extension interface or budget template]</p>
+          {/* 📸 Media to add (M2-T13): Chrome extension interface or budget template */}
         </FadeInOnScroll>
 
         {/* Section: Challenges */}
@@ -94,7 +94,7 @@ const SolidGroundConstruction = () => {
             fluctuating supply costs and variable project scopes, all while remaining user-friendly for the team.
           </p>
           <blockquote>“Balancing complexity with simplicity was key to adoption.”</blockquote>
-          <p>📸 [Insert: Example of variable pricing or cost update process]</p>
+          {/* 📸 Media to add (M2-T13): Example of variable pricing or cost update process */}
         </FadeInOnScroll>
 
         {/* Section: The outcome */}
@@ -110,7 +110,7 @@ const SolidGroundConstruction = () => {
             <li>Scales as the company grows and projects increase</li>
           </ul>
           <blockquote>“From spreadsheets to streamlined estimates—their bidding process was transformed.”</blockquote>
-          <p>📸 [Insert: Final dashboard or project overview]</p>
+          {/* 📸 Media to add (M2-T13): Final dashboard or project overview */}
         </FadeInOnScroll>
 
         {/* Section: Tools used */}

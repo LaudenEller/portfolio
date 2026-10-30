@@ -56,7 +56,7 @@ const NomadicVintageRugs = ({color, color2}) => {
           </p>
           <br></br>
           <blockquote>“We needed to bring the warmth of a rug store into the digital world.”</blockquote>
-          <p>📸 [Insert: Photo of physical store or vintage rugs]</p>
+          {/* 📸 Media to add (M2-T13): Photo of physical store or vintage rugs */}
         </FadeInOnScroll>
 
         {/* Section: Research and direction */}
@@ -73,7 +73,7 @@ const NomadicVintageRugs = ({color, color2}) => {
             consistent, high-quality photography to showcase details.
           </p>
           <br></br>
-          <p>📸 [Insert: Sample photography guide or product photo setup]</p>
+          {/* 📸 Media to add (M2-T13): Sample photography guide or product photo setup */}
         </FadeInOnScroll>
 
         {/* Section: Implementation */}
@@ -89,7 +89,7 @@ const NomadicVintageRugs = ({color, color2}) => {
             <li>Ensured the site maintained a personal, boutique feel despite scaling digitally</li>
           </ul>
           <br></br>
-          <p>📸 [Insert: Screenshot of Shopify admin or product page]</p>
+          {/* 📸 Media to add (M2-T13): Screenshot of Shopify admin or product page */}
         </FadeInOnScroll>
 
         {/* Section: Challenges */}
@@ -101,7 +101,7 @@ const NomadicVintageRugs = ({color, color2}) => {
           </p>
           <br></br>
           <blockquote>“One size doesn’t fit all—especially for vintage treasures.”</blockquote>
-          <p>📸 [Insert: Inventory management interface or SEO report]</p>
+          {/* 📸 Media to add (M2-T13): Inventory management interface or SEO report */}
         </FadeInOnScroll>
 
         {/* Section: The outcome */}
@@ -118,7 +118,7 @@ const NomadicVintageRugs = ({color, color2}) => {
             <li>Scalable platform ready to support growing demand</li>
           </ul>
           <br></br>
-          <p>📸 [Insert: Final website homepage or product gallery]</p>
+          {/* 📸 Media to add (M2-T13): Final website homepage or product gallery */}
         </FadeInOnScroll>
 
         {/* Section: Tools used */}

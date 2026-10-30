@@ -13,11 +13,13 @@ import FadeInOnScroll from './FadeInOnScroll';
 import { useNavShrink } from '../../contexts/NavShrinkContext';
 
 // Accordion tab content: heading, image, summary, and corresponding component
+// published: only published case studies render (run 001, T5).
 // demo/code: leave '' until there's a real URL. Empty links aren't rendered (M2-T15 fills them).
 const accordionData = [
   // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
   { id: 0, 
     client: 'M Cafe', 
+    published: true,
     heading: 'Takeout the fees', 
     color: '#FEFFF6', 
     color2: '#FD2B1F', 
@@ -30,6 +32,7 @@ const accordionData = [
     component: MCafe },
   { id: 1, 
     client: 'Nomadic Vintage Rugs', 
+    published: true,
     heading: 'Shop-ify unique items', 
     color: '#FFFAF2', 
     color2: '#17476A', 
@@ -42,6 +45,7 @@ const accordionData = [
     component: NomadicVintageRugs  },
   { id: 2, 
     client: 'Alpenglow', 
+    published: true,
     heading: 'Modern real estate in Mexico', 
     color: 'blue', 
     image: '/assets/workImages/example1.png', 
@@ -53,6 +57,7 @@ const accordionData = [
     component: Alpenglow },
   { id: 3, 
     client: 'HeyBots', 
+    published: true,
     heading: 'Conversational AI', 
     color: 'blue', 
     image: '/assets/workImages/example3.png', 
@@ -64,6 +69,7 @@ const accordionData = [
     component: HeyBots },
   { id: 4, 
     client: 'E-Cig Masters', 
+    published: false,  // hidden until its images are in (M2-T13)
     heading: 'Complicated B2B tax rules', 
     color: '#5CEBB9',
     color2: '#F7F3F8',
@@ -76,6 +82,7 @@ const accordionData = [
     component: ECigMasters },  
   { id: 5, 
     client: 'VallartaBnb', 
+    published: true,
     heading: 'Zero-commission bookings', 
     image: '/assets/workImages/example6.png', 
     summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', 
@@ -86,6 +93,7 @@ const accordionData = [
     component: VallartaBnb },
   { id: 6, 
     client: 'Solid Ground Construction', 
+    published: true,
     heading: 'No more legal pad bids', 
     color: 'blue', 
     image: '/assets/workImages/example4.png', 
@@ -96,6 +104,8 @@ const accordionData = [
     code: '', 
     component: SolidGroundConstruction  },
 ];
+
+const publishedCases = accordionData.filter((item) => item.published);
 
 const WorkExamples1 = () => {
   const [activeIndex, setActiveIndex] = useState(null); // Tracks currently opened accordion
@@ -315,7 +325,7 @@ useEffect(() => {
   return (
     <div id="work-examples" className={styles.workExamples}>
       <div className={styles.accordionContainer}>
-        {accordionData.map((item, index) => {
+        {publishedCases.map((item, index) => {
           const isActive = activeIndex === item.id;
           return (
             <FadeInOnScroll>
