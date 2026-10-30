@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lauden Eller",
+  "name": "Lauden Eller — Software Engineer",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "assets/heroImages/navBar/logoImage_150x150.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "150x150"
     },
     {
-      "src": "logo512.png",
+      "src": "assets/heroImages/navBar/logoImage_Navbar_200x200.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "200x200"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#FBFDFF",
   "background_color": "#ffffff"
 }
