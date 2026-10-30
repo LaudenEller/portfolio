@@ -23,7 +23,7 @@
 
 // export default AboutSection;
 
-import React, { useState } from 'react';
+import React from 'react';
 import AboutParagraph from './AboutParagraph';
 import styles from './AboutSection.module.css';
 import { useAboutContext } from '../../contexts/AboutContext';

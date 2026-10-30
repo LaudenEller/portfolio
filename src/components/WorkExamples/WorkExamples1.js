@@ -13,22 +13,26 @@ import FadeInOnScroll from './FadeInOnScroll';
 import { useNavShrink } from '../../contexts/NavShrinkContext';
 
 // Accordion tab content: heading, image, summary, and corresponding component
+// published: only published case studies render (run 001, T5).
+// demo/code: leave '' until there's a real URL. Empty links aren't rendered (M2-T15 fills them).
 const accordionData = [
   // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
   { id: 0, 
     client: 'M Cafe', 
+    published: true,
     heading: 'Takeout the fees', 
     color: '#FEFFF6', 
     color2: '#FD2B1F', 
-    image: '/assets/workImages/example0.png', 
+    image: '/assets/workImages/example0.jpg', 
     summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', 
     tech: 'Revel, Squarespace', 
     role: 'Full stack developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: MCafe },
   { id: 1, 
     client: 'Nomadic Vintage Rugs', 
+    published: true,
     heading: 'Shop-ify unique items', 
     color: '#FFFAF2', 
     color2: '#17476A', 
@@ -37,32 +41,37 @@ const accordionData = [
     tech: 'Shopify', 
     role: 'Backend developer', 
     demo: 'https://nomadicvintagerugs.com/', 
-    code: 'https://www.github.com', 
+    code: '', 
     component: NomadicVintageRugs  },
   { id: 2, 
     client: 'Alpenglow', 
+    published: true,
     heading: 'Modern real estate in Mexico', 
-    color: 'blue', 
+    color: '#FFF8F4', 
+    color2: '#D9663F', 
     image: '/assets/workImages/example1.png', 
     summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', 
     tech: 'Wordpress, MLS Providers', 
     role: 'Project manager', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: Alpenglow },
   { id: 3, 
     client: 'HeyBots', 
+    published: true,
     heading: 'Conversational AI', 
-    color: 'blue', 
+    color: '#F5F8FF', 
+    color2: '#3A5BD9', 
     image: '/assets/workImages/example3.png', 
     summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', 
     tech: 'ChatGPT, Kinsta', 
     role: 'Full stack developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: HeyBots },
   { id: 4, 
-    client: 'E\-Cig Masters', 
+    client: 'E-Cig Masters', 
+    published: false,  // hidden until its images are in (M2-T13)
     heading: 'Complicated B2B tax rules', 
     color: '#5CEBB9',
     color2: '#F7F3F8',
@@ -70,43 +79,78 @@ const accordionData = [
     summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', 
     tech: 'ManageMore, Wordpress', 
     role: 'Backend developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: ECigMasters },  
   { id: 5, 
     client: 'VallartaBnb', 
+    published: true,
+    color: '#F3FBFB', 
+    color2: '#127C82', 
     heading: 'Zero-commission bookings', 
     image: '/assets/workImages/example6.png', 
     summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', 
     tech: 'Bubble', 
     role: 'Project manager', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: VallartaBnb },
   { id: 6, 
     client: 'Solid Ground Construction', 
+    published: true,
     heading: 'No more legal pad bids', 
-    color: 'blue', 
+    color: '#FAF8F3', 
+    color2: '#B87A1C', 
     image: '/assets/workImages/example4.png', 
     summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', 
     tech: 'Google Suite', 
     role: 'Full stack developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: SolidGroundConstruction  },
 ];
+
+const publishedCases = accordionData.filter((item) => item.published);
+
+// Phones, touch screens and reduced-motion users get a simple accordion: normal page
+// scrolling, tap to open/close, no scroll redirect, body lock or auto-collapse (run 001, T10).
+const SIMPLE_MODE_QUERY = '(max-width: 768px), (hover: none), (prefers-reduced-motion: reduce)';
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const useMediaQuery = (query) => {
+  const getMatch = () => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false);
+  const [matches, setMatches] = useState(getMatch);
+
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange();
+    // Safari < 14 only supports addListener/removeListener
+    if (mql.addEventListener) mql.addEventListener('change', onChange);
+    else mql.addListener(onChange);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', onChange);
+      else mql.removeListener(onChange);
+    };
+  }, [query]);
+
+  return matches;
+};
 
 const WorkExamples1 = () => {
   const [activeIndex, setActiveIndex] = useState(null); // Tracks currently opened accordion
   const contentRefs = useRef([]);          // Refs for content containers (used for height animation)
   const wrapperRefs = useRef([]);          // Refs for outer accordion wrapper (used for scroll)
   const innerContentRefs = useRef([]);     // Refs for scrollable inner content (bypass page scroll)
-  const [visibleIndexes, setVisibleIndexes] = useState([]);
   const [headerShrunk, setHeaderShrunk] = useState(false); // New state for header shrink
   
 
   //   Saves Shrink Context to local variable
   const { shrinkFactor, setShrinkFactor } = useNavShrink(); // Get shrinkFactor value
+
+  const simpleMode = useMediaQuery(SIMPLE_MODE_QUERY);
+  const prefersReducedMotion = useMediaQuery(REDUCED_MOTION_QUERY);
 
 
   /**
@@ -114,16 +158,18 @@ const WorkExamples1 = () => {
    * Helps prevent background scrolling when inner content is scrollable.
    */
 useEffect(() => {
- document.body.style.overflow = activeIndex !== null ? 'hidden' : '';
+ document.body.style.overflow = activeIndex !== null && !simpleMode ? 'hidden' : '';
     return () => (document.body.style.overflow = '');
-  }, [activeIndex]);
+  }, [activeIndex, simpleMode]);
 
 /**
    * Redirect global scroll events (wheel/touch) to the inner scrollable content.
    * Helps route mouse or touch scrolls directly to the accordion content
    */
 useEffect(() => {
-  if (activeIndex === null) return;
+  if (activeIndex === null || simpleMode) return;
+
+  let lastY = 0; // Last touch position, for the mobile scroll override
 
   const handleScrollRedirect = (e) => {
     const el = innerContentRefs.current[activeIndex];
@@ -154,14 +200,14 @@ useEffect(() => {
     document.removeEventListener('touchstart', handleTouchStart);
     document.removeEventListener('touchmove', handleTouchMove);
   };
-}, [activeIndex]);
+}, [activeIndex, simpleMode]);
 
 /**
    * Prevent scroll bounce when content is already scrolled to the top or bottom.
    * Avoids "bleeding" into background scroll, especially on trackpads or mobile.
    */
 useEffect(() => {
-  if (activeIndex === null) return;
+  if (activeIndex === null || simpleMode) return;
 
   const timer = setTimeout(() => {
     const el = innerContentRefs.current[activeIndex];
@@ -181,11 +227,11 @@ useEffect(() => {
   }, 100); // Delay ensures DOM has updated
 
   return () => clearTimeout(timer);
-  }, [activeIndex]);
+  }, [activeIndex, simpleMode]);
   
 // New effect: listen to scroll on innerContent to toggle header shrink
   useEffect(() => {
-    if (activeIndex === null) {
+    if (activeIndex === null || simpleMode) {
       setShrinkFactor(0);
       setHeaderShrunk(false);
       return;
@@ -222,11 +268,11 @@ useEffect(() => {
       el.removeEventListener('scroll', onScroll);
      setShrinkFactor(0);
     };
-  }, [activeIndex, setShrinkFactor]);
+  }, [activeIndex, simpleMode, setShrinkFactor]);
 
   // Collapse the accordion when the user scrolls to the bottom
 useEffect(() => {
-  if (activeIndex === null) return;
+  if (activeIndex === null || simpleMode) return;
 
   const el = innerContentRefs.current[activeIndex];
   if (!el) return;
@@ -256,11 +302,9 @@ useEffect(() => {
   return () => {
     el.removeEventListener('scroll', handleScrollToBottom);
   };
-}, [activeIndex]);
+}, [activeIndex, simpleMode, setShrinkFactor]);
 
 
-  // Variables for mobile scroll override
-  let lastY = 0; 
 
   /**
   * Handles user clicking on an accordion tab.
@@ -270,7 +314,7 @@ useEffect(() => {
     if (activeIndex === index) {
       setActiveIndex(null); // Collapse if already open
     } else {
-      wrapperRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
+      wrapperRefs.current[index]?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start',  }); // Align tab to top of viewport (useful with scroll-margin-top)
       // Delay state update to give scroll time to complete
       setTimeout(() => {
         setActiveIndex(index);
@@ -315,13 +359,14 @@ useEffect(() => {
   return (
     <div id="work-examples" className={styles.workExamples}>
       <div className={styles.accordionContainer}>
-        {accordionData.map((item, index) => {
-          const isActive = activeIndex === item.id;
+        {publishedCases.map((item, index) => {
+          const isActive = activeIndex === index;
           return (
-            <FadeInOnScroll>
-            <div key={item.id} className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
-              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`} onClick={() => handleAccordionClick(item.id)}>
-                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`}>
+            <FadeInOnScroll key={item.id}>
+            <div className={styles.accordionWrapper} ref={(el) => (wrapperRefs.current[index] = el)}>
+              <div className={`${styles.accordionTab} ${styles.card} ${isActive ? styles.active : ''}`}>
+                {/* Only the header toggles the card, so taps inside an open article don't collapse it */}
+                <div className={`${styles.tabLayout} ${isActive && headerShrunk ? styles.shrinkHeader : ''}`} onClick={() => handleAccordionClick(index)}>
                   <div className={styles.tabImageWrapper}>
                     <div className={styles.imageCardWrapper}
                     style={{ backgroundColor: item.color} }
@@ -350,20 +395,26 @@ useEffect(() => {
                       </div>
                     </div>
 
+                    {(item.demo || item.code) && (
                     <div className={styles.projectLinks}>
-                      <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>
-                      <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>
+                      {item.demo && <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>}
+                      {item.code && <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>}
                     </div>
+                    )}
 
                   </div>
                 </div>
                 <div
                   ref={(el) => (contentRefs.current[index] = el)}
                   className={`${styles.accordionContent} ${isActive ? styles.expanding : ''}`}
-                  style={{ height: isActive ? `${contentRefs.current[index]?.scrollHeight}px` : '0px', ...getExpansionStyles(isActive) }}
+                  style={{
+                    // Simple mode: open to the article's full height (incl. late-loading images); the page scrolls
+                    height: isActive ? (simpleMode ? 'auto' : `${contentRefs.current[index]?.scrollHeight}px`) : '0px',
+                    ...(simpleMode ? {} : getExpansionStyles(isActive)),
+                  }}
                 >
                   <div
-                    className={styles.innerContent}
+                    className={`${styles.innerContent} ${simpleMode ? styles.innerContentSimple : ''}`}
                     ref={(el) => (innerContentRefs.current[index] = el)}
                     tabIndex={-1}
                   >

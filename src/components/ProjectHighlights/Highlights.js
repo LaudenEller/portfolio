@@ -4,11 +4,13 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
-import _gsap from 'gsap/gsap-core';
-import { getPerceivedPositionWithGSAP } from '../../utils/PositionUtils';
 import ThemeContext from '../../contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Buttons under the ESG text. Empty until they have real actions (run 001, M2-T14).
+// Shape: { label: 'Read the case study', message: '...', variant: 'btn-primary' }
+const highlightButtons = [];
 
 const Highlights = () => {
   const sectionRef = useRef(null);
@@ -29,11 +31,8 @@ const Highlights = () => {
   
   const handlePopUp = (e, content) => {
     const parent = e.target.offsetParent; // Get the transformed parent
-    const parentY = _gsap.getProperty(parent, "y") || 0; // GSAP y transform
-    const position = getPerceivedPositionWithGSAP(e.target, scrollBoxRef.current);
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
-    const t = barRef.bottom;
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
     const l = 500;
 console.log('client top', top)
@@ -173,8 +172,8 @@ console.log('l', l)
 <div className={styles.projectContent}>
       {/* Image Container */}
       <div className={styles.imageContainer}>
-        <img ref={imageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.firstProjectImage} />
-        <img ref={secondImageRef} src="assets/highlightImages/ESGSq_adobe.png" alt="Project Image" className={styles.hiddenImage} />
+        <img ref={imageRef} src="/assets/highlightImages/ESGsq_adobe.png" alt="ESG ecosystem map: framework developers, standard setters, assurers, data providers and initiatives" className={styles.firstProjectImage} />
+        <img ref={secondImageRef} src="/assets/highlightImages/ESGsq_adobe.png" alt="" className={styles.hiddenImage} />
       </div>
 
       {/* Right Side - Scroll Box with Text and Buttons */}
@@ -182,20 +181,18 @@ console.log('l', l)
       <div className={styles.scrollContent}>
           <p>In 2019, the UN declared the Sustainable Development Goals which gave rise to ESG in global financial markets.</p>
            <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
-           <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
-           <p>Environmental, Social & Governance is the grab-bag term where investors compile ethical concerns. It's traditionally considered normative, immeasurable and besides-the-point in serious analyses.</p>
            <p>Better Portfolios is an AI tool I created to help investors grade, organize and prioritize ESG concerns in a clear and comparable way</p>
            <p>By compiling contemporary ESG metrics AI is trained to explain which investments more likely promote the UN's SDGs and why</p>
-           <div className={styles.buttonsContainer}>
-            <button className="btn btn-primary"
-             onClick={(e) => handlePopUp(e, 'ESG button clicked!')}
-             >
-              Button 1</button>
-            <button className="btn btn-secondary"
-             onClick={(e) => handlePopUp(e, 'A button click!')}
-             >
-              Button 2</button>
-          </div>
+           {highlightButtons.length > 0 && (
+            <div className={styles.buttonsContainer}>
+              {highlightButtons.map((button) => (
+                <button key={button.label} className={`btn ${button.variant}`}
+                 onClick={(e) => handlePopUp(e, button.message)}
+                 >
+                  {button.label}</button>
+              ))}
+            </div>
+           )}
         </div>
       </div>
     </div>

@@ -213,13 +213,13 @@ const ECigMasters = ({ color, color2 }) => {
             ManageMore Configuration: This involved meticulously configuring a new online store within ManageMore, building extensive client, product, and tax databases with granular state-by-state rules.
           </p>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={verticalGimi} alt="Vertical Gimi yellow E-Cigarettes image" />
+              <img className={styles.screenshotImg} src={verticalGimi} alt="Vertical Gimi yellow e-cigarettes" />
             </div>
           </FadeInOnScroll>
 
           <FadeInOnScroll delay={90}>
           <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={puffKiwiStrawberry} alt="2000 puff Kiwi Strawberry image" />
+              <img className={styles.screenshotImg} src={puffKiwiStrawberry} alt="2000-puff Kiwi Strawberry product" />
             </div>
           <p className={styles.body}>
             Visualizing the Product: Preparing thousands of product images for optimal online and mobile presentation, ensuring a visually rich and accurate catalog.
@@ -228,7 +228,7 @@ const ECigMasters = ({ color, color2 }) => {
 
           <FadeInOnScroll elay={120}>
           <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={horizontalGimi} alt="horizontal Gimi yellow e-cigarette image" />
+              <img className={styles.screenshotImg} src={horizontalGimi} alt="Horizontal Gimi yellow e-cigarette" />
             </div>
             <p className={styles.body}>
               Automated Compliance Logic: The most demanding aspect was the intricate configuration of ManageMore's product catalog and the automated tax rules. The sheer volume of constantly changing products, regulations, and tax implications across states demanded continuous updates and meticulous attention.
@@ -250,7 +250,7 @@ const ECigMasters = ({ color, color2 }) => {
           
           <FadeInOnScroll delay={90}>
           <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={minuteMaid} alt="Minute Maid juice matrix image" />
+              <img className={styles.screenshotImg} src={minuteMaid} alt="Minute Maid juice flavor matrix" />
             </div>
           <p className={styles.body}>
             Preparing thousands of product images for optimal online and mobile presentation, ensuring a visually rich and accurate catalog.
@@ -269,7 +269,7 @@ const ECigMasters = ({ color, color2 }) => {
               Flavors would become incredibly popular and then never be seen again.
               </p>
           <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={flumPebble} alt="Flum Pebble matrix image" />
+              <img className={styles.screenshotImg} src={flumPebble} alt="Flum Pebble flavor matrix" />
             </div>
           </FadeInOnScroll>
 
@@ -281,7 +281,7 @@ const ECigMasters = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={210}>
           <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={swiftMatrix} alt="Swift matrix image" />
+              <img className={styles.screenshotImg} src={swiftMatrix} alt="Swift flavor matrix" />
             </div>
           </FadeInOnScroll>
 
@@ -290,7 +290,7 @@ const ECigMasters = ({ color, color2 }) => {
             Product image processing for the constantly rotating flavors was almost a full time job.
             </p>
           <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={flumFloat} alt="Flum Float 3000 more flavors coming soon image" />
+              <img className={styles.screenshotImg} src={flumFloat} alt="Flum Float 3000: more flavors coming soon" />
             </div>
           </FadeInOnScroll>
 </section>

@@ -27,7 +27,6 @@ export function getPerceivedPositionWithGSAP(element, parentRef) {
   const buttonRect = element.getBoundingClientRect(); // Button's rect relative to viewport
   const parentScrollTop = parentRef.scrollTop || 0; // Scroll offset of the parent container
   const parentTransformY = parseFloat(gsap.getProperty(parentRef, 'y')) || 0; // Transform offset
-  const globalScrollY = window.scrollY || 0; // Page scroll (if parent is not a custom container)
 
   console.log('parentTop', parentScrollTop)
   // console.log('customScroll', isCustomScroll)

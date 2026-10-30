@@ -2,12 +2,13 @@ import FadeInOnScroll from './FadeInOnScroll';
 import styles from './MCafe.module.css';
 
 const MCafe = ({ color, color2 }) => {
-  // You can replace these src values with your actual image paths
-  const heroImg = '/assets/workImages/mcafe/hero.png';
-  const boardImg = '/assets/workImages/mcafe/board.png';
-  const posImg = '/assets/workImages/mcafe/pos.png';
-  const orderingImg = '/assets/workImages/mcafe/ordering.png';
-  const siteImg = '/assets/workImages/mcafe/site.png';
+  // Web-sized copies of the originals in Desktop/Coding Projects_2024/Portfolio/Assets/MCafe
+  const heroImg = '/assets/workImages/mcafe/hero.jpg';
+  const boardImg = '/assets/workImages/mcafe/board.jpg';
+  const posImg = '/assets/workImages/mcafe/pos.jpg';
+  const orderingImg = '/assets/workImages/mcafe/ordering.jpg';
+  const siteImg = '/assets/workImages/mcafe/site.jpg';
+  const searchImg = '/assets/workImages/mcafe/search.jpg';
 
   return (
     <article className={styles.article} style={{ backgroundColor: color }}>
@@ -39,7 +40,7 @@ const MCafe = ({ color, color2 }) => {
             </p>
              <FadeInOnScroll delay={60}>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={heroImg} alt="M Cafe website preview" />
+              <img className={styles.screenshotImg} src={heroImg} alt="M Cafe homepage with an Order Now button over a spread of dishes" />
             </div>
           </FadeInOnScroll>
             <p className={styles.body}>
@@ -72,7 +73,7 @@ const MCafe = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={120}>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={boardImg} alt="Project proposal board" />
+              <img className={styles.screenshotImg} src={boardImg} alt="DoorDash Drive On-Demand: flat-fee delivery requested from the restaurant's own site" />
             </div>
           </FadeInOnScroll>
 
@@ -106,7 +107,7 @@ const MCafe = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={60}>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={posImg} alt="Revel POS integration" />
+              <img className={styles.screenshotImg} src={posImg} alt="Revel POS establishment settings for M Cafe Lincoln Heights" />
             </div>
           </FadeInOnScroll>
 
@@ -132,7 +133,7 @@ const MCafe = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={60}>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={orderingImg} alt="Direct ordering flow" />
+              <img className={styles.screenshotImg} src={orderingImg} alt="M Cafe online ordering page for pickup at Lincoln Heights" />
             </div>
           </FadeInOnScroll>
 
@@ -160,7 +161,7 @@ const MCafe = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={60}>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={siteImg} alt="Site ordering example" />
+              <img className={styles.screenshotImg} src={siteImg} alt="Google Maps results for M Cafe with Order Online buttons" />
             </div>
           </FadeInOnScroll>
 
@@ -261,7 +262,7 @@ const MCafe = ({ color, color2 }) => {
 
           <FadeInOnScroll delay={90}>
             <div className={styles.screenshot}>
-              <img className={styles.screenshotImg} src={boardImg} alt="Search console/settings example" />
+              <img className={styles.screenshotImg} src={searchImg} alt="Squarespace SEO settings for the M Cafe site" />
             </div>
           </FadeInOnScroll>
 
