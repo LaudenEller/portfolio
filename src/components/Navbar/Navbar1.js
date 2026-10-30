@@ -11,6 +11,13 @@ import { useNavShrink } from '../../contexts/NavShrinkContext';
 // Nav links and the section ids they scroll to. Targets are explicit so removing a link
 // never shifts the others. Ai section (#nav4) is planned; add back when it exists:
 // { label: 'Ai', href: '#nav4' },
+// Social profiles. An icon only shows once its href is set (run 001, M2-T15).
+const socialLinks = [
+  { label: 'GitHub', href: '', icon: '/assets/socialIcons/github_24x24_white.png', side: 'Left' },
+  { label: 'LinkedIn', href: '', icon: '/assets/socialIcons/Li_logo_24x24.png', side: 'Top' },
+  { label: 'Instagram', href: '', icon: '/assets/socialIcons/igLogo_bw.png', side: 'Right' },
+];
+
 const navLinks = [
   { label: 'About', href: '#nav1' },
   { label: 'ESG', href: '#nav2' },
@@ -137,33 +144,18 @@ const scrollToAbout = () => {
             }`}
             onMouseLeave={() => setHoveredSide(null)} // Reset on exit
           >
+            {socialLinks.filter(({ href }) => href).map(({ label, href, icon, side }) => (
             <a
-              href="https://github.com"
+              key={label}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
-              onMouseEnter={() => setHoveredSide('Left')}
+              aria-label={label}
+              onMouseEnter={() => setHoveredSide(side)}
             >
-              <img src="/assets/socialIcons/github_24x24_white.png" alt="GitHub" className={styles.iconImage} />
+              <img src={icon} alt={label} className={styles.iconImage} />
             </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              onMouseEnter={() => setHoveredSide('Top')}
-            >
-              <img src="/assets/socialIcons/Li_logo_24x24.png" alt="LinkedIn" className={styles.iconImage} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              onMouseEnter={() => setHoveredSide('Right')}
-            >
-              <img src="/assets/socialIcons/igLogo_bw.png" alt="Instagram" className={styles.iconImage} />
-            </a>
+            ))}
           </div>
         </div>
 

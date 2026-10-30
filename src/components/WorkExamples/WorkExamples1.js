@@ -13,6 +13,7 @@ import FadeInOnScroll from './FadeInOnScroll';
 import { useNavShrink } from '../../contexts/NavShrinkContext';
 
 // Accordion tab content: heading, image, summary, and corresponding component
+// demo/code: leave '' until there's a real URL. Empty links aren't rendered (M2-T15 fills them).
 const accordionData = [
   // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
   { id: 0, 
@@ -24,8 +25,8 @@ const accordionData = [
     summary: 'Online ordering with DoorDash delivery that avoids commissions and reduces fees for an iconic LA natural foods restaurant\'s new Ghost Kitchen.', 
     tech: 'Revel, Squarespace', 
     role: 'Full stack developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: MCafe },
   { id: 1, 
     client: 'Nomadic Vintage Rugs', 
@@ -37,7 +38,7 @@ const accordionData = [
     tech: 'Shopify', 
     role: 'Backend developer', 
     demo: 'https://nomadicvintagerugs.com/', 
-    code: 'https://www.github.com', 
+    code: '', 
     component: NomadicVintageRugs  },
   { id: 2, 
     client: 'Alpenglow', 
@@ -47,8 +48,8 @@ const accordionData = [
     summary: 'Visual identity, AI agent and MLS hosting for a luxury real estate brand in Puerto Vallarta.', 
     tech: 'Wordpress, MLS Providers', 
     role: 'Project manager', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: Alpenglow },
   { id: 3, 
     client: 'HeyBots', 
@@ -58,8 +59,8 @@ const accordionData = [
     summary: 'Chatbots and AI agents as a white-label service that are trained on your data and quickly onboarded for any business.', 
     tech: 'ChatGPT, Kinsta', 
     role: 'Full stack developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: HeyBots },
   { id: 4, 
     client: 'E-Cig Masters', 
@@ -70,8 +71,8 @@ const accordionData = [
     summary: 'Online catalogue with accurate inventory and complicated tax implications for a wholesale distributor to smoke shops and corner stores.', 
     tech: 'ManageMore, Wordpress', 
     role: 'Backend developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: ECigMasters },  
   { id: 5, 
     client: 'VallartaBnb', 
@@ -80,8 +81,8 @@ const accordionData = [
     summary: 'Replica of AirBnb for homeowners in Mexico who want to circumvent popular booking site fees.', 
     tech: 'Bubble', 
     role: 'Project manager', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: VallartaBnb },
   { id: 6, 
     client: 'Solid Ground Construction', 
@@ -91,8 +92,8 @@ const accordionData = [
     summary: 'Utilized Google Suite to build a project pricing and bidding system for a General Contractor', 
     tech: 'Google Suite', 
     role: 'Full stack developer', 
-    demo: 'https://www.google.com', 
-    code: 'https://www.github.com', 
+    demo: '', 
+    code: '', 
     component: SolidGroundConstruction  },
 ];
 
@@ -349,10 +350,12 @@ useEffect(() => {
                       </div>
                     </div>
 
+                    {(item.demo || item.code) && (
                     <div className={styles.projectLinks}>
-                      <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>
-                      <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>
+                      {item.demo && <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>}
+                      {item.code && <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>}
                     </div>
+                    )}
 
                   </div>
                 </div>
