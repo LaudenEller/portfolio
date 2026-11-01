@@ -22,8 +22,7 @@ const ContactForm = ({ onCloseForm }) => {
       form.current,
       process.env.REACT_APP_EMAILJS_PUBLIC_KEY
     ).then( // Handles what happens after the send email button is clicked
-      (result) => {
-        console.log(result.text);
+      () => {
         setSuccess(true);
 
         // Hide message after 1 second
@@ -38,8 +37,7 @@ const ContactForm = ({ onCloseForm }) => {
         }, 600);
        }, 2000);
       },
-      (error) => {
-        console.log(error.text);
+      () => {
         alert('Something went wrong, please try again.');
       }
     );

@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
-import './styles/sharedStyles.css';
-import './styles/themes.css';
-import './styles/responsive.css';
 import { AboutProvider } from './contexts/AboutContext';
 import { NavShrinkProvider } from './contexts/NavShrinkContext';
 

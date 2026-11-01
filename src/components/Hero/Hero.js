@@ -56,7 +56,7 @@ const Hero = () => {
       id="hero" 
       className={`${styles.hero} ${theme === 'dark' ? styles.heroDark : ''}`}
       aria-label="Introduction Section"
-      style={{ padding: '0vh 5vw', textAlign: 'center', backgroundColor: '#FBFDFF' }}
+      style={{ padding: '0vh 5vw', textAlign: 'center' }}
     >
       <div style={{ 
         paddingLeft: '20vw',

@@ -30,14 +30,9 @@ const Highlights = () => {
 
   
   const handlePopUp = (e, content) => {
-    const parent = e.target.offsetParent; // Get the transformed parent
     const buttonRect = e.target.getBoundingClientRect();
     const top = buttonRect.top; // Adjust for scroll position
     const left = buttonRect.left + buttonRect.width / 2 + window.scrollX;
-    const l = 500;
-console.log('client top', top)
-console.log('parent', parent)
-console.log('l', l)
 
     setPopUpProps({
       content,
