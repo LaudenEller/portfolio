@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# laudeneller.com
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lauden Eller's portfolio: a single-page React site with an intro, an ESG highlight (Better Portfolios), case studies
+from client work, and a contact footer. Live at **https://www.laudeneller.com**.
 
-## Available Scripts
+Built with Create React App (React 18), react-router 6, Bootstrap 5 CSS and GSAP. Hosted on Vercel.
 
-In the project directory, you can run:
+## Run, test, build
 
-### `npm start`
+```bash
+npm install                            # once, or after dependencies change
+npm start                              # dev server at http://localhost:3000
+CI=true npm test -- --watchAll=false   # smoke test (src/App.test.js)
+CI=true npm run build                  # production build; with CI=true, lint warnings fail the build (as on Vercel)
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Deploy
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Vercel builds every push:
 
-### `npm test`
+- **Branch** (e.g. `icm/…`) → a preview URL (login-protected). Check it on desktop and phone.
+- **Merge a PR into `main`** → production at laudeneller.com.
+- **Rollback:** Vercel → Deployments → pick the previous production deployment → **Instant Rollback**.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Environment variables (Vercel → Settings → Environment Variables)
 
-### `npm run build`
+| Name | Used for |
+| --- | --- |
+| `REACT_APP_EMAILJS_SERVICE_ID` | Contact form (EmailJS) |
+| `REACT_APP_EMAILJS_TEMPLATE_ID` | Contact form (EmailJS) |
+| `REACT_APP_EMAILJS_PUBLIC_KEY` | Contact form (EmailJS) |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Until all three are set, the footer button opens an email (`mailto:`) instead of the form. They're baked in at build
+time, so redeploy after changing them. Keep local copies in `.env` (git-ignored); never commit it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Where things live
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| What | Where |
+| --- | --- |
+| Page sections, in order | `src/pages/Home.js` (Hero → Highlights → Work examples); navbar and footer in `src/layouts/MainLayout.js` |
+| Case-study list (title, summary, colours, tech, role, demo/code links, published flag) | `accordionData` in `src/components/WorkExamples/WorkExamples1.js` |
+| Each case study's article | `src/components/WorkExamples/<Client>.js` |
+| Hero lines | `src/components/Hero/Hero.js` |
+| About paragraph | `src/components/About/AboutParagraph.js` |
+| ESG / Better Portfolios text | `src/components/ProjectHighlights/Highlights.js` |
+| Nav links and social profiles | `src/components/Navbar/Navbar1.js` (a social icon shows once its `href` is set) |
+| Theme colours (light/dark) | `src/styles/themes.css` |
+| Images, logo, icons | `public/assets/` |
+| Share card (Open Graph / Twitter) | `public/index.html` + `public/og-image.jpg` (1200×630) |
+| Old code, kept for reference | `_legacy/` (outside `src/`, so it isn't built, linted or tested) |
 
-### `npm run eject`
+### Common edits
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Publish or hide a case study:** set `published: true/false` in `accordionData`.
+- **Add a demo or code link:** fill `demo` / `code` in `accordionData`. Empty links aren't shown.
+- **Add a case study:** create `src/components/WorkExamples/<Client>.js` (copy an existing one), import it in
+  `WorkExamples1.js`, and add an `accordionData` entry with a unique `id`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Accessibility
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Animations respect the visitor's **reduced motion** setting (no typing, pinning or logo drawing). Phones, touch screens
+and reduced-motion visitors get a simple accordion with normal page scrolling. Case studies open with the keyboard
+(Tab to a title, Enter or Space).
