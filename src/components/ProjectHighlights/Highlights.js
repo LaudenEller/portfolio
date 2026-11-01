@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'; // dist build so Jest can parse it (run 002, T18)
 import styles from './ProjectHighlights.module.css';
 import PopUp from '../PopUps/PopUps';
 import ThemeContext from '../../contexts/ThemeContext';
