@@ -34,14 +34,12 @@ useEffect(() => {
   return (
     <div className={styles.layoutContainer}>
       <Navbar1 ref={navbarRef} />
-      {/* <NavbarSpacer navbarRef={navbarRef} mainRef={mainRef} />  */}
       <main 
       ref={mainRef}
       className={showFloatingNav ? styles.withStickyOffset : ''}
       style={{ marginTop: getMainOffset() }}
       >{children}</main>
       <Footer />
-      {/* <DebugNavbarSpacer /> */}
     </div>
   );
 };

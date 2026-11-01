@@ -33,7 +33,6 @@ const Footer = () => {
             <div className={styles.profileSection}>
               <HeroImage className={styles.avatar} />
               <div>
-                {/* <h2>I'm Lauden, a Software Engineer</h2> */}
                 <p>How can I help you make your business better?</p>
               </div>
             </div>

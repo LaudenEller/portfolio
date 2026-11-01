@@ -16,7 +16,6 @@ import { useNavShrink } from '../../contexts/NavShrinkContext';
 // published: only published case studies render (run 001, T5).
 // demo/code: leave '' until there's a real URL. Empty links aren't rendered (M2-T15 fills them).
 const accordionData = [
-  // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
   { id: 0, 
     client: 'M Cafe', 
     published: true,
@@ -324,21 +323,6 @@ useEffect(() => {
     }
   };
   
-
-  // THIS IS MEANT TO PLACE THE EXPANDED ACCORDION TAB ON SCROLL SO IT TAKES UP MORE OF THE SCREEN
-//   const getAccordionStyles = (isActive) => {
-//   if (!isActive) return {};
-  
-//   const widthScale = 1 - (shrinkFactor * 0.05);
-//   const paddingScale = 1 - (shrinkFactor * 0.1);
-  
-//   return {
-//     transform: `scale(${widthScale})`,
-//     transformOrigin: 'top center',
-//     paddingLeft: `${paddingScale * 2}rem`,
-//     paddingRight: `${paddingScale * 2}rem`
-//   };
-// };
 
   /**
  * Handles user scrolling into an accordion tab.

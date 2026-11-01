@@ -38,14 +38,10 @@ const Highlights = () => {
 console.log('client top', top)
 console.log('parent', parent)
 console.log('l', l)
-    // This utility function was supposed to get the correct perceived position of the button but it puts it very far from the actual spot becuase it accumulates all the scrollable area instead of offsetting it to find the corrrect scrollY
-    // const perceivedPosition = getPerceivedPosition(e.target);
 
     setPopUpProps({
       content,
       position: { top, left },
-      // position: { t, l },
-      // position,
       theme: theme,
       visible: true,
     });

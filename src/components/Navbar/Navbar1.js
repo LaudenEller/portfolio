@@ -48,8 +48,6 @@ const { shrinkFactor } = useNavShrink(); // Get shrink factor
   // Scroll listener to update `isScrolled` state
   useEffect(() => {
     const handleScroll = () => {
-      // setIsScrolled(window.scrollY > 125);
-      // setShowFloatingNav(window.scrollY > 125);
       const shouldShow = window.scrollY > 125;
     setShowFloatingNav(shouldShow);
 
