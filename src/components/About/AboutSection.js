@@ -11,14 +11,17 @@ const AboutSection = () => {
 
   return (
     <div className={styles.aboutSectionContainer}>
-      <div
+      <button
+        type="button"
         className={styles.toggleBar}
         onClick={() => setShowAbout(!showAbout)}
+        aria-expanded={showAbout}
+        aria-controls="about-panel"
       >
         {showAbout ? 'Less' : 'More'}
-      </div>
+      </button>
 
-      <div className={`${styles.overlay} ${showAbout ? styles.visible : ''}`}>
+      <div id="about-panel" className={`${styles.overlay} ${showAbout ? styles.visible : ''}`} aria-hidden={!showAbout}>
         <div className={styles.aboutCard}>
           <AboutParagraph />
         </div>

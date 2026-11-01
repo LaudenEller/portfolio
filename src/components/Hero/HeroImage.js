@@ -37,7 +37,7 @@ const HeroImage = () => {
           {isLoaded && (
              <img
               src={`/assets/heroImages/navBar/logoImage_Navbar_100x100.png`}
-              alt="Hero Banner"
+              alt="Illustration of Lauden eating noodles at a desk with three monitors"
               className={`img-fluid ${styles.heroImage} ${styles.fadeIn} ${isVisible ? styles.hidden : ''}`}
               loading="eager"
             />

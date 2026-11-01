@@ -28,27 +28,29 @@ const Hero = () => {
     const lineDelay = 250;    // delay between lines in ms
     const initialDelay = 2000; // delay before starting in ms
 
-    const tl = gsap.timeline({ delay: initialDelay / 1000 });
+    // Reduced motion: no typing, the text is simply there (run 002, T17)
+    const mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const tl = gsap.timeline({ delay: initialDelay / 1000 });
 
-    lineRefs.current.forEach((line, i) => {
-      const chars = line.querySelectorAll('.char');
-      tl.fromTo(
-        chars,
-        { opacity: 0, y: 10 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: speed / 1000,
-          stagger: speed / 1000,
-        },
-        i === 0 ? 0 : `+=${lineDelay / 1000}`
-      );
+      lineRefs.current.forEach((line, i) => {
+        const chars = line.querySelectorAll('.char');
+        tl.fromTo(
+          chars,
+          { opacity: 0, y: 10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: speed / 1000,
+            stagger: speed / 1000,
+          },
+          i === 0 ? 0 : `+=${lineDelay / 1000}`
+        );
+      });
     });
 
-    // Cleanup function to stop the animation if the component is unmounted
-    return () => {
-      tl.kill(); // This stops the animation and clears the timeline
-    };
+    // Cleanup: stops the animation and restores the text if the component unmounts
+    return () => mm.revert();
   }, []); // Empty dependency array to ensure it runs once on mount
 
   return (
@@ -64,15 +66,21 @@ const Hero = () => {
         paddingRight: '20vw',
         paddingBottom: '2vh' }}
       >
-        {lines.map((line, i) => (
-          <h3
+        {lines.map((line, i) => {
+          // The first line is the page's only <h1>; it keeps the h3 look and colour of the others
+          const Tag = i === 0 ? 'h1' : 'h3';
+          return (
+          <Tag
             key={i}
             ref={addToRefs}
-            style={{ margin: '8px 0', whiteSpace: 'normal', overflow: 'hidden' }}
+            className={i === 0 ? 'h3' : undefined}
+            aria-label={line} // the per-letter spans below are for the animation; read the line as one string
+            style={{ margin: '8px 0', whiteSpace: 'normal', overflow: 'hidden', color: 'inherit' }}
           >
             {line.split(' ').map((word, wordIdx) => (
               <span
                 key={wordIdx}
+                aria-hidden="true"
                 style={{ display: 'inline-block', whiteSpace: 'nowrap', marginRight: '0.5ch' }}
               >
                 {word.split('').map((char, charIdx) => (
@@ -86,8 +94,9 @@ const Hero = () => {
                 ))}
               </span>
             ))}
-          </h3>
-        ))}
+          </Tag>
+          );
+        })}
       </div>
       <AboutSection />
     </section>

@@ -355,11 +355,16 @@ useEffect(() => {
                     <div className={styles.imageCardWrapper}
                     style={{ backgroundColor: item.color} }
                     >
-                    <img src={item.image} alt={item.heading} className={styles.tabImageLarge} />
+                    <img src={item.image} alt={`${item.client} project preview`} className={styles.tabImageLarge} />
                     </div>
                   </div>
                   <div className={styles.tabDetails}>
-                    <h3 className={styles.tabTitle}>{item.heading}<span style={{color: item.color2}}>.</span></h3>
+                    <h3 className={styles.tabTitle}>
+                      {/* Keyboard toggle; its click bubbles to the header's onClick (run 002, T17) */}
+                      <button type="button" className={styles.tabToggle} aria-expanded={isActive} aria-controls={`case-study-${item.id}`}>
+                        {item.heading}<span style={{color: item.color2}}>.</span>
+                      </button>
+                    </h3>
                     <p className={styles.tabSummary}>{item.summary}</p>
                     <div className={styles.projectInfoBlock}>
                       <h4 className={styles.projectInfoLabel}>PROJECT INFO</h4>
@@ -381,16 +386,18 @@ useEffect(() => {
 
                     {(item.demo || item.code) && (
                     <div className={styles.projectLinks}>
-                      {item.demo && <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>}
-                      {item.code && <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>}
+                      {item.demo && <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}} onClick={(e) => e.stopPropagation()}>Live Demo ↗</a>}
+                      {item.code && <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}} onClick={(e) => e.stopPropagation()}>See the process 🐙</a>}
                     </div>
                     )}
 
                   </div>
                 </div>
                 <div
+                  id={`case-study-${item.id}`}
                   ref={(el) => (contentRefs.current[index] = el)}
                   className={`${styles.accordionContent} ${isActive ? styles.expanding : ''}`}
+                  {...(!isActive && { inert: '' })}
                   style={{
                     // Simple mode: open to the article's full height (incl. late-loading images); the page scrolls
                     height: isActive ? (simpleMode ? 'auto' : `${contentRefs.current[index]?.scrollHeight}px`) : '0px',

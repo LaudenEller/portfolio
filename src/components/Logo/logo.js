@@ -10,7 +10,9 @@ export function Logo({ isScrolled }) {
 
       if (svgDoc) {
         const logoPath = svgDoc.querySelector('#mask-path');
-        if (logoPath) {
+        if (logoPath && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+          gsap.set(logoPath, { strokeDashoffset: 0 });
+        } else if (logoPath) {
           gsap.fromTo(
             logoPath,
             { strokeDashoffset: 12965.89 },
@@ -40,7 +42,8 @@ export function Logo({ isScrolled }) {
       data="/assets/logo.svg"
       id="logo-object"
       className={`${styles.logo} ${isScrolled ? styles.logoScroll : ""}`}
-      aria-label="Logo"
+      role="img"
+      aria-label="Lauden Eller signature"
     ></object>
   );
 }

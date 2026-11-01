@@ -145,6 +145,22 @@
   padding: 0.5rem 1rem;
 }
 
+/* Reduced motion: nothing is pinned or scrubbed, so show the text and image in normal flow (run 002, T17) */
+@media (prefers-reduced-motion: reduce) {
+  .scrollBox {
+    max-height: none !important;
+    overflow-y: visible;
+  }
+
+  .imageContainer .firstProjectImage {
+    position: relative;
+  }
+
+  .animatedBar {
+    width: 60%;
+  }
+}
+
 /* @media (max-width: 768px) {
   .container {
     padding: 1rem;

@@ -43,103 +43,108 @@ const Highlights = () => {
   };
 
   useGSAP(() => {
-    // Intro Text Animation on Scroll
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 90%",
-        end: "top top",
-        scrub: true,
-      },
-    }).fromTo(
-      textRef.current,
-      { opacity: 0, x: -20 },
-      { opacity: 1, x: -20, duration: 0.5, ease: "power1.inOut" }
-    );
-
-    // Bar Width Animation on Scroll
-    gsap.to(barRef.current, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top", // Animation begins when the section hits the top
-        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight}`,
-        scrub: 1,
-      },
-      width: "60%", // Expands to full width
-      ease: "power1.inOut",
-    });
-
-    // Section Pinning and Content Animation
-    const pinTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top-=50 top",
-        end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 1.25}`,
-        pin: true,
-        pinSpacing: true,
-        // markers: true,
-      },
-    });
-
-    // Left-side image animation
-    pinTimeline.fromTo(
-      imageRef.current,
-      { opacity: 0, y: "100%", x: "50" },
-      { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" },
-      "0"
-    );
-
-    // TODO button module is getting messed up by this because it's making the parent element y value = -35 so the transform 
-      // is messing up the window.scrollY value  and other calculations necessary to place the message box in relation
-      // to the boundingclientrect from the button that's clicked
-    // Right-side scroll box entrance animation
-    pinTimeline.fromTo(
-      scrollBoxRef.current,
-      { opacity: 0, y: "100%" },
-      { opacity: 1, y: "-35", duration: 1, ease: "none" },
-      "0"
-    );
-
-      
-    // Internal Scrolling Animation for Right-Side Scroll Box
-    pinTimeline.to(scrollBoxRef.current, {
+    // Reduced motion: no pinning or scroll-driven animation; the CSS shows everything statically (run 002, T17)
+    const mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Intro Text Animation on Scroll
+      gsap.timeline({
         scrollTrigger: {
-          trigger: scrollBoxRef.current,
-          start: "top-=15% top",
-          end: () => `+=${scrollBoxRef.current.scrollHeight}`, // Internal scrolling completes before pinning ends
+          trigger: sectionRef.current,
+          start: "top 90%",
+          end: "top top",
           scrub: true,
-          onUpdate: (self) => {
-            const scrollableHeight =
-              scrollBoxRef.current.scrollHeight - scrollBoxRef.current.clientHeight;
-            scrollBoxRef.current.scrollTop =
-              self.progress * scrollableHeight;
-          },
+        },
+      }).fromTo(
+        textRef.current,
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: -20, duration: 0.5, ease: "power1.inOut" }
+      );
+
+      // Bar Width Animation on Scroll
+      gsap.to(barRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top", // Animation begins when the section hits the top
+          end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight}`,
+          scrub: 1,
+        },
+        width: "60%", // Expands to full width
+        ease: "power1.inOut",
+      });
+
+      // Section Pinning and Content Animation
+      const pinTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top-=50 top",
+          end: () => `+=${scrollBoxRef.current.scrollHeight + window.innerHeight * 1.25}`,
+          pin: true,
+          pinSpacing: true,
           // markers: true,
         },
-        ease: "none",
-      },
-    );
+      });
 
-    // Left-side image animations based on scroll progress
-    ScrollTrigger.create({
-      trigger: scrollBoxRef.current,
-      start: "top top",
-      end: () => `+=${scrollBoxRef.current.scrollHeight}`,
-      scrub: true,
-      onUpdate: (self) => {
-        const progress = self.progress; // Value between 0 (start) and 1 (end)
-        if (progress <= 0.5) {
-          // Show first image
-          gsap.to(imageRef.current, { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" });
-          gsap.to(secondImageRef.current, { opacity: 0, y: "100%", x: "50", duration: 0.5, ease: "none" });
-        } else {
-          // Show second image
-          gsap.to(imageRef.current, { opacity: 0, y: "-500", x: "50", duration: 1, ease: "none" });
-          gsap.to(secondImageRef.current, { opacity: 1, y: "-50", x: "50", duration: 0.5, ease: "none" });
-        }
-      },
+      // Left-side image animation
+      pinTimeline.fromTo(
+        imageRef.current,
+        { opacity: 0, y: "100%", x: "50" },
+        { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" },
+        "0"
+      );
+
+      // TODO button module is getting messed up by this because it's making the parent element y value = -35 so the transform 
+        // is messing up the window.scrollY value  and other calculations necessary to place the message box in relation
+        // to the boundingclientrect from the button that's clicked
+      // Right-side scroll box entrance animation
+      pinTimeline.fromTo(
+        scrollBoxRef.current,
+        { opacity: 0, y: "100%" },
+        { opacity: 1, y: "-35", duration: 1, ease: "none" },
+        "0"
+      );
+
+      
+      // Internal Scrolling Animation for Right-Side Scroll Box
+      pinTimeline.to(scrollBoxRef.current, {
+          scrollTrigger: {
+            trigger: scrollBoxRef.current,
+            start: "top-=15% top",
+            end: () => `+=${scrollBoxRef.current.scrollHeight}`, // Internal scrolling completes before pinning ends
+            scrub: true,
+            onUpdate: (self) => {
+              const scrollableHeight =
+                scrollBoxRef.current.scrollHeight - scrollBoxRef.current.clientHeight;
+              scrollBoxRef.current.scrollTop =
+                self.progress * scrollableHeight;
+            },
+            // markers: true,
+          },
+          ease: "none",
+        },
+      );
+
+      // Left-side image animations based on scroll progress
+      ScrollTrigger.create({
+        trigger: scrollBoxRef.current,
+        start: "top top",
+        end: () => `+=${scrollBoxRef.current.scrollHeight}`,
+        scrub: true,
+        onUpdate: (self) => {
+          const progress = self.progress; // Value between 0 (start) and 1 (end)
+          if (progress <= 0.5) {
+            // Show first image
+            gsap.to(imageRef.current, { opacity: 1, y: "-50", x: "50", duration: 1, ease: "none" });
+            gsap.to(secondImageRef.current, { opacity: 0, y: "100%", x: "50", duration: 0.5, ease: "none" });
+          } else {
+            // Show second image
+            gsap.to(imageRef.current, { opacity: 0, y: "-500", x: "50", duration: 1, ease: "none" });
+            gsap.to(secondImageRef.current, { opacity: 1, y: "-50", x: "50", duration: 0.5, ease: "none" });
+          }
+        },
+      });
     });
 
+    return () => mm.revert();
   }, );
 
   return (

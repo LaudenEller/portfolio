@@ -153,7 +153,7 @@ const scrollToAbout = () => {
                 aria-label={label}
                 onMouseEnter={() => setHoveredSide(side)}
               >
-                <img src={icon} alt={label} className={styles.iconImage} />
+                <img src={icon} alt="" className={styles.iconImage} />
               </a>
               ))}
             </div>
