@@ -48,8 +48,6 @@ const { shrinkFactor } = useNavShrink(); // Get shrink factor
   // Scroll listener to update `isScrolled` state
   useEffect(() => {
     const handleScroll = () => {
-      // setIsScrolled(window.scrollY > 125);
-      // setShowFloatingNav(window.scrollY > 125);
       const shouldShow = window.scrollY > 125;
     setShowFloatingNav(shouldShow);
 
@@ -155,7 +153,7 @@ const scrollToAbout = () => {
                 aria-label={label}
                 onMouseEnter={() => setHoveredSide(side)}
               >
-                <img src={icon} alt={label} className={styles.iconImage} />
+                <img src={icon} alt="" className={styles.iconImage} />
               </a>
               ))}
             </div>

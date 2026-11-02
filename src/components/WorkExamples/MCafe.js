@@ -18,10 +18,10 @@ const MCafe = ({ color, color2 }) => {
           <FadeInOnScroll>
             <div className={styles.seasonLabel}>SPRING 2025</div>
             <div className={styles.titleBlock}>
-              <h1 className={styles.title}>
+              <h2 className={styles.title}>
                 M CAFE - ONLINE <br /> ORDERING
                 <span className={styles.titleDot} style={{ color: color2 }}>.</span>
-              </h1>
+              </h2>
               <div className={styles.titleRule} style={{ backgroundColor: color2 }} />
             </div>
             <p className={styles.subhead}>

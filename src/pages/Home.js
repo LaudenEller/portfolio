@@ -3,7 +3,7 @@ import Highlights from '../components/ProjectHighlights/Highlights';
 import { useRef, useEffect } from 'react';
 import WorkExamples1 from '../components/WorkExamples/WorkExamples1';
 import { useAboutContext } from '../contexts/AboutContext';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'; // dist build so Jest can parse it (run 002, T18)
 
 // This is where the different sections are loaded onto the home page in the right order
 const Home = () => {

@@ -32,6 +32,9 @@
 
 .toggleBar {
   display: inline-block;
+  border: none;
+  color: inherit;
+  font-family: inherit;
   background: #0F0F0F;
   padding: 0.01rem 3rem;
   font-size: 0.25rem;

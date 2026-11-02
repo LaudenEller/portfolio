@@ -16,7 +16,6 @@ import { useNavShrink } from '../../contexts/NavShrinkContext';
 // published: only published case studies render (run 001, T5).
 // demo/code: leave '' until there's a real URL. Empty links aren't rendered (M2-T15 fills them).
 const accordionData = [
-  // { id: 0, heading: 'M Cafe', image: '/assets/workImages/example0.png', summary: 'Branding and website design for a modern café.', component: <MCafe /> },
   { id: 0, 
     client: 'M Cafe', 
     published: true,
@@ -325,21 +324,6 @@ useEffect(() => {
   };
   
 
-  // THIS IS MEANT TO PLACE THE EXPANDED ACCORDION TAB ON SCROLL SO IT TAKES UP MORE OF THE SCREEN
-//   const getAccordionStyles = (isActive) => {
-//   if (!isActive) return {};
-  
-//   const widthScale = 1 - (shrinkFactor * 0.05);
-//   const paddingScale = 1 - (shrinkFactor * 0.1);
-  
-//   return {
-//     transform: `scale(${widthScale})`,
-//     transformOrigin: 'top center',
-//     paddingLeft: `${paddingScale * 2}rem`,
-//     paddingRight: `${paddingScale * 2}rem`
-//   };
-// };
-
   /**
  * Handles user scrolling into an accordion tab.
  * Expands width and height of inner accordion content as user scrolls away from the top of the tab.
@@ -371,11 +355,16 @@ useEffect(() => {
                     <div className={styles.imageCardWrapper}
                     style={{ backgroundColor: item.color} }
                     >
-                    <img src={item.image} alt={item.heading} className={styles.tabImageLarge} />
+                    <img src={item.image} alt={`${item.client} project preview`} className={styles.tabImageLarge} />
                     </div>
                   </div>
                   <div className={styles.tabDetails}>
-                    <h3 className={styles.tabTitle}>{item.heading}<span style={{color: item.color2}}>.</span></h3>
+                    <h3 className={styles.tabTitle}>
+                      {/* Keyboard toggle; its click bubbles to the header's onClick (run 002, T17) */}
+                      <button type="button" className={styles.tabToggle} aria-expanded={isActive} aria-controls={`case-study-${item.id}`}>
+                        {item.heading}<span style={{color: item.color2}}>.</span>
+                      </button>
+                    </h3>
                     <p className={styles.tabSummary}>{item.summary}</p>
                     <div className={styles.projectInfoBlock}>
                       <h4 className={styles.projectInfoLabel}>PROJECT INFO</h4>
@@ -397,16 +386,18 @@ useEffect(() => {
 
                     {(item.demo || item.code) && (
                     <div className={styles.projectLinks}>
-                      {item.demo && <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>Live Demo ↗</a>}
-                      {item.code && <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}}>See the process 🐙</a>}
+                      {item.demo && <a href={item.demo} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}} onClick={(e) => e.stopPropagation()}>Live Demo ↗</a>}
+                      {item.code && <a href={item.code} target="_blank" rel="noopener noreferrer" className={styles.projectButton} style={{borderColor: item.color2}} onClick={(e) => e.stopPropagation()}>See the process 🐙</a>}
                     </div>
                     )}
 
                   </div>
                 </div>
                 <div
+                  id={`case-study-${item.id}`}
                   ref={(el) => (contentRefs.current[index] = el)}
                   className={`${styles.accordionContent} ${isActive ? styles.expanding : ''}`}
+                  {...(!isActive && { inert: '' })}
                   style={{
                     // Simple mode: open to the article's full height (incl. late-loading images); the page scrolls
                     height: isActive ? (simpleMode ? 'auto' : `${contentRefs.current[index]?.scrollHeight}px`) : '0px',

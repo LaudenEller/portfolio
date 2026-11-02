@@ -9,7 +9,6 @@ import { useNavShrink } from '../contexts/NavShrinkContext';
 // This sets up the layout of the app by passing routes as children between navbar and footer components
 const MainLayout = ({ children }) => {
   const mainRef = useRef(null);
-  const navbarRef = useRef(null);
   const [showFloatingNav, setShowFloatingNav] = useState(false);
   const { shrinkFactor } = useNavShrink();
 
@@ -33,15 +32,13 @@ useEffect(() => {
 
   return (
     <div className={styles.layoutContainer}>
-      <Navbar1 ref={navbarRef} />
-      {/* <NavbarSpacer navbarRef={navbarRef} mainRef={mainRef} />  */}
+      <Navbar1 />
       <main 
       ref={mainRef}
       className={showFloatingNav ? styles.withStickyOffset : ''}
       style={{ marginTop: getMainOffset() }}
       >{children}</main>
       <Footer />
-      {/* <DebugNavbarSpacer /> */}
     </div>
   );
 };
