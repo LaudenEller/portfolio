@@ -18,7 +18,8 @@ describe('home page', () => {
   });
 
   test('shows published case studies and hides unpublished ones', () => {
-    expect(screen.getByRole('button', { name: 'Takeout the fees.' })).toBeInTheDocument(); // M Cafe
+    // jsdom puts a space before the coloured full stop; browsers don't, so match the words only
+    expect(screen.getByRole('button', { name: /^Takeout the fees/ })).toBeInTheDocument(); // M Cafe
     expect(screen.queryByText(/Complicated B2B tax rules/)).not.toBeInTheDocument(); // E-Cig Masters
   });
 });
